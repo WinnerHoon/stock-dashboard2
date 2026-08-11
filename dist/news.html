@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme:dark)">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme:light)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="내 주식">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>뉴스 · 승훈님의 주식</title>
+<style>
+:root{color-scheme:light dark;--bg:#0f1115;--card:#171a21;--line:#252a34;--txt:#e6e8ec;--dim:#8b93a1;
+--up:#e5484d;--down:#2f81f7;--flat:#8b93a1;--ac:#f0b429;
+--c1:#5b8def;--c2:#f0b429;--c3:#3fb984;--c4:#c05fd6;--hl:#1e222b}
+@media(prefers-color-scheme:light){:root{--bg:#f6f7f9;--card:#fff;--line:#e3e6ea;--txt:#1a1d23;--dim:#6b7280;--hl:#f0f2f5}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;padding:0 0 60px;background:var(--bg);color:var(--txt);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;
+-webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+padding:0 16px;display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav a{flex:0 0 auto;padding:14px 16px;color:var(--dim);text-decoration:none;font-size:14px;
+font-weight:600;border-bottom:2px solid transparent;white-space:nowrap}
+nav a.on{color:var(--txt);border-bottom-color:var(--c1)}
+header{padding:20px 0 4px}
+h1{font-size:20px;margin:0 0 4px}
+.sb{color:var(--dim);font-size:12.5px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+#fresh{border:1px solid var(--line);border-radius:20px;padding:2px 10px;font-size:11.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+h2{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);margin:0 0 13px;font-weight:700}
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+.lb{color:var(--dim);font-size:11.5px;margin-bottom:3px}
+.bg{font-size:27px;font-weight:700;letter-spacing:-.02em}
+.bg.s{font-size:20px}
+.td{font-size:12.5px;margin-top:5px}
+.ics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.ic{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.in{color:var(--dim);font-size:11.5px}
+.iv{font-size:16px;font-weight:600;margin:3px 0}
+.ig{font-size:12.5px;font-weight:600}
+.is{color:var(--dim);font-size:10.5px}
+.abs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:12px}
+.ah{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.at{height:7px;background:var(--bg);border-radius:4px;overflow:hidden}
+.af{height:100%;border-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:5px 11px;font-size:12px;color:var(--dim)}
+.chip b{color:var(--txt);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:right;color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
+padding:0 8px 9px;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child{text-align:left}
+td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.tk{color:var(--dim);font-size:10.5px;margin-left:6px}
+.s2{color:var(--dim);font-size:10.5px;margin-top:2px;font-weight:400}
+.bd{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:12px;background:var(--bg);
+border:1px solid var(--line);font-size:9.5px;vertical-align:middle}
+.bd.e{border-color:var(--c3);color:var(--c3)}
+.bd.s{border-color:var(--c1);color:var(--c1)}
+.wb{height:4px;background:var(--line);border-radius:3px;margin-top:4px}
+.wb i{display:block;height:100%;background:var(--c1);border-radius:3px}
+.rb{position:relative;height:5px;background:var(--line);border-radius:3px;display:inline-block;width:64px;vertical-align:middle}
+.rf{position:absolute;inset:0;background:linear-gradient(90deg,var(--down),var(--up));border-radius:3px;opacity:.5}
+.rd{position:absolute;top:-2.5px;width:3px;height:10px;background:var(--txt);border-radius:2px}
+.rt{color:var(--dim);font-size:10.5px;margin-left:6px}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--flat)}
+.spk{width:110px;height:30px;display:block}
+.em{color:var(--dim);font-size:13px;margin:0}
+footer{color:var(--dim);font-size:11.5px;text-align:center;margin-top:22px;line-height:1.8;padding:0 16px}
+.cards{display:none}
+@media(max-width:760px){
+ .wrap{padding:0 12px}
+ h1{font-size:18px}
+ .bg{font-size:23px}
+ .hero{grid-template-columns:1fr 1fr;gap:14px}
+ .card{padding:14px;border-radius:12px}
+ table.resp{display:none}
+ .cards{display:block}
+ nav a{padding:13px 13px;font-size:13.5px}
+}
+.mc{border-bottom:1px solid var(--line);padding:13px 0}
+.mc:last-child{border-bottom:none}
+.mc-t{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mc-n{font-weight:600;font-size:14.5px}
+.mc-r{font-size:15px;font-weight:700;white-space:nowrap}
+.mc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;font-size:11.5px}
+.mc-g div{color:var(--dim)}
+.mc-g b{display:block;color:var(--txt);font-size:12.5px;font-variant-numeric:tabular-nums;font-weight:600}
+</style></head><body>
+<nav><a href="index.html" class="">포트폴리오</a><a href="news.html" class="on">뉴스</a><a href="history.html" class="">일별 변화</a></nav>
+<div class="wrap">
+<style>
+.nl{list-style:none;margin:0;padding:0}
+.nl li{padding:13px 0;border-bottom:1px solid var(--line)}
+.nl li:last-child{border-bottom:none}
+.nl a{color:var(--txt);text-decoration:none;font-weight:600;font-size:14.5px;line-height:1.45}
+.nl a:hover{text-decoration:underline}
+.nsum{color:var(--dim);font-size:12.5px;margin-top:6px;line-height:1.6}
+.nsrc{margin-top:6px}
+</style><header><h1>뉴스</h1><div class="sb"><span id="fresh">갱신 확인 중</span><span>15건</span><span>15건 한글 번역</span></div></header>
+<div class="card"><h2>Meta Platforms <span class="tk">META</span><span class="tk">비중 15.8%</span></h2><ul class="nl"><li><a href="https://finance.yahoo.com/video/why-weeks-coreweave-earnings-important-142211249.html" target="_blank" rel="noopener">이번 주 CoreWeave 수입이 시장에서 중요한 이유</a><div class="s2">Why this week&#x27;s CoreWeave earnings are so important for markets</div><div class="nsum">CoreWeave (CRWV) is set to report quarterly earnings this week. Yahoo Finance Senior Reporter Brooke DiPalma discusses more in the video above.</div><div class="s2 nsrc">Yahoo Finance Video</div></li><li><a href="https://finance.yahoo.com/video/meta-announces-1b-fund-communities-201315917.html" target="_blank" rel="noopener">Meta, 데이터 센터 인근 커뮤니티를 위한 $ 10억 기금 발표</a><div class="s2">Meta announces $1B fund for communities near its data centers</div><div class="nsum">Yahoo Finance Tech Editor Dan Howley analyzes Meta (META) CEO Mark Zuckerberg&#x27;s vision for open-source &quot;personal superintelligence,&quot; his criticism of rival AI labs, and Meta&#x27;s $1 billion initiative to support communities</div><div class="s2 nsrc">Yahoo Finance Video</div></li><li><a href="https://finance.yahoo.com/technology/ai/articles/meta-stock-jumps-2-3-190300879.html" target="_blank" rel="noopener">오픈 웨이트 AI 전략 수익으로 2.3% 뛰어오른 메타 주식</a><div class="s2">Meta Stock Jumps 2.3% as Open-Weight AI Strategy Returns</div><div class="nsum">Muse Glimmer brings autonomous AI tasks onto consumer hardware, potentially reducing dependence on costly cloud infrastructure.</div><div class="s2 nsrc">GuruFocus.com</div></li></ul></div><div class="card"><h2>NVIDIA <span class="tk">NVDA</span><span class="tk">비중 14.3%</span></h2><ul class="nl"><li><a href="https://finance.yahoo.com/video/intels-huge-rally-helping-pay-161130430.html" target="_blank" rel="noopener">인텔의 대규모 랠리는 AI 복귀에 대한 비용을 지불하는 데 도움이 되고 있습니다.</a><div class="s2">Intel&#x27;s huge rally is helping pay for its AI comeback</div><div class="nsum">In today&#x27;s Chart of the Day, Yahoo Finance Markets &amp; Data Editor Jared Blikre dives into Intel&#x27;s (INTC) rally and how the chipmaker’s surging stock price saved the company millions as it prepares to issue $20 billion in </div><div class="s2 nsrc">Yahoo Finance Video</div></li><li><a href="https://finance.yahoo.com/personal-finance/investing/article/put-option-130000345.html" target="_blank" rel="noopener">PUT OPTIONS EXPLAINED: 거래가 성과를 거두는 방법과 그렇지 않은 경우</a><div class="s2">Put options explained: How trading puts pays off and when it doesn&#x27;t</div><div class="nsum">See how one Nvidia put option plays out for buyer and seller, from a real quote through potential outcomes at expiration, including the cost and breakeven for each side.</div><div class="s2 nsrc">Yahoo Personal Finance</div></li><li><a href="https://finance.yahoo.com/technology/ai/articles/ibm-lands-240-million-ai-191047046.html" target="_blank" rel="noopener">IBM, 2억 4천만 달러 규모의 AI 추론 거래 체결 ($ 240 Million AI Inference Deal)</a><div class="s2">IBM Lands a $240 Million AI Inference Deal</div><div class="nsum">Together AI will use IBM Cloud and Nvidia Blackwell systems to build a large-scale cluster for open-source models.</div><div class="s2 nsrc">GuruFocus.com</div></li></ul></div><div class="card"><h2>Berkshire Hathaway B <span class="tk">BRK-B</span><span class="tk">비중 6.8%</span></h2><ul class="nl"><li><a href="https://finance.yahoo.com/markets/stocks/articles/berkshire-stock-jumps-3-1-184921621.html" target="_blank" rel="noopener">버크셔 주가, $ 45억 환매 수익률로 3.1% 상승</a><div class="s2">Berkshire Stock Jumps 3.1% as $4.5 Billion Buyback Returns</div><div class="nsum">Greg Abel&#x27;s expanding capital deployment reduced Berkshire&#x27;s cash position while operating earnings increased across several major businesses.</div><div class="s2 nsrc">GuruFocus.com</div></li><li><a href="https://www.fool.com/investing/2026/08/11/greg-abel-sold-billion-berkshire-hathaway-stock-q2/" target="_blank" rel="noopener">버크셔 해서웨이 (Berkshire Hathaway) 의 CEO 그렉 아벨 (Greg Abel) 은 1분기에 $ 8.1 Billion의 주식을 매도했습니다... 거래가 거의 없다는 신호였습니다. 2분기에 변화가 있었나요?</a><div class="s2">Berkshire Hathaway&#x27;s CEO Greg Abel Sold $8.1 Billion in Stocks in Q1 ... a Sign He Sees Few Bargains. Did That Change in Q2?</div><div class="nsum">Berkshire recently released its second-quarter report, updating its message on whether there are any stocks worth buying at their current valuations.</div><div class="s2 nsrc">Motley Fool</div></li><li><a href="https://www.fool.com/investing/2026/08/11/warren-buffett-has-always-said-this-1-thing-about/" target="_blank" rel="noopener">워렌 버핏은 장기 투자에 대해 항상 이렇게 말했습니다. 역사는 한 번도 그가 틀렸다는 것을 증명한 적이 없습니다.</a><div class="s2">Warren Buffett Has Always Said This 1 Thing About Long-Term Investing. History Has Never Once Proved Him Wrong.</div><div class="nsum">Buffett is widely considered the greatest investor of all time.</div><div class="s2 nsrc">Motley Fool</div></li></ul></div><div class="card"><h2>Coupang <span class="tk">CPNG</span><span class="tk">비중 1.7%</span></h2><ul class="nl"><li><a href="https://247wallst.com/investing/2026/08/11/coupang-keeps-falling-why-one-analyst-expects-the-amazon-of-south-korea-to-jump-nearly-100/" target="_blank" rel="noopener">쿠팡이 계속 떨어지는 이유: 한 애널리스트가 한국의 아마존이 거의 100% 점프할 것으로 예상하는 이유</a><div class="s2">Coupang Keeps Falling: Why One Analyst Expects the Amazon of South Korea to Jump Nearly 100%</div><div class="nsum">A $410 million regulatory fine, a massive data breach, and a currency collapse sent Coupang to near 52-week lows while its peers barely flinched. One top analyst sees that punishment as a setup, not a sentence.</div><div class="s2 nsrc">24/7 Wall St.</div></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/coupang-cpng-sales-keep-climbing-185521538.html" target="_blank" rel="noopener">쿠팡 (CPNG) 의 매출은 계속 오르고 이익은 적중합니다.</a><div class="s2">Coupang’s (CPNG) Sales Keep Climbing While Its Profits Take A Hit</div><div class="nsum">Coupang Inc. (NYSE:CPNG) reported results on August 4 for the quarter ended June 30, and its two headline numbers point in opposite directions. Net revenues rose 4% year over year to $8.9 billion, or 10% on a constant cu</div><div class="s2 nsrc">Insider Monkey</div></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/3-stocks-under-50-think-170122925.html" target="_blank" rel="noopener">우리가 두 번 생각하는 $ 50 미만의 주식 3개</a><div class="s2">3 Stocks Under $50 We Think Twice About</div><div class="nsum">Stocks trading between $10 and $50 can be particularly interesting as they frequently represent businesses that have survived their early challenges. However, investors should remain vigilant as some may still have unpro</div><div class="s2 nsrc">StockStory</div></li></ul></div><div class="card"><h2>Symbotic <span class="tk">SYM</span><span class="tk">비중 0.3%</span></h2><ul class="nl"><li><a href="https://247wallst.com/investing/2026/08/11/robotics-stocks-rally-as-unitrees-8000x-oversubscribed-ipo-draws-frenzied-demand-ouster-symbotic-and-teradyne-in-focus/" target="_blank" rel="noopener">Unitree의 8000X 초과 가입 IPO가 광란의 수요를 끌어내면서 로봇 주식 랠리: Ouster, Symbotic, Teradyne in Focus</a><div class="s2">Robotics Stocks Rally as Unitree’s 8000X Oversubscribed IPO Draws Frenzied Demand: Ouster, Symbotic, and Teradyne in Focus</div><div class="nsum">A Chinese humanoid maker just pulled off one of the most frenzied IPOs in recent memory, and the shockwaves are now rippling through U.S. robotics stocks in a big way. Here is what traders are watching as the physical AI</div><div class="s2 nsrc">24/7 Wall St.</div></li><li><a href="https://247wallst.com/investing/2026/08/11/a-red-hot-robotics-ipo-is-8000-times-oversubscribed-spacex-drew-4x-demand/" target="_blank" rel="noopener">Red-Hot Robotics IPO는 8,000회 초과 구독됩니다. SpaceX Drew 4X 수요.</a><div class="s2">A Red-Hot Robotics IPO Is 8,000 Times Oversubscribed. SpaceX Drew 4X Demand.</div><div class="nsum">Investor demand for humanoid robots just shattered records that SpaceX, Snowflake, and Facebook never came close to touching. Here are the five publicly traded robotics stocks best positioned to capture that fever before</div><div class="s2 nsrc">24/7 Wall St.</div></li><li><a href="https://finance.yahoo.com/markets/stocks/articles/ymm-vs-sym-stock-better-154004633.html" target="_blank" rel="noopener">YMM vs. SYM: 더 나은 가치 옵션은 어떤 주식입니까?</a><div class="s2">YMM vs. SYM: Which Stock Is the Better Value Option?</div><div class="nsum">YMM vs. SYM: Which Stock Is the Better Value Option?</div><div class="s2 nsrc">Zacks</div></li></ul></div>
+<footer>매 정시(장중) GitHub Actions 가 자동 갱신 · 시세는 지연될 수 있습니다<br>
+해외 종목 평단은 환율 환산 근사치이며, 뉴스 번역은 기계번역입니다<br>
+정보 제공용이며 투자 권유가 아닙니다. 투자 판단과 책임은 본인에게 있습니다.</footer>
+</div>
+<script>
+(function(){
+ var BAKED="2026-08-12T04:20:00+09:00", KEY='reloaded-'+BAKED;
+ var el=document.getElementById('fresh');
+ function ago(iso){
+  var d=(Date.now()-new Date(iso).getTime())/60000;
+  if(d<1)return '방금';
+  if(d<60)return Math.floor(d)+'분 전';
+  if(d<1440)return Math.floor(d/60)+'시간 전';
+  return Math.floor(d/1440)+'일 전';
+ }
+ if(el) el.textContent='갱신 '+ago(BAKED);
+ // 방문할 때마다 최신 데이터가 있는지 확인하고, 있으면 새 페이지를 받아옵니다
+ fetch('data.json?t='+Date.now(),{cache:'no-store'})
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(j){
+    if(!j||j.generated_at===BAKED) return;
+    if(sessionStorage.getItem(KEY)) return;   // 무한 새로고침 방지
+    sessionStorage.setItem(KEY,'1');
+    location.reload();
+  }).catch(function(){});
+})();
+</script></body></html>
