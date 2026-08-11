@@ -2,16 +2,19 @@ name: 아침 주식 브리핑
 
 on:
   schedule:
-    # 한국시간 평일 오전 8시 = UTC 전날 23시 (일~목 23:00 UTC = 월~금 08:00 KST)
-    # GitHub 무료 플랜 cron 은 5~30분 지연될 수 있습니다.
-    - cron: "0 23 * * 0-4"
-  workflow_dispatch:        # Actions 탭에서 수동 실행
+    # 시각은 UTC 기준. KST = UTC + 9시간.
+    # 23:00~07:00 UTC = 08:00~16:00 KST → 국내장
+    # 13:00~21:00 UTC = 22:00~06:00 KST → 미국장
+    # 장중 매시간 갱신. 월 약 400회 × 1분 ≈ 400분 (무료 한도 2,000분)
+    - cron: "0 23,0,1,2,3,4,5,6,7 * * 1-5"
+    - cron: "0 13,14,15,16,17,18,19,20,21 * * 1-5"
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ["portfolio.json", "**.py", ".github/workflows/daily.yml"]
 
 permissions:
-  contents: write           # dist/ 커밋 (호스팅이 이걸 서빙하고, data.json 은 전일 대비에 사용)
+  contents: write
 
 concurrency:
   group: build
@@ -21,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4       # 직전 dist/data.json 도 함께 가져옴
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
@@ -35,20 +38,24 @@ jobs:
 
       - name: 브리핑 생성
         env:
-          # 전부 선택사항입니다. 없으면 해당 기능만 조용히 건너뜁니다.
+          # 전부 선택사항. 없으면 해당 기능만 조용히 건너뜁니다.
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
           KAKAO_REST_KEY: ${{ secrets.KAKAO_REST_KEY }}
           KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
           KRX_ID: ${{ secrets.KRX_ID }}
           KRX_PW: ${{ secrets.KRX_PW }}
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+          MYMEMORY_EMAIL: ${{ secrets.MYMEMORY_EMAIL }}
           SITE_URL: ${{ vars.SITE_URL }}
         run: python build.py
 
-      - name: dist 커밋 → 호스팅이 자동 배포
+      - name: dist 커밋 (호스팅이 자동 배포)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dist
-          git diff --staged --quiet || git commit -m "브리핑 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M')"
+          git diff --staged --quiet && exit 0
+          git commit -m "브리핑 갱신 $(TZ=Asia/Seoul date +%Y-%m-%d_%H:%M)"
+          git pull --rebase --autostash origin main || true
           git push
