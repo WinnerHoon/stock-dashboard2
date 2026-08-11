@@ -5,25 +5,12 @@
   "installCommand": null,
   "framework": null,
   "github": { "silent": true },
-  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
-        { "key": "Referrer-Policy", "value": "no-referrer" }
-      ]
-    },
-    {
-      "//": "페이지와 데이터는 캐시하지 않습니다 — 방문할 때마다 최신 내용을 받게 하기 위함",
-      "source": "/(.*\\.(html|json))",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/",
-      "headers": [
+        { "key": "Referrer-Policy", "value": "no-referrer" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
