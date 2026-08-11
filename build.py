@@ -279,14 +279,28 @@ def build(cfg, use_mock=False):
         totals["delta_krw"] = round(tv - pv)
         totals["delta_pct"] = round(pct(tv, pv), 2)
 
-    # 뉴스
+    # 뉴스 + 번역
     log("뉴스 수집")
-    import news as news_mod
-    news = {} if use_mock else news_mod.collect(consolidated, int(s.get("news_per_ticker", 3)))
+    if use_mock:
+        news = {m["ticker"]: {"name": m["name"], "items": [{
+            "title": f"[Mock] {m['name']} reports record quarterly revenue growth",
+            "url": "https://example.com", "publisher": "MockWire",
+            "summary": "Placeholder summary for offline rendering test.", "published": ""}]}
+            for m in consolidated[:4] if not m["is_etf"]}
+        for v in news.values():
+            for n in v["items"]:
+                n["title_ko"] = "[모의] " + v["name"] + " 분기 매출 사상 최대 기록"
+    else:
+        import news as news_mod
+        news = news_mod.collect(consolidated, int(s.get("news_per_ticker", 3)))
+        if news:
+            log("뉴스 번역")
+            import translate
+            news = translate.apply_to_news(news)
 
     return {
         "generated_at": datetime.now(KST).isoformat(timespec="seconds"),
-        "date": datetime.now(KST).strftime("%Y-%m-%d"),
+        "date": os.getenv("FAKE_DATE") or datetime.now(KST).strftime("%Y-%m-%d"),
         "owner": cfg.get("owner", ""), "style": s.get("style", "long_term"),
         "mock": use_mock, "totals": totals, "allocation": allocation,
         "indices": indices, "consolidated": consolidated, "positions": positions,
@@ -303,10 +317,17 @@ def main():
         cfg = json.load(open(CONFIG, encoding="utf-8"))
         data = build(cfg, a.mock)
         os.makedirs(DIST, exist_ok=True)
+
+        import history
+        import render
+        log("이력 갱신")
+        hist, day_diffs = history.update(DIST, data)
+
         json.dump(data, open(os.path.join(DIST, "data.json"), "w", encoding="utf-8"),
                   ensure_ascii=False, indent=1)
-        import render
-        open(os.path.join(DIST, "index.html"), "w", encoding="utf-8").write(render.page(data))
+        for name, html in render.render_all(data, hist, day_diffs).items():
+            open(os.path.join(DIST, name), "w", encoding="utf-8").write(html)
+            log(f"  · {name} ({len(html):,} bytes)")
         open(os.path.join(DIST, ".nojekyll"), "w").write("")
 
         t = data["totals"]
