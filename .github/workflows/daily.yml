@@ -3,26 +3,25 @@ name: 아침 주식 브리핑
 on:
   schedule:
     # 한국시간 평일 오전 8시 = UTC 전날 23시 (일~목 23:00 UTC = 월~금 08:00 KST)
+    # GitHub 무료 플랜 cron 은 5~30분 지연될 수 있습니다.
     - cron: "0 23 * * 0-4"
-  workflow_dispatch:        # Actions 탭에서 수동 실행 가능
+  workflow_dispatch:        # Actions 탭에서 수동 실행
   push:
     branches: [main]
     paths: ["portfolio.json", "**.py", ".github/workflows/daily.yml"]
 
 permissions:
-  contents: write           # dist/data.json 커밋 (전일 대비 계산용)
-  pages: write
-  id-token: write
+  contents: write           # dist/ 커밋 (호스팅이 이걸 서빙하고, data.json 은 전일 대비에 사용)
 
 concurrency:
-  group: pages
+  group: build
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4       # 직전 dist/data.json 을 함께 가져옴
+      - uses: actions/checkout@v4       # 직전 dist/data.json 도 함께 가져옴
 
       - uses: actions/setup-python@v5
         with:
@@ -36,7 +35,7 @@ jobs:
 
       - name: 브리핑 생성
         env:
-          # 아래 시크릿은 전부 선택사항입니다. 없으면 해당 기능만 조용히 건너뜁니다.
+          # 전부 선택사항입니다. 없으면 해당 기능만 조용히 건너뜁니다.
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
           KAKAO_REST_KEY: ${{ secrets.KAKAO_REST_KEY }}
@@ -46,24 +45,10 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
         run: python build.py
 
-      - name: 데이터 커밋 (전일 대비 계산용)
+      - name: dist 커밋 → 호스팅이 자동 배포
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f dist/data.json
-          git diff --staged --quiet || git commit -m "데이터 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d')"
+          git add dist
+          git diff --staged --quiet || git commit -m "브리핑 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M')"
           git push
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
