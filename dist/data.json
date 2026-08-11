@@ -1,17 +1,19 @@
 {
- "generated_at": "2026-08-12T03:44:52+09:00",
+ "generated_at": "2026-08-12T03:55:48+09:00",
  "date": "2026-08-12",
  "owner": "승훈",
  "style": "long_term",
  "mock": false,
  "totals": {
-  "market_value_krw": 21555401,
-  "cost_krw": 20094824,
-  "pl_krw": 1460577,
-  "roi_pct": 7.27,
-  "usdkrw": 1413.27,
+  "market_value_krw": 21569424,
+  "cost_krw": 20094921,
+  "pl_krw": 1474503,
+  "roi_pct": 7.34,
+  "usdkrw": 1413.28,
   "positions_count": 15,
-  "failed_count": 0
+  "failed_count": 0,
+  "delta_krw": 14023,
+  "delta_pct": 0.07
  },
  "allocation": {
   "국내": 32.2,
@@ -20,8 +22,8 @@
   "개별주": 58.6,
   "by_broker": {
    "미래에셋 ISA": 4543060,
-   "Super365": 8783709,
-   "토스": 8228632
+   "Super365": 8791471,
+   "토스": 8234893
   }
  },
  "indices": [
@@ -308,20 +310,20 @@
   {
    "code": "IXIC",
    "name": "나스닥",
-   "price": 26382.6973,
+   "price": 26418.4219,
    "prev_close": 26605.3594,
-   "chg": -0.84,
-   "w1": -0.76,
-   "m1": 1.97,
-   "m3": 1.13,
-   "m6": 14.2,
-   "y1": 23.37,
+   "chg": -0.7,
+   "w1": -0.63,
+   "m1": 2.11,
+   "m3": 1.27,
+   "m6": 14.35,
+   "y1": 23.53,
    "high_52w": 27093.9004,
    "low_52w": 20794.6406,
-   "from_high": -2.62,
-   "band_pos": 88.7,
-   "ma60": 26008.29,
-   "ma200": 24126.91,
+   "from_high": -2.49,
+   "band_pos": 89.3,
+   "ma60": 26008.88,
+   "ma200": 24127.09,
    "spark": [
     22682.7305,
     22886.0703,
@@ -442,26 +444,26 @@
     26348.3496,
     26690.6191,
     26605.3594,
-    26382.6973
+    26418.4219
    ]
   },
   {
    "code": "US500",
    "name": "S&P 500",
-   "price": 7721.02,
+   "price": 7725.73,
    "prev_close": 7753.1099,
-   "chg": -0.41,
-   "w1": -0.2,
-   "m1": 2.74,
-   "m3": 4.32,
-   "m6": 11.22,
-   "y1": 21.14,
+   "chg": -0.35,
+   "w1": -0.14,
+   "m1": 2.8,
+   "m3": 4.39,
+   "m6": 11.29,
+   "y1": 21.22,
    "high_52w": 7757.6401,
    "low_52w": 6343.7202,
-   "from_high": -0.47,
-   "band_pos": 97.4,
-   "ma60": 7495.72,
-   "ma200": 7060.23,
+   "from_high": -0.41,
+   "band_pos": 97.7,
+   "ma60": 7495.79,
+   "ma200": 7060.25,
    "spark": [
     6861.8901,
     6909.5098,
@@ -582,13 +584,13 @@
     7709.96,
     7757.6401,
     7753.1099,
-    7721.02
+    7725.73
    ]
   },
   {
    "code": "USD/KRW",
    "name": "원/달러 환율",
-   "price": 1413.27,
+   "price": 1413.28,
    "prev_close": 1407.0,
    "chg": 0.45,
    "w1": -1.07,
@@ -599,7 +601,7 @@
    "high_52w": 1554.48,
    "low_52w": 1377.64,
    "from_high": -9.08,
-   "band_pos": 20.1,
+   "band_pos": 20.2,
    "ma60": 1498.81,
    "ma200": 1476.4,
    "spark": [
@@ -722,7 +724,7 @@
     1421.16,
     1422.3,
     1407.0,
-    1413.27
+    1413.28
    ]
   }
  ],
@@ -732,13 +734,13 @@
    "name": "Meta Platforms",
    "market": "US",
    "currency": "USD",
-   "price": 602.97,
-   "chg": 1.35,
+   "price": 603.08,
+   "chg": 1.37,
    "is_etf": false,
-   "m3": -0.0,
-   "y1": -21.27,
-   "from_high": -23.67,
-   "band_pos": 29.2,
+   "m3": 0.01,
+   "y1": -21.26,
+   "from_high": -23.66,
+   "band_pos": 29.3,
    "ma200": 629.95,
    "spark": [
     644.78,
@@ -860,19 +862,19 @@
     589.9,
     592.1,
     594.92,
-    602.97
+    603.08
    ],
    "shares": 4.0,
    "cost": 2515.64,
-   "market_value_krw": 3408638,
-   "cost_krw": 3555279,
+   "market_value_krw": 3409284,
+   "cost_krw": 3555304,
    "brokers": [
     "Super365 2주",
     "토스 2주"
    ],
    "avg_price": 628.91,
-   "pl_krw": -146641,
-   "roi_pct": -4.12,
+   "pl_krw": -146020,
+   "roi_pct": -4.11,
    "weight_pct": 15.81,
    "split": true
   },
@@ -881,13 +883,13 @@
    "name": "SPDR Portfolio S&P 500 ETF",
    "market": "US",
    "currency": "USD",
-   "price": 90.615,
-   "chg": -0.42,
+   "price": 90.675,
+   "chg": -0.36,
    "is_etf": true,
-   "m3": 4.28,
-   "y1": 21.14,
-   "from_high": -0.43,
-   "band_pos": 97.6,
+   "m3": 4.34,
+   "y1": 21.22,
+   "from_high": -0.37,
+   "band_pos": 98.0,
    "ma200": 82.84,
    "spark": [
     80.55,
@@ -1009,19 +1011,19 @@
     90.47,
     91.01,
     91.0,
-    90.615
+    90.675
    ],
    "shares": 26.0,
    "cost": 2112.38,
-   "market_value_krw": 3329650,
-   "cost_krw": 2985363,
+   "market_value_krw": 3331878,
+   "cost_krw": 2985385,
    "brokers": [
     "Super365 11주",
     "토스 15주"
    ],
    "avg_price": 81.25,
-   "pl_krw": 344287,
-   "roi_pct": 11.53,
+   "pl_krw": 346493,
+   "roi_pct": 11.6,
    "weight_pct": 15.45,
    "split": true
   },
@@ -1030,14 +1032,14 @@
    "name": "NVIDIA",
    "market": "US",
    "currency": "USD",
-   "price": 216.66,
-   "chg": -0.41,
+   "price": 217.2601,
+   "chg": -0.13,
    "is_etf": false,
-   "m3": -1.87,
-   "y1": 19.0,
-   "from_high": -8.09,
-   "band_pos": 73.0,
-   "ma200": 194.34,
+   "m3": -1.59,
+   "y1": 19.33,
+   "from_high": -7.84,
+   "band_pos": 73.8,
+   "ma200": 194.35,
    "spark": [
     187.9,
     189.82,
@@ -1158,20 +1160,20 @@
     218.99,
     223.96,
     217.55,
-    216.66
+    217.2601
    ],
    "shares": 10.0,
    "cost": 1769.4199999999998,
-   "market_value_krw": 3061990,
-   "cost_krw": 2500668,
+   "market_value_krw": 3070493,
+   "cost_krw": 2500686,
    "brokers": [
     "Super365 4주",
     "토스 6주"
    ],
    "avg_price": 176.94,
-   "pl_krw": 561322,
-   "roi_pct": 22.45,
-   "weight_pct": 14.21,
+   "pl_krw": 569807,
+   "roi_pct": 22.79,
+   "weight_pct": 14.24,
    "split": true
   },
   {
@@ -1179,13 +1181,13 @@
    "name": "Invesco NASDAQ 100 ETF",
    "market": "US",
    "currency": "USD",
-   "price": 294.94,
-   "chg": -0.64,
+   "price": 295.35,
+   "chg": -0.51,
    "is_etf": true,
-   "m3": 1.31,
-   "y1": 25.06,
-   "from_high": -4.0,
-   "band_pos": 84.1,
+   "m3": 1.45,
+   "y1": 25.24,
+   "from_high": -3.87,
+   "band_pos": 84.6,
    "ma200": 267.19,
    "spark": [
     248.51,
@@ -1307,19 +1309,19 @@
     294.26,
     297.7,
     296.85,
-    294.94
+    295.35
    ],
    "shares": 7.0,
    "cost": 1766.24,
-   "market_value_krw": 2917809,
-   "cost_krw": 2496174,
+   "market_value_krw": 2921886,
+   "cost_krw": 2496192,
    "brokers": [
     "Super365 7주"
    ],
    "avg_price": 252.32,
-   "pl_krw": 421635,
-   "roi_pct": 16.89,
-   "weight_pct": 13.54,
+   "pl_krw": 425694,
+   "roi_pct": 17.05,
+   "weight_pct": 13.55,
    "split": false
   },
   {
@@ -1467,7 +1469,7 @@
    "avg_price": 1656000.0,
    "pl_krw": -462000,
    "roi_pct": -13.95,
-   "weight_pct": 13.22,
+   "weight_pct": 13.21,
    "split": false
   },
   {
@@ -1475,14 +1477,14 @@
    "name": "Berkshire Hathaway B",
    "market": "US",
    "currency": "USD",
-   "price": 519.9835,
-   "chg": -1.78,
+   "price": 519.5458,
+   "chg": -1.87,
    "is_etf": false,
-   "m3": 7.22,
-   "y1": 11.89,
-   "from_high": -1.78,
-   "band_pos": 85.4,
-   "ma200": 491.37,
+   "m3": 7.13,
+   "y1": 11.8,
+   "from_high": -1.87,
+   "band_pos": 84.7,
+   "ma200": 491.36,
    "spark": [
     496.94,
     498.2,
@@ -1603,19 +1605,19 @@
     524.61,
     521.8,
     529.42,
-    519.9835
+    519.5458
    ],
    "shares": 2.0,
    "cost": 972.3,
-   "market_value_krw": 1469754,
-   "cost_krw": 1374122,
+   "market_value_krw": 1468527,
+   "cost_krw": 1374132,
    "brokers": [
     "Super365 2주"
    ],
    "avg_price": 486.15,
-   "pl_krw": 95632,
-   "roi_pct": 6.96,
-   "weight_pct": 6.82,
+   "pl_krw": 94395,
+   "roi_pct": 6.87,
+   "weight_pct": 6.81,
    "split": false
   },
   {
@@ -2060,7 +2062,7 @@
    "avg_price": 21091.0,
    "pl_krw": 153100,
    "roi_pct": 29.04,
-   "weight_pct": 3.16,
+   "weight_pct": 3.15,
    "split": false
   },
   {
@@ -2512,13 +2514,13 @@
    "name": "Coupang",
    "market": "US",
    "currency": "USD",
-   "price": 16.515,
-   "chg": 2.01,
+   "price": 16.495,
+   "chg": 1.88,
    "is_etf": false,
-   "m3": 3.87,
-   "y1": -40.31,
-   "from_high": -50.75,
-   "band_pos": 7.6,
+   "m3": 3.74,
+   "y1": -40.39,
+   "from_high": -50.81,
+   "band_pos": 7.5,
    "ma200": 20.57,
    "spark": [
     18.45,
@@ -2640,18 +2642,18 @@
     16.35,
     16.23,
     16.19,
-    16.515
+    16.495
    ],
    "shares": 16.0,
    "cost": 268.0,
-   "market_value_krw": 373442,
-   "cost_krw": 378756,
+   "market_value_krw": 372993,
+   "cost_krw": 378759,
    "brokers": [
     "토스 16주"
    ],
    "avg_price": 16.75,
-   "pl_krw": -5314,
-   "roi_pct": -1.4,
+   "pl_krw": -5766,
+   "roi_pct": -1.52,
    "weight_pct": 1.73,
    "split": false
   },
@@ -2808,13 +2810,13 @@
    "name": "Symbotic",
    "market": "US",
    "currency": "USD",
-   "price": 41.275,
-   "chg": 2.9,
+   "price": 41.4481,
+   "chg": 3.34,
    "is_etf": false,
-   "m3": -19.57,
-   "y1": -19.45,
-   "from_high": -52.72,
-   "band_pos": 5.6,
+   "m3": -19.24,
+   "y1": -19.11,
+   "from_high": -52.52,
+   "band_pos": 5.9,
    "ma200": 55.12,
    "spark": [
     55.075,
@@ -2936,18 +2938,18 @@
     39.6,
     40.18,
     40.11,
-    41.275
+    41.4481
    ],
    "shares": 1.0,
    "cost": 58.78,
-   "market_value_krw": 58333,
-   "cost_krw": 83072,
+   "market_value_krw": 58578,
+   "cost_krw": 83073,
    "brokers": [
     "Super365 1주"
    ],
    "avg_price": 58.78,
-   "pl_krw": -24739,
-   "roi_pct": -29.78,
+   "pl_krw": -24495,
+   "roi_pct": -29.49,
    "weight_pct": 0.27,
    "split": false
   }
@@ -3102,7 +3104,8 @@
     1422000.0,
     1420000.0,
     1425000.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -3253,7 +3256,8 @@
     31970.0,
     32240.0,
     31970.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -3404,7 +3408,8 @@
     81200.0,
     86300.0,
     85300.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -3555,7 +3560,8 @@
     126300.0,
     123500.0,
     123800.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -3565,25 +3571,25 @@
    "currency": "USD",
    "shares": 7.0,
    "avg_price": 252.32,
-   "market_value": 2064.58,
+   "market_value": 2067.45,
    "cost": 1766.24,
-   "roi_pct": 16.89,
-   "market_value_krw": 2917809,
-   "cost_krw": 2496174,
-   "pl_krw": 421635,
-   "price": 294.94,
+   "roi_pct": 17.05,
+   "market_value_krw": 2921886,
+   "cost_krw": 2496192,
+   "pl_krw": 425694,
+   "price": 295.35,
    "prev_close": 296.85,
-   "chg": -0.64,
-   "w1": -1.04,
-   "m1": 0.64,
-   "m3": 1.31,
-   "m6": 17.14,
-   "y1": 25.06,
+   "chg": -0.51,
+   "w1": -0.9,
+   "m1": 0.78,
+   "m3": 1.45,
+   "m6": 17.3,
+   "y1": 25.24,
    "high_52w": 307.23,
    "low_52w": 229.87,
-   "from_high": -4.0,
-   "band_pos": 84.1,
-   "ma60": 294.3,
+   "from_high": -3.87,
+   "band_pos": 84.6,
+   "ma60": 294.31,
    "ma200": 267.19,
    "spark": [
     248.51,
@@ -3705,8 +3711,9 @@
     294.26,
     297.7,
     296.85,
-    294.94
-   ]
+    295.35
+   ],
+   "roi_delta": 0.16
   },
   {
    "market": "US",
@@ -3716,24 +3723,24 @@
    "currency": "USD",
    "shares": 2.0,
    "avg_price": 650.93,
-   "market_value": 1205.94,
+   "market_value": 1206.16,
    "cost": 1301.86,
-   "roi_pct": -7.37,
-   "market_value_krw": 1704319,
-   "cost_krw": 1839880,
-   "pl_krw": -135561,
-   "price": 602.97,
+   "roi_pct": -7.35,
+   "market_value_krw": 1704642,
+   "cost_krw": 1839893,
+   "pl_krw": -135251,
+   "price": 603.08,
    "prev_close": 594.92,
-   "chg": 1.35,
-   "w1": 2.56,
-   "m1": -8.19,
-   "m3": -0.0,
-   "m6": -10.1,
-   "y1": -21.27,
+   "chg": 1.37,
+   "w1": 2.58,
+   "m1": -8.17,
+   "m3": 0.01,
+   "m6": -10.08,
+   "y1": -21.26,
    "high_52w": 790.0,
    "low_52w": 525.72,
-   "from_high": -23.67,
-   "band_pos": 29.2,
+   "from_high": -23.66,
+   "band_pos": 29.3,
    "ma60": 601.4,
    "ma200": 629.95,
    "spark": [
@@ -3856,8 +3863,9 @@
     589.9,
     592.1,
     594.92,
-    602.97
-   ]
+    603.08
+   ],
+   "roi_delta": 0.02
   },
   {
    "market": "US",
@@ -3867,26 +3875,26 @@
    "currency": "USD",
    "shares": 2.0,
    "avg_price": 486.15,
-   "market_value": 1039.97,
+   "market_value": 1039.09,
    "cost": 972.3,
-   "roi_pct": 6.96,
-   "market_value_krw": 1469754,
-   "cost_krw": 1374122,
-   "pl_krw": 95632,
-   "price": 519.9835,
+   "roi_pct": 6.87,
+   "market_value_krw": 1468527,
+   "cost_krw": 1374132,
+   "pl_krw": 94395,
+   "price": 519.5458,
    "prev_close": 529.42,
-   "chg": -1.78,
-   "w1": 0.53,
-   "m1": 4.66,
-   "m3": 7.22,
-   "m6": 3.93,
-   "y1": 11.89,
+   "chg": -1.87,
+   "w1": 0.45,
+   "m1": 4.57,
+   "m3": 7.13,
+   "m6": 3.85,
+   "y1": 11.8,
    "high_52w": 529.42,
    "low_52w": 464.73,
-   "from_high": -1.78,
-   "band_pos": 85.4,
+   "from_high": -1.87,
+   "band_pos": 84.7,
    "ma60": 494.42,
-   "ma200": 491.37,
+   "ma200": 491.36,
    "spark": [
     496.94,
     498.2,
@@ -4007,8 +4015,9 @@
     524.61,
     521.8,
     529.42,
-    519.9835
-   ]
+    519.5458
+   ],
+   "roi_delta": -0.09
   },
   {
    "market": "US",
@@ -4018,25 +4027,25 @@
    "currency": "USD",
    "shares": 11.0,
    "avg_price": 79.18,
-   "market_value": 996.76,
+   "market_value": 997.42,
    "cost": 870.98,
-   "roi_pct": 14.44,
-   "market_value_krw": 1408698,
-   "cost_krw": 1230930,
-   "pl_krw": 177768,
-   "price": 90.615,
+   "roi_pct": 14.52,
+   "market_value_krw": 1409641,
+   "cost_krw": 1230939,
+   "pl_krw": 178702,
+   "price": 90.675,
    "prev_close": 91.0,
-   "chg": -0.42,
-   "w1": -0.19,
-   "m1": 2.76,
-   "m3": 4.28,
-   "m6": 11.28,
-   "y1": 21.14,
+   "chg": -0.36,
+   "w1": -0.13,
+   "m1": 2.83,
+   "m3": 4.34,
+   "m6": 11.35,
+   "y1": 21.22,
    "high_52w": 91.01,
    "low_52w": 74.38,
-   "from_high": -0.43,
-   "band_pos": 97.6,
-   "ma60": 87.95,
+   "from_high": -0.37,
+   "band_pos": 98.0,
+   "ma60": 87.96,
    "ma200": 82.84,
    "spark": [
     80.55,
@@ -4158,8 +4167,9 @@
     90.47,
     91.01,
     91.0,
-    90.615
-   ]
+    90.675
+   ],
+   "roi_delta": 0.08
   },
   {
    "market": "US",
@@ -4169,26 +4179,26 @@
    "currency": "USD",
    "shares": 4.0,
    "avg_price": 178.64,
-   "market_value": 866.64,
+   "market_value": 869.04,
    "cost": 714.56,
-   "roi_pct": 21.28,
-   "market_value_krw": 1224796,
-   "cost_krw": 1009866,
-   "pl_krw": 214930,
-   "price": 216.66,
+   "roi_pct": 21.62,
+   "market_value_krw": 1228197,
+   "cost_krw": 1009873,
+   "pl_krw": 218324,
+   "price": 217.2601,
    "prev_close": 217.55,
-   "chg": -0.41,
-   "w1": 2.23,
-   "m1": 6.45,
-   "m3": -1.87,
-   "m6": 14.91,
-   "y1": 19.0,
+   "chg": -0.13,
+   "w1": 2.51,
+   "m1": 6.75,
+   "m3": -1.59,
+   "m6": 15.23,
+   "y1": 19.33,
    "high_52w": 235.74,
    "low_52w": 165.17,
-   "from_high": -8.09,
-   "band_pos": 73.0,
-   "ma60": 208.2,
-   "ma200": 194.34,
+   "from_high": -7.84,
+   "band_pos": 73.8,
+   "ma60": 208.21,
+   "ma200": 194.35,
    "spark": [
     187.9,
     189.82,
@@ -4309,8 +4319,9 @@
     218.99,
     223.96,
     217.55,
-    216.66
-   ]
+    217.2601
+   ],
+   "roi_delta": 0.34
   },
   {
    "market": "US",
@@ -4320,25 +4331,25 @@
    "currency": "USD",
    "shares": 1.0,
    "avg_price": 58.78,
-   "market_value": 41.27,
+   "market_value": 41.45,
    "cost": 58.78,
-   "roi_pct": -29.78,
-   "market_value_krw": 58333,
-   "cost_krw": 83072,
-   "pl_krw": -24739,
-   "price": 41.275,
+   "roi_pct": -29.49,
+   "market_value_krw": 58578,
+   "cost_krw": 83073,
+   "pl_krw": -24495,
+   "price": 41.4481,
    "prev_close": 40.11,
-   "chg": 2.9,
-   "w1": -13.03,
-   "m1": -2.72,
-   "m3": -19.57,
-   "m6": -34.18,
-   "y1": -19.45,
+   "chg": 3.34,
+   "w1": -12.67,
+   "m1": -2.31,
+   "m3": -19.24,
+   "m6": -33.91,
+   "y1": -19.11,
    "high_52w": 87.3,
    "low_52w": 38.57,
-   "from_high": -52.72,
-   "band_pos": 5.6,
-   "ma60": 43.83,
+   "from_high": -52.52,
+   "band_pos": 5.9,
+   "ma60": 43.84,
    "ma200": 55.12,
    "spark": [
     55.075,
@@ -4460,8 +4471,9 @@
     39.6,
     40.18,
     40.11,
-    41.275
-   ]
+    41.4481
+   ],
+   "roi_delta": 0.29
   },
   {
    "market": "US",
@@ -4471,25 +4483,25 @@
    "currency": "USD",
    "shares": 15.0,
    "avg_price": 82.76,
-   "market_value": 1359.22,
+   "market_value": 1360.12,
    "cost": 1241.4,
-   "roi_pct": 9.49,
-   "market_value_krw": 1920952,
-   "cost_krw": 1754433,
-   "pl_krw": 166519,
-   "price": 90.615,
+   "roi_pct": 9.56,
+   "market_value_krw": 1922237,
+   "cost_krw": 1754446,
+   "pl_krw": 167792,
+   "price": 90.675,
    "prev_close": 91.0,
-   "chg": -0.42,
-   "w1": -0.19,
-   "m1": 2.76,
-   "m3": 4.28,
-   "m6": 11.28,
-   "y1": 21.14,
+   "chg": -0.36,
+   "w1": -0.13,
+   "m1": 2.83,
+   "m3": 4.34,
+   "m6": 11.35,
+   "y1": 21.22,
    "high_52w": 91.01,
    "low_52w": 74.38,
-   "from_high": -0.43,
-   "band_pos": 97.6,
-   "ma60": 87.95,
+   "from_high": -0.37,
+   "band_pos": 98.0,
+   "ma60": 87.96,
    "ma200": 82.84,
    "spark": [
     80.55,
@@ -4611,8 +4623,9 @@
     90.47,
     91.01,
     91.0,
-    90.615
-   ]
+    90.675
+   ],
+   "roi_delta": 0.07
   },
   {
    "market": "US",
@@ -4622,26 +4635,26 @@
    "currency": "USD",
    "shares": 6.0,
    "avg_price": 175.81,
-   "market_value": 1299.96,
+   "market_value": 1303.56,
    "cost": 1054.86,
-   "roi_pct": 23.24,
-   "market_value_krw": 1837194,
-   "cost_krw": 1490802,
-   "pl_krw": 346392,
-   "price": 216.66,
+   "roi_pct": 23.58,
+   "market_value_krw": 1842296,
+   "cost_krw": 1490813,
+   "pl_krw": 351484,
+   "price": 217.2601,
    "prev_close": 217.55,
-   "chg": -0.41,
-   "w1": 2.23,
-   "m1": 6.45,
-   "m3": -1.87,
-   "m6": 14.91,
-   "y1": 19.0,
+   "chg": -0.13,
+   "w1": 2.51,
+   "m1": 6.75,
+   "m3": -1.59,
+   "m6": 15.23,
+   "y1": 19.33,
    "high_52w": 235.74,
    "low_52w": 165.17,
-   "from_high": -8.09,
-   "band_pos": 73.0,
-   "ma60": 208.2,
-   "ma200": 194.34,
+   "from_high": -7.84,
+   "band_pos": 73.8,
+   "ma60": 208.21,
+   "ma200": 194.35,
    "spark": [
     187.9,
     189.82,
@@ -4762,8 +4775,9 @@
     218.99,
     223.96,
     217.55,
-    216.66
-   ]
+    217.2601
+   ],
+   "roi_delta": 0.34
   },
   {
    "market": "US",
@@ -4773,24 +4787,24 @@
    "currency": "USD",
    "shares": 2.0,
    "avg_price": 606.89,
-   "market_value": 1205.94,
+   "market_value": 1206.16,
    "cost": 1213.78,
-   "roi_pct": -0.65,
-   "market_value_krw": 1704319,
-   "cost_krw": 1715399,
-   "pl_krw": -11080,
-   "price": 602.97,
+   "roi_pct": -0.63,
+   "market_value_krw": 1704642,
+   "cost_krw": 1715411,
+   "pl_krw": -10769,
+   "price": 603.08,
    "prev_close": 594.92,
-   "chg": 1.35,
-   "w1": 2.56,
-   "m1": -8.19,
-   "m3": -0.0,
-   "m6": -10.1,
-   "y1": -21.27,
+   "chg": 1.37,
+   "w1": 2.58,
+   "m1": -8.17,
+   "m3": 0.01,
+   "m6": -10.08,
+   "y1": -21.26,
    "high_52w": 790.0,
    "low_52w": 525.72,
-   "from_high": -23.67,
-   "band_pos": 29.2,
+   "from_high": -23.66,
+   "band_pos": 29.3,
    "ma60": 601.4,
    "ma200": 629.95,
    "spark": [
@@ -4913,8 +4927,9 @@
     589.9,
     592.1,
     594.92,
-    602.97
-   ]
+    603.08
+   ],
+   "roi_delta": 0.02
   },
   {
    "market": "US",
@@ -4924,24 +4939,24 @@
    "currency": "USD",
    "shares": 16.0,
    "avg_price": 16.75,
-   "market_value": 264.24,
+   "market_value": 263.92,
    "cost": 268.0,
-   "roi_pct": -1.4,
-   "market_value_krw": 373442,
-   "cost_krw": 378756,
-   "pl_krw": -5314,
-   "price": 16.515,
+   "roi_pct": -1.52,
+   "market_value_krw": 372993,
+   "cost_krw": 378759,
+   "pl_krw": -5766,
+   "price": 16.495,
    "prev_close": 16.19,
-   "chg": 2.01,
-   "w1": -1.58,
-   "m1": -7.84,
-   "m3": 3.87,
-   "m6": -9.51,
-   "y1": -40.31,
+   "chg": 1.88,
+   "w1": -1.7,
+   "m1": -7.95,
+   "m3": 3.74,
+   "m6": -9.62,
+   "y1": -40.39,
    "high_52w": 33.53,
    "low_52w": 15.12,
-   "from_high": -50.75,
-   "band_pos": 7.6,
+   "from_high": -50.81,
+   "band_pos": 7.5,
    "ma60": 16.76,
    "ma200": 20.57,
    "spark": [
@@ -5064,8 +5079,9 @@
     16.35,
     16.23,
     16.19,
-    16.515
-   ]
+    16.495
+   ],
+   "roi_delta": -0.12
   },
   {
    "market": "KR",
@@ -5216,7 +5232,8 @@
     27075.0,
     27275.0,
     27215.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -5367,7 +5384,8 @@
     126300.0,
     123500.0,
     123800.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -5518,7 +5536,8 @@
     25930.0,
     26135.0,
     25500.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -5669,7 +5688,8 @@
     44760.0,
     46110.0,
     44575.0
-   ]
+   ],
+   "roi_delta": 0.0
   },
   {
    "market": "KR",
@@ -5820,7 +5840,8 @@
     11120.0,
     11135.0,
     11210.0
-   ]
+   ],
+   "roi_delta": 0.0
   }
  ],
  "news": {
@@ -5868,17 +5889,24 @@
      "published": "2026-08-11T13:00:00Z"
     },
     {
-     "title": "Robotics Stocks Rally as Unitree’s 8000X Oversubscribed IPO Draws Frenzied Demand: Ouster, Symbotic, and Teradyne in Focus",
-     "url": "https://247wallst.com/investing/2026/08/11/robotics-stocks-rally-as-unitrees-8000x-oversubscribed-ipo-draws-frenzied-demand-ouster-symbotic-and-teradyne-in-focus/",
-     "publisher": "24/7 Wall St.",
-     "summary": "Robotics and physical AI names are pushing higher in Tuesday afternoon trading as investors chase exposure to the theme following blockbuster demand for Chinese humanoid maker Unitree Robotics’ Shanghai IPO. Lidar leader Ouster (NASDAQ:OUST) is out in front, changing hands near $45, up 7% on the ses",
-     "published": "2026-08-11T18:32:06Z"
+     "title": "Intel Raises $20 Billion. Is It Enough?",
+     "url": "https://app.moby.co/home/news/news-intel-raises-20-billion-is-it-enough?utm_source=yahoo_finance&utm_medium=rss",
+     "publisher": "Moby",
+     "summary": "The U.S.-based chipmaker upsized its stock offering again this week, settling at $95 a share before the August 12, 2026 close.",
+     "published": "2026-08-11T18:44:33Z"
     }
    ]
   },
   "BRK-B": {
    "name": "Berkshire Hathaway B",
    "items": [
+    {
+     "title": "Berkshire Stock Jumps 3.1% as $4.5 Billion Buyback Returns",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/berkshire-stock-jumps-3-1-184921621.html",
+     "publisher": "GuruFocus.com",
+     "summary": "Greg Abel's expanding capital deployment reduced Berkshire's cash position while operating earnings increased across several major businesses.",
+     "published": "2026-08-11T18:49:21Z"
+    },
     {
      "title": "Berkshire Hathaway's CEO Greg Abel Sold $8.1 Billion in Stocks in Q1 ... a Sign He Sees Few Bargains. Did That Change in Q2?",
      "url": "https://www.fool.com/investing/2026/08/11/greg-abel-sold-billion-berkshire-hathaway-stock-q2/",
@@ -5892,13 +5920,6 @@
      "publisher": "Motley Fool",
      "summary": "Buffett is widely considered the greatest investor of all time.",
      "published": "2026-08-11T16:35:00Z"
-    },
-    {
-     "title": "Michael Burry sends warning on one of Wall Street's top stocks",
-     "url": "https://www.thestreet.com/investing/stocks/michael-burry-sends-warning-on-one-of-wall-streets-top-stocks-berkshire-hathaway",
-     "publisher": "TheStreet",
-     "summary": "Some investors build their reputation by being loud. Others build it by staying quiet for years and then saying exactly one thing that everyone remembers. The investor who correctly called the 2008 housing crash before almost anyone else belongs to the second group, and he just broke his silence on ",
-     "published": "2026-08-11T16:33:00Z"
     }
    ]
   },
@@ -5935,7 +5956,7 @@
      "title": "Robotics Stocks Rally as Unitree’s 8000X Oversubscribed IPO Draws Frenzied Demand: Ouster, Symbotic, and Teradyne in Focus",
      "url": "https://247wallst.com/investing/2026/08/11/robotics-stocks-rally-as-unitrees-8000x-oversubscribed-ipo-draws-frenzied-demand-ouster-symbotic-and-teradyne-in-focus/",
      "publisher": "24/7 Wall St.",
-     "summary": "Robotics and physical AI names are pushing higher in Tuesday afternoon trading as investors chase exposure to the theme following blockbuster demand for Chinese humanoid maker Unitree Robotics’ Shanghai IPO. Lidar leader Ouster (NASDAQ:OUST) is out in front, changing hands near $45, up 7% on the ses",
+     "summary": "A Chinese humanoid maker just pulled off one of the most frenzied IPOs in recent memory, and the shockwaves are now rippling through U.S. robotics stocks in a big way. Here is what traders are watching as the physical AI theme hits a new gear.",
      "published": "2026-08-11T18:32:06Z"
     },
     {
@@ -5955,5 +5976,5 @@
    ]
   }
  },
- "prev_date": null
+ "prev_date": "2026-08-12"
 }
