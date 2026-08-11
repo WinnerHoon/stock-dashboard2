@@ -1,0 +1,183 @@
+{
+  "_안내": "보유종목을 여기에 적으면 됩니다. market은 KR(국내) 또는 US(해외). avg_price는 평균매입단가(국내=원, 해외=달러). 종목을 빼려면 그냥 줄을 지우세요.",
+  "_해외평단_환산기준": "해외 종목 avg_price는 원화 평단을 1,430원/USD로 나눈 환산값입니다 (2026-08-11 입력). 실제 매수 시점 환율과 다르므로 수익률은 근사치입니다.",
+
+  "owner": "승훈",
+  "timezone": "Asia/Seoul",
+
+  "holdings": [
+    {
+      "market": "KR",
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "shares": 2,
+      "avg_price": 1656000,
+      "broker": "미래에셋 ISA"
+    },
+    {
+      "market": "KR",
+      "ticker": "381170",
+      "name": "TIGER 미국테크TOP10 INDXX",
+      "shares": 28,
+      "avg_price": 29044,
+      "broker": "미래에셋 ISA"
+    },
+    {
+      "market": "KR",
+      "ticker": "011790",
+      "name": "SKC",
+      "shares": 5,
+      "avg_price": 104000,
+      "broker": "미래에셋 ISA"
+    },
+    {
+      "market": "KR",
+      "ticker": "138040",
+      "name": "메리츠금융지주",
+      "shares": 3,
+      "avg_price": 120300,
+      "broker": "미래에셋 ISA"
+    },
+
+    {
+      "market": "US",
+      "ticker": "QQQM",
+      "name": "Invesco NASDAQ 100 ETF",
+      "shares": 7,
+      "avg_price": 252.32,
+      "broker": "Super365"
+    },
+    {
+      "market": "US",
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "shares": 2,
+      "avg_price": 650.93,
+      "broker": "Super365"
+    },
+    {
+      "market": "US",
+      "ticker": "BRK-B",
+      "name": "Berkshire Hathaway B",
+      "shares": 2,
+      "avg_price": 486.15,
+      "broker": "Super365"
+    },
+    {
+      "market": "US",
+      "ticker": "SPYM",
+      "name": "SPDR Portfolio S&P 500 ETF",
+      "shares": 11,
+      "avg_price": 79.18,
+      "broker": "Super365"
+    },
+    {
+      "market": "US",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "shares": 4,
+      "avg_price": 178.64,
+      "broker": "Super365"
+    },
+    {
+      "market": "US",
+      "ticker": "SYM",
+      "name": "Symbotic",
+      "shares": 1,
+      "avg_price": 58.78,
+      "broker": "Super365"
+    },
+
+    {
+      "market": "US",
+      "ticker": "SPYM",
+      "name": "SPDR Portfolio S&P 500 ETF",
+      "shares": 15,
+      "avg_price": 82.76,
+      "broker": "토스"
+    },
+    {
+      "market": "US",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "shares": 6,
+      "avg_price": 175.81,
+      "broker": "토스"
+    },
+    {
+      "market": "US",
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "shares": 2,
+      "avg_price": 606.89,
+      "broker": "토스"
+    },
+    {
+      "market": "US",
+      "ticker": "CPNG",
+      "name": "Coupang",
+      "shares": 16,
+      "avg_price": 16.75,
+      "broker": "토스"
+    },
+
+    {
+      "market": "KR",
+      "ticker": "360750",
+      "name": "TIGER 미국S&P500",
+      "shares": 25,
+      "avg_price": 21091,
+      "broker": "토스"
+    },
+    {
+      "market": "KR",
+      "ticker": "138040",
+      "name": "메리츠금융지주",
+      "shares": 5,
+      "avg_price": 111500,
+      "broker": "토스"
+    },
+    {
+      "market": "KR",
+      "ticker": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "shares": 21,
+      "avg_price": 15453,
+      "broker": "토스"
+    },
+    {
+      "market": "KR",
+      "ticker": "381180",
+      "name": "TIGER 미국필라델피아반도체나스닥",
+      "shares": 10,
+      "avg_price": 19682,
+      "broker": "토스"
+    },
+    {
+      "market": "KR",
+      "ticker": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "shares": 10,
+      "avg_price": 10915,
+      "broker": "토스"
+    }
+  ],
+
+  "watchlist": [
+  ],
+
+  "indices": [
+    { "code": "KS11",    "name": "코스피" },
+    { "code": "KQ11",    "name": "코스닥" },
+    { "code": "IXIC",    "name": "나스닥" },
+    { "code": "US500",   "name": "S&P 500" },
+    { "code": "USD/KRW", "name": "원/달러 환율" }
+  ],
+
+  "settings": {
+    "style": "long_term",
+    "history_days": 400,
+    "news_per_ticker": 3,
+    "html_title": "승훈님의 아침 주식 브리핑"
+  }
+}

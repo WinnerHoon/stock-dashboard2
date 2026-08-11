@@ -1,0 +1,326 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+아침 주식 브리핑 — 빌드 스크립트
+GitHub Actions 에서 매일 아침 실행됩니다.
+
+  portfolio.json 읽기
+    → FinanceDataReader / yfinance 로 시세 수집
+    → 뉴스 수집 (네이버 뉴스 API + yfinance)
+    → dist/index.html (사이트) + dist/data.json 생성
+    → 카카오톡 발송 (선택)
+
+로컬 테스트:
+  python build.py --mock      네트워크 없이 가짜 데이터
+  python build.py --no-kakao  카톡 발송 없이 사이트만
+"""
+
+import argparse
+import json
+import math
+import os
+import random
+import sys
+import traceback
+from datetime import datetime, timedelta, timezone
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+DIST = os.path.join(BASE, "dist")
+CONFIG = os.path.join(BASE, "portfolio.json")
+KST = timezone(timedelta(hours=9))
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
+
+def log(m):
+    print(f"[{datetime.now(KST):%H:%M:%S}] {m}", flush=True)
+
+
+def pct(new, old):
+    try:
+        if old in (None, 0) or new is None:
+            return None
+        return (float(new) - float(old)) / float(old) * 100.0
+    except Exception:
+        return None
+
+
+def safe(fn, default=None, label=""):
+    try:
+        return fn()
+    except Exception as e:
+        log(f"  ! {label} 실패: {type(e).__name__}: {str(e)[:110]}")
+        return default
+
+
+ETF_HINTS = ("ETF", "TIGER", "KODEX", "ACE ", "RISE ", "SOL ", "PLUS ", "KOSEF",
+             "ARIRANG", "HANARO", "INDXX", "S&P", "NASDAQ", "다우존스")
+
+
+def is_etf(name, ticker=""):
+    return any(h.upper() in (name or "").upper() for h in ETF_HINTS)
+
+
+# ────────────────────────────────────────────────────────────
+# 시세 수집
+# ────────────────────────────────────────────────────────────
+
+def _lookback(c, n):
+    if len(c) < 2:
+        return None
+    v = pct(c[-1], c[-min(n, len(c))])
+    return round(v, 2) if v is not None else None
+
+
+def summarize(closes):
+    closes = [float(c) for c in closes
+              if c is not None and not (isinstance(c, float) and math.isnan(c))]
+    if not closes:
+        return None
+    cur = closes[-1]
+    prev = closes[-2] if len(closes) >= 2 else cur
+    yr = closes[-252:] if len(closes) >= 252 else closes
+    hi, lo = max(yr), min(yr)
+    return {
+        "price": round(cur, 4),
+        "prev_close": round(prev, 4),
+        "chg": round(pct(cur, prev), 2) if pct(cur, prev) is not None else None,
+        "w1": _lookback(closes, 6),
+        "m1": _lookback(closes, 22),
+        "m3": _lookback(closes, 63),
+        "m6": _lookback(closes, 126),
+        "y1": _lookback(closes, 252),
+        "high_52w": round(hi, 4),
+        "low_52w": round(lo, 4),
+        "from_high": round(pct(cur, hi), 2) if pct(cur, hi) is not None else None,
+        "band_pos": round((cur - lo) / (hi - lo) * 100, 1) if hi > lo else None,
+        "ma60": round(sum(closes[-60:]) / len(closes[-60:]), 2) if len(closes) >= 20 else None,
+        "ma200": round(sum(closes[-200:]) / len(closes[-200:]), 2) if len(closes) >= 100 else None,
+        "spark": [round(c, 4) for c in closes[-120:]],
+    }
+
+
+def fetch_kr(ticker, days):
+    """국내 — FinanceDataReader (KRX 계정 불필요)"""
+    import FinanceDataReader as fdr
+    start = (datetime.now(KST) - timedelta(days=days)).strftime("%Y-%m-%d")
+    df = fdr.DataReader(ticker, start)
+    if df is None or df.empty:
+        return None
+    col = "Close" if "Close" in df.columns else df.columns[-1]
+    return summarize(df[col].dropna().tolist())
+
+
+def fetch_us(ticker, days):
+    """해외 — yfinance 우선, 실패 시 FinanceDataReader"""
+    try:
+        import yfinance as yf
+        df = yf.Ticker(ticker).history(period=f"{max(days, 30)}d", auto_adjust=False)
+        if df is not None and not df.empty:
+            return summarize(df["Close"].dropna().tolist())
+    except Exception as e:
+        log(f"  · yfinance {ticker} 실패 → FDR 재시도 ({type(e).__name__})")
+    import FinanceDataReader as fdr
+    start = (datetime.now(KST) - timedelta(days=days)).strftime("%Y-%m-%d")
+    df = fdr.DataReader(ticker, start)
+    if df is None or df.empty:
+        return None
+    return summarize(df["Close"].dropna().tolist())
+
+
+def fetch_pykrx_extra(ticker):
+    """pykrx 보조 지표 — KRX_ID/KRX_PW 시크릿이 있을 때만 동작"""
+    if not (os.getenv("KRX_ID") and os.getenv("KRX_PW")):
+        return None
+    from pykrx import stock
+    today = datetime.now(KST).strftime("%Y%m%d")
+    start = (datetime.now(KST) - timedelta(days=10)).strftime("%Y%m%d")
+    df = stock.get_market_fundamental(start, today, ticker)
+    if df is None or df.empty:
+        return None
+    r = df.iloc[-1]
+    return {"per": float(r.get("PER", 0)) or None,
+            "pbr": float(r.get("PBR", 0)) or None,
+            "div_yield": float(r.get("DIV", 0)) or None}
+
+
+# ────────────────────────────────────────────────────────────
+# 모의 데이터
+# ────────────────────────────────────────────────────────────
+
+def mock(base):
+    random.seed(abs(hash(str(base))) % 9999)
+    p, out = float(base), []
+    for _ in range(260):
+        p *= (1 + random.uniform(-0.022, 0.024))
+        out.append(p)
+    return summarize(out)
+
+
+# ────────────────────────────────────────────────────────────
+# 조립
+# ────────────────────────────────────────────────────────────
+
+def build(cfg, use_mock=False):
+    s = cfg.get("settings", {})
+    days = int(s.get("history_days", 400))
+    prev = None
+    p = os.path.join(DIST, "data.json")
+    if os.path.exists(p):
+        prev = safe(lambda: json.load(open(p, encoding="utf-8")), None, "이전 데이터")
+    prev_pos = {f'{x["ticker"]}|{x.get("broker","")}': x
+                for x in (prev or {}).get("positions", [])}
+
+    # 지수 · 환율
+    log("지수·환율")
+    indices, fx = [], None
+    for i in cfg.get("indices", []):
+        code, name = i["code"], i["name"]
+        d = mock(1400 if "USD" in code else 2800) if use_mock else \
+            safe(lambda c=code: fetch_kr(c, days), None, f"지수 {name}")
+        if d:
+            indices.append({"code": code, "name": name, **d})
+            if code.upper().replace("/", "") == "USDKRW":
+                fx = d["price"]
+    if not fx:
+        fx = float(s.get("fallback_fx", 1430))
+        log(f"  ! 환율 조회 실패 → {fx}원으로 가정")
+
+    # 보유 종목
+    log("보유 종목")
+    positions = []
+    for h in cfg.get("holdings", []):
+        mk = h.get("market", "KR").upper()
+        tk, nm = str(h["ticker"]), h.get("name", h["ticker"])
+        log(f"  - {nm} ({tk})")
+        d = mock(h.get("avg_price", 100)) if use_mock else \
+            safe(lambda: fetch_kr(tk, days) if mk == "KR" else fetch_us(tk, days), None, nm)
+        if not d:
+            positions.append({"market": mk, "ticker": tk, "name": nm, "error": "시세 조회 실패",
+                              "shares": h.get("shares"), "avg_price": h.get("avg_price"),
+                              "broker": h.get("broker", "")})
+            continue
+        sh, avg = float(h.get("shares") or 0), float(h.get("avg_price") or 0)
+        rate = 1.0 if mk == "KR" else float(fx)
+        val, cost = d["price"] * sh, avg * sh
+        pos = {
+            "market": mk, "ticker": tk, "name": nm, "broker": h.get("broker", ""),
+            "currency": "KRW" if mk == "KR" else "USD",
+            "shares": sh, "avg_price": avg,
+            "market_value": round(val, 2), "cost": round(cost, 2),
+            "roi_pct": round(pct(d["price"], avg), 2) if avg else None,
+            "market_value_krw": round(val * rate), "cost_krw": round(cost * rate),
+            "pl_krw": round((val - cost) * rate), **d,
+        }
+        old = prev_pos.get(f'{tk}|{h.get("broker","")}')
+        if old and old.get("roi_pct") is not None and pos["roi_pct"] is not None:
+            pos["roi_delta"] = round(pos["roi_pct"] - old["roi_pct"], 2)
+        positions.append(pos)
+
+    ok = [x for x in positions if "error" not in x]
+    tv = sum(x["market_value_krw"] for x in ok)
+    tc = sum(x["cost_krw"] for x in ok)
+
+    # 종목 합산 (증권사 분산 통합)
+    merged = {}
+    for x in ok:
+        m = merged.setdefault(x["ticker"], {
+            "ticker": x["ticker"], "name": x["name"], "market": x["market"],
+            "currency": x["currency"], "price": x["price"], "chg": x.get("chg"),
+            "is_etf": is_etf(x["name"], x["ticker"]),
+            "m3": x.get("m3"), "y1": x.get("y1"), "from_high": x.get("from_high"),
+            "band_pos": x.get("band_pos"), "ma200": x.get("ma200"), "spark": x.get("spark"),
+            "shares": 0.0, "cost": 0.0, "market_value_krw": 0, "cost_krw": 0, "brokers": [],
+        })
+        m["shares"] += x["shares"]
+        m["cost"] += x["cost"]
+        m["market_value_krw"] += x["market_value_krw"]
+        m["cost_krw"] += x["cost_krw"]
+        if x.get("broker"):
+            m["brokers"].append(f'{x["broker"]} {x["shares"]:,.0f}주')
+
+    consolidated = []
+    for m in merged.values():
+        m["avg_price"] = round(m["cost"] / m["shares"], 2) if m["shares"] else 0
+        m["pl_krw"] = round(m["market_value_krw"] - m["cost_krw"])
+        m["roi_pct"] = round(pct(m["price"], m["avg_price"]), 2) if m["avg_price"] else None
+        m["weight_pct"] = round(m["market_value_krw"] / tv * 100, 2) if tv else 0
+        m["split"] = len(m["brokers"]) > 1
+        consolidated.append(m)
+    consolidated.sort(key=lambda x: -x["market_value_krw"])
+
+    def share(f):
+        v = sum(m["market_value_krw"] for m in consolidated if f(m))
+        return round(v / tv * 100, 1) if tv else 0
+
+    allocation = {
+        "국내": share(lambda m: m["market"] == "KR"),
+        "해외": share(lambda m: m["market"] == "US"),
+        "ETF": share(lambda m: m["is_etf"]),
+        "개별주": share(lambda m: not m["is_etf"]),
+        "by_broker": {},
+    }
+    for x in ok:
+        b = x.get("broker") or "미지정"
+        allocation["by_broker"][b] = round(
+            allocation["by_broker"].get(b, 0) + x["market_value_krw"])
+
+    totals = {
+        "market_value_krw": round(tv), "cost_krw": round(tc), "pl_krw": round(tv - tc),
+        "roi_pct": round((tv - tc) / tc * 100, 2) if tc else None,
+        "usdkrw": round(float(fx), 2),
+        "positions_count": len(consolidated), "failed_count": len(positions) - len(ok),
+    }
+    pv = (prev or {}).get("totals", {}).get("market_value_krw")
+    if pv:
+        totals["delta_krw"] = round(tv - pv)
+        totals["delta_pct"] = round(pct(tv, pv), 2)
+
+    # 뉴스
+    log("뉴스 수집")
+    import news as news_mod
+    news = {} if use_mock else news_mod.collect(consolidated, int(s.get("news_per_ticker", 3)))
+
+    return {
+        "generated_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "date": datetime.now(KST).strftime("%Y-%m-%d"),
+        "owner": cfg.get("owner", ""), "style": s.get("style", "long_term"),
+        "mock": use_mock, "totals": totals, "allocation": allocation,
+        "indices": indices, "consolidated": consolidated, "positions": positions,
+        "news": news, "prev_date": (prev or {}).get("date"),
+    }
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--mock", action="store_true")
+    ap.add_argument("--no-kakao", action="store_true")
+    a = ap.parse_args()
+    try:
+        cfg = json.load(open(CONFIG, encoding="utf-8"))
+        data = build(cfg, a.mock)
+        os.makedirs(DIST, exist_ok=True)
+        json.dump(data, open(os.path.join(DIST, "data.json"), "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=1)
+        import render
+        open(os.path.join(DIST, "index.html"), "w", encoding="utf-8").write(render.page(data))
+        open(os.path.join(DIST, ".nojekyll"), "w").write("")
+
+        t = data["totals"]
+        log(f"평가 {t['market_value_krw']:,}원 / 손익 {t['pl_krw']:+,}원 ({t['roi_pct']}%)")
+        if t["failed_count"]:
+            log(f"⚠ {t['failed_count']}개 종목 시세 실패")
+
+        if not a.no_kakao and not a.mock:
+            import kakao
+            kakao.send_brief(data)
+    except Exception:
+        traceback.print_exc()
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
