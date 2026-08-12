@@ -10,7 +10,8 @@ import json
 from datetime import datetime
 from html import escape
 
-PAGES = [("index.html", "포트폴리오"), ("news.html", "뉴스"), ("history.html", "일별 변화")]
+PAGES = [("index.html", "포트폴리오"), ("news.html", "뉴스"),
+         ("history.html", "일별 변화"), ("add.html", "거래 입력")]
 
 
 # ── 포맷 헬퍼 ────────────────────────────────────────────────
@@ -204,7 +205,7 @@ LIVE_JS = """
   var tot=0,cost=0,rows=[];
   for(var i=0;i<HOLD.length;i++){
    var h=HOLD[i], q=Q[h.y];
-   if(!q||q.price==null) return false;
+   if(!q||q.price==null) return false;          // 하나라도 빠지면 갱신하지 않음
    var rate=(h.cur==='KRW')?1:fx;
    var val=q.price*h.sh*rate, cst=h.avg*h.sh*rate;
    tot+=val; cost+=cst;
@@ -213,7 +214,7 @@ LIVE_JS = """
   }
   rows.forEach(function(r){
    var h=r.h,q=r.q,wt=tot?r.val/tot*100:0;
-   var pstr=(h.cur==='KRW')?won(q.price)+'원':String.fromCharCode(36)+q.price.toFixed(2);
+   var pstr=(h.cur==='KRW')?won(q.price)+'원':'$'+q.price.toFixed(2);
    setCell(h.t,'price',pstr+'<div class="s2">'+h.sh.toLocaleString('ko-KR')+'주</div>','','n');
    setCell(h.t,'chg',sg(q.chg),cl(q.chg),'n');
    setCell(h.t,'roi','<b>'+sg(r.roi)+'</b><div class="s2 '+cl(r.pl)+'">'
@@ -221,6 +222,7 @@ LIVE_JS = """
    setCell(h.t,'val',won(r.val)+'원','','n');
    setCell(h.t,'w','<b>'+wt.toFixed(1)+'%%</b><div class="wb"><i style="width:'
      +Math.min(100,wt*5).toFixed(0)+'%%"></i></div>','','n');
+   // 모바일 카드
    setCell(h.t,'mprice',pstr,null);
    setCell(h.t,'mroi',sg(r.roi),cl(r.roi),'mc-r');
    setCell(h.t,'mw',wt.toFixed(1)+'%%',null);
@@ -258,6 +260,7 @@ LIVE_JS = """
  run();
  var btn=document.getElementById('refresh');
  if(btn) btn.onclick=run;
+ // 탭으로 돌아오면 다시 조회
  document.addEventListener('visibilitychange',function(){
    if(!document.hidden) run();
  });
@@ -311,6 +314,23 @@ def page_index(d):
             f'<div><div class="lb">매입원가</div>'
             f'<div class="bg s" id="hCost">{t["cost_krw"]:,}원</div></div>'
             f'</div></div>')
+
+    cashc = ""
+    cs = d.get("cash")
+    if cs:
+        chips = "".join(
+            f'<span class="chip">{escape(k)} <b>{v["KRW"]:,}원</b>'
+            + (f' + <b>${v["USD"]:,.2f}</b>' if v["USD"] else "") + '</span>'
+            for k, v in sorted(cs.get("by_broker", {}).items(),
+                               key=lambda x: -x[1]["krw_total"]))
+        cashc = (f'<div class="card"><h2>현금 · 총자산</h2><div class="hero">'
+                 f'<div><div class="lb">총자산 (주식+현금)</div>'
+                 f'<div class="bg">{t.get("net_worth_krw", t["market_value_krw"]):,}원</div></div>'
+                 f'<div><div class="lb">현금 합계</div>'
+                 f'<div class="bg s">{cs["total_krw"]:,}원</div></div>'
+                 f'<div><div class="lb">원화</div><div class="bg s">{cs["KRW"]:,}원</div></div>'
+                 f'<div><div class="lb">달러</div><div class="bg s">${cs["USD"]:,.2f}</div></div>'
+                 f'</div><div class="chips" style="margin-top:14px">{chips}</div></div>')
 
     bars = "".join(
         f'<div><div class="ah"><span>{k}</span><b>{a[k]}%</b></div>'
@@ -374,7 +394,7 @@ def page_index(d):
 <button id="refresh" title="지금 다시 조회">새로고침</button>
 <span id="fresh"></span>
 <span>환율 {t.get('usdkrw','-')}원</span><span>장기 보유 관점</span></div></header>
-{hero}{alloc}{idxc}
+{hero}{cashc}{alloc}{idxc}
 <div class="card"><h2>보유 종목 {t['positions_count']}개 · 증권사 합산</h2>
 <table class="resp"><thead><tr><th>종목</th><th>비중</th><th>현재가</th><th>전일비</th><th>수익률</th>
 <th>평가금액</th><th>3개월</th><th>1년</th><th>52주</th><th></th></tr></thead><tbody>{rows}</tbody></table>
@@ -524,7 +544,174 @@ def page_history(d, hist, diffs):
     return shell("history.html", d, body)
 
 
+# ── 4. 거래 입력 ─────────────────────────────────────────────
+def page_add(d):
+    C = d.get("consolidated", [])
+    brokers = sorted({b.split()[0] for m in C for b in (m.get("brokers") or [])})
+    opts = "".join(f'<option value="{escape(m["ticker"])}" data-name="{escape(m["name"])}" '
+                   f'data-market="{m["market"]}">{escape(m["name"])} ({escape(m["ticker"])})</option>'
+                   for m in C)
+    bopts = "".join(f'<option>{escape(b)}</option>' for b in brokers)
+
+    css = """<style>
+form{max-width:520px}
+.fg{margin-bottom:14px}
+label{display:block;font-size:12px;color:var(--dim);margin-bottom:5px;font-weight:600}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--bg);color:var(--txt);font:15px/1.4 inherit;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--c1)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.types{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.types button{padding:9px 15px;border:1px solid var(--line);background:var(--bg);color:var(--dim);
+border-radius:20px;font-size:13.5px;cursor:pointer;font-family:inherit;font-weight:600}
+.types button.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.save{width:100%;padding:14px;border:none;border-radius:10px;background:var(--c1);color:#fff;
+font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px}
+.save:disabled{opacity:.5;cursor:default}
+#msg{margin-top:12px;font-size:13.5px;padding:11px 13px;border-radius:9px;display:none}
+#msg.ok{display:block;background:rgba(63,185,132,.13);color:var(--c3);border:1px solid var(--c3)}
+#msg.err{display:block;background:rgba(229,72,77,.11);color:var(--up);border:1px solid var(--up)}
+.hide{display:none}
+.rt2{font-size:12.5px;border-collapse:collapse;width:100%}
+.rt2 td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.rt2 .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hint{color:var(--dim);font-size:11.5px;margin-top:5px}
+</style>"""
+
+    js = """<script>
+(function(){
+ var T='buy', pw='';
+ var el=function(i){return document.getElementById(i);};
+ var LABEL={buy:'매수',sell:'매도',deposit:'입금',withdraw:'출금',fx:'환전',dividend:'배당',fee:'수수료'};
+
+ function show(){
+  var stock=(T==='buy'||T==='sell'), fx=(T==='fx'), amt=!stock&&!fx;
+  el('gStock').className=stock?'':'hide';
+  el('gFx').className=fx?'':'hide';
+  el('gAmt').className=amt?'':'hide';
+  el('btnSave').textContent=LABEL[T]+' 저장';
+  var bs=document.querySelectorAll('.types button');
+  for(var i=0;i<bs.length;i++) bs[i].className=(bs[i].dataset.t===T)?'on':'';
+ }
+ document.querySelectorAll('.types button').forEach(function(b){
+   b.onclick=function(){T=b.dataset.t;show();};
+ });
+ el('ticker').onchange=function(){
+   var o=el('ticker').selectedOptions[0];
+   if(o&&o.dataset.name){el('name').value=o.dataset.name;el('market').value=o.dataset.market;}
+ };
+ function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
+
+ function collect(){
+  var tx={type:T,date:el('date').value,broker:el('broker').value,memo:el('memo').value};
+  if(T==='buy'||T==='sell'){
+   tx.ticker=el('ticker').value; tx.name=el('name').value; tx.market=el('market').value;
+   tx.shares=el('shares').value; tx.price=el('price').value; tx.fee=el('fee').value||0;
+  } else if(T==='fx'){
+   tx.from=el('fxFrom').value; tx.to=(el('fxFrom').value==='KRW')?'USD':'KRW';
+   tx.amount=el('fxAmt').value; tx.rate=el('fxRate').value;
+  } else {
+   tx.currency=el('cur').value; tx.amount=el('amount').value;
+  }
+  return tx;
+ }
+
+ el('btnSave').onclick=function(){
+  pw=el('pw').value;
+  if(!pw){msg('비밀번호를 입력해 주세요','err');return;}
+  var b=el('btnSave'); b.disabled=true; msg('저장 중...','ok');
+  fetch('/api/tx',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({password:pw,tx:collect()})})
+   .then(function(r){return r.json();})
+   .then(function(j){
+     b.disabled=false;
+     if(!j.ok){msg('실패: '+j.error,'err');return;}
+     msg('저장했습니다. 2~3분 뒤 빌드가 끝나면 포트폴리오에 반영됩니다.','ok');
+     el('shares').value='';el('price').value='';el('fee').value='';
+     el('amount').value='';el('fxAmt').value='';el('memo').value='';
+     load();
+   })
+   .catch(function(e){b.disabled=false;msg('오류: '+e.message,'err');});
+ };
+
+ function load(){
+  fetch('/api/tx',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
+   if(!j.ok){el('recent').innerHTML='<p class="em">'+(j.error||'불러오지 못했습니다')+'</p>';return;}
+   var rows=j.recent.map(function(t){
+    var what=t.name||t.ticker||((t.from||'')+'→'+(t.to||''))||t.currency||'';
+    var num=t.shares?(t.shares+'주 x '+Number(t.price).toLocaleString('ko-KR'))
+            :(t.amount?Number(t.amount).toLocaleString('ko-KR'):'');
+    return '<tr><td>'+t.date+'</td><td>'+(LABEL[t.type]||t.type)+'</td><td>'+what
+      +'</td><td class="r">'+num+'</td><td class="r">'+(t.broker||'')+'</td></tr>';
+   }).join('');
+   el('recent').innerHTML='<table class="rt2"><tbody>'+rows+'</tbody></table>';
+   el('cnt').textContent='전체 '+j.count+'건';
+  }).catch(function(){el('recent').innerHTML='<p class="em">불러오지 못했습니다</p>';});
+ }
+ el('date').value=new Date().toISOString().slice(0,10);
+ show(); load();
+})();
+</script>"""
+
+    body = f"""{css}<header><h1>거래 입력</h1>
+<div class="sb"><span>매수·매도·입금·환전을 기록하면 수량·평단·현금이 자동으로 계산됩니다</span></div></header>
+
+<div class="card"><form onsubmit="return false">
+<div class="types">
+<button data-t="buy" class="on">매수</button><button data-t="sell">매도</button>
+<button data-t="deposit">입금</button><button data-t="withdraw">출금</button>
+<button data-t="fx">환전</button><button data-t="dividend">배당</button>
+<button data-t="fee">수수료</button>
+</div>
+
+<div class="row">
+<div class="fg"><label>날짜</label><input type="date" id="date"></div>
+<div class="fg"><label>증권사</label><select id="broker">{bopts}
+<option>미래에셋 ISA</option><option>토스</option><option>Super365</option></select></div>
+</div>
+
+<div id="gStock">
+<div class="fg"><label>종목</label><select id="ticker"><option value="">— 보유 종목에서 선택 —</option>{opts}</select></div>
+<div class="row"><div class="fg"><label>종목명 (신규 매수 시 직접 입력)</label><input id="name" placeholder="예: 삼성전자"></div>
+<div class="fg"><label>시장</label><select id="market"><option value="KR">국내 (KR)</option><option value="US">해외 (US)</option></select></div></div>
+<div class="row3">
+<div class="fg"><label>수량</label><input id="shares" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>단가</label><input id="price" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>수수료</label><input id="fee" type="number" step="any" inputmode="decimal" placeholder="0"></div>
+</div>
+<div class="hint">국내는 원, 해외는 달러 기준으로 입력하세요. 종목코드를 직접 넣으려면 위 드롭다운 대신 종목명을 적고 국내는 6자리 코드를 종목 칸에 선택하세요.</div>
+</div>
+
+<div id="gAmt" class="hide">
+<div class="row">
+<div class="fg"><label>통화</label><select id="cur"><option value="KRW">원화 (KRW)</option><option value="USD">달러 (USD)</option></select></div>
+<div class="fg"><label>금액</label><input id="amount" type="number" step="any" inputmode="decimal"></div>
+</div></div>
+
+<div id="gFx" class="hide">
+<div class="row3">
+<div class="fg"><label>방향</label><select id="fxFrom"><option value="KRW">원화 → 달러</option><option value="USD">달러 → 원화</option></select></div>
+<div class="fg"><label>파는 금액</label><input id="fxAmt" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="{d['totals'].get('usdkrw','1400')}"></div>
+</div>
+<div class="hint">원화 → 달러면 "파는 금액"에 원화를, 달러 → 원화면 달러를 넣으세요.</div>
+</div>
+
+<div class="fg"><label>메모 (선택)</label><input id="memo" placeholder=""></div>
+<div class="fg"><label>비밀번호</label><input id="pw" type="password" placeholder="Vercel 에 등록한 TX_PASSWORD"></div>
+<button class="save" id="btnSave">매수 저장</button>
+<div id="msg"></div>
+</form></div>
+
+<div class="card"><h2>최근 거래 <span class="tk" id="cnt"></span></h2>
+<div id="recent"><p class="em">불러오는 중...</p></div></div>
+{js}"""
+    return shell("add.html", d, body)
+
+
 def render_all(d, hist, diffs):
     return {"index.html": page_index(d),
             "news.html": page_news(d),
-            "history.html": page_history(d, hist, diffs)}
+            "history.html": page_history(d, hist, diffs),
+            "add.html": page_add(d)}
