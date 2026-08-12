@@ -4,7 +4,6 @@
 // 이 함수가 서버에서 대신 불러다 주기 때문에 페이지를 열 때마다 최신 시세를 받을 수 있습니다.
 //
 //   GET /api/quotes?t=000660.KS,NVDA,KRW=X
-//   → { "ok": true, "at": "...", "quotes": { "000660.KS": {price, prev, chg, ...}, ... } }
 //
 // 의존성 없음 (Node 18+ 내장 fetch 사용)
 
@@ -21,8 +20,26 @@ async function one(sym) {
   if (!res) throw new Error("no result");
   const m = res.meta || {};
   const price = m.regularMarketPrice;
-  const prev = m.chartPreviousClose != null ? m.chartPreviousClose : (m.previousClose != null ? m.previousClose : price);
   if (price == null) throw new Error("no price");
+
+  // 전일 종가는 종가 시계열에서 직접 뽑습니다.
+  // meta.chartPreviousClose 는 "전일"이 아니라 "요청 기간 시작 직전"의 종가라서 쓰면 안 됩니다.
+  const ts = res.timestamp || [];
+  const closes = (res.indicators && res.indicators.quote && res.indicators.quote[0].close) || [];
+  const bars = [];
+  for (let i = 0; i < ts.length; i++) {
+    if (closes[i] != null) bars.push([ts[i] * 1000, closes[i]]);
+  }
+  const off = (m.gmtoffset || 0) * 1000;
+  const day = function (ms) { return Math.floor((ms + off) / 86400000); };
+  let prev = m.chartPreviousClose != null ? m.chartPreviousClose : price;
+  if (bars.length >= 2) {
+    const nowMs = m.regularMarketTime ? m.regularMarketTime * 1000 : bars[bars.length - 1][0];
+    prev = (day(bars[bars.length - 1][0]) === day(nowMs))
+      ? bars[bars.length - 2][1]
+      : bars[bars.length - 1][1];
+  }
+
   return {
     price: price,
     prev: prev,
@@ -60,7 +77,6 @@ export default async function handler(req, res) {
     }
   });
 
-  // 시세는 잠깐만 캐시해서 새로고침 연타 시 야후를 과하게 부르지 않게 합니다
   res.setHeader("Cache-Control", "public, s-maxage=30, stale-while-revalidate=90");
   res.status(200).json({
     ok: true,
