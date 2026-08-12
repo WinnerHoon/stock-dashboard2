@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-08-13T05:47:26+09:00",
+ "generated_at": "2026-08-13T06:47:37+09:00",
  "date": "2026-08-13",
  "owner": "승훈",
  "style": "long_term",
  "mock": false,
  "totals": {
-  "market_value_krw": 21717013,
-  "cost_krw": 20139110,
-  "pl_krw": 1577903,
-  "roi_pct": 7.84,
-  "usdkrw": 1417.95,
+  "market_value_krw": 21705340,
+  "cost_krw": 20128418,
+  "pl_krw": 1576922,
+  "roi_pct": 7.83,
+  "usdkrw": 1416.82,
   "positions_count": 15,
   "failed_count": 0,
-  "delta_krw": -12819,
-  "delta_pct": -0.06
+  "delta_krw": -11673,
+  "delta_pct": -0.05
  },
  "allocation": {
   "국내": 32.6,
@@ -22,8 +22,8 @@
   "개별주": 58.6,
   "by_broker": {
    "미래에셋 ISA": 4685920,
-   "토스": 8237747,
-   "Super365": 8793346
+   "토스": 8233082,
+   "Super365": 8786338
   }
  },
  "cash": null,
@@ -315,20 +315,17 @@
    "prev_close": 26445.4492,
    "chg": 0.54,
    "w1": 0.85,
-   "m1": 1.46,
-   "m3": 1.3,
-   "m6": 15.45,
-   "y1": 25.17,
+   "m1": 1.84,
+   "m3": 0.71,
+   "m6": 15.27,
+   "y1": 22.63,
    "high_52w": 27093.9004,
    "low_52w": 20794.6406,
    "from_high": -1.87,
    "band_pos": 92.0,
-   "ma60": 26054.73,
-   "ma200": 24104.13,
+   "ma60": 26015.39,
+   "ma200": 24145.46,
    "spark": [
-    22578.3809,
-    22753.6309,
-    22682.7305,
     22886.0703,
     22627.2695,
     22863.6797,
@@ -432,12 +429,15 @@
     25881.9492,
     25520.2402,
     25508.0703,
+    25837.2109,
+    25690.9004,
     25137.6895,
     24975.8203,
     24932.0801,
     24876.9102,
     24442.9395,
     25122.1797,
+    25373.8496,
     25913.9004,
     26584.9902,
     26363.4395,
@@ -591,20 +591,20 @@
   {
    "code": "USD/KRW",
    "name": "원/달러 환율",
-   "price": 1417.95,
+   "price": 1416.8199,
    "prev_close": 1412.1801,
-   "chg": 0.41,
-   "w1": -0.23,
-   "m1": -4.7,
-   "m3": -4.98,
-   "m6": -1.54,
-   "y1": 2.54,
+   "chg": 0.33,
+   "w1": -0.31,
+   "m1": -4.78,
+   "m3": -5.06,
+   "m6": -1.62,
+   "y1": 2.45,
    "high_52w": 1554.48,
    "low_52w": 1377.64,
-   "from_high": -8.78,
-   "band_pos": 22.8,
-   "ma60": 1495.92,
-   "ma200": 1476.29,
+   "from_high": -8.86,
+   "band_pos": 22.2,
+   "ma60": 1495.9,
+   "ma200": 1476.28,
    "spark": [
     1432.3199,
     1438.5,
@@ -725,7 +725,7 @@
     1407.0,
     1417.3101,
     1412.1801,
-    1417.95
+    1416.8199
    ]
   }
  ],
@@ -867,16 +867,16 @@
    ],
    "shares": 26.0,
    "cost": 2112.38,
-   "market_value_krw": 3352658,
-   "cost_krw": 2995249,
+   "market_value_krw": 3349986,
+   "cost_krw": 2992862,
    "brokers": [
     "Super365 11주",
     "토스 15주"
    ],
    "avg_price": 81.25,
-   "pl_krw": 357409,
+   "pl_krw": 357124,
    "roi_pct": 11.93,
-   "weight_pct": 15.44,
+   "weight_pct": 15.43,
    "split": true
   },
   {
@@ -1016,16 +1016,16 @@
    ],
    "shares": 4.0,
    "cost": 2515.64,
-   "market_value_krw": 3283122,
-   "cost_krw": 3567051,
+   "market_value_krw": 3280504,
+   "cost_krw": 3564209,
    "brokers": [
     "Super365 2주",
     "토스 2주"
    ],
    "avg_price": 628.91,
-   "pl_krw": -283929,
+   "pl_krw": -283705,
    "roi_pct": -7.96,
-   "weight_pct": 15.12,
+   "weight_pct": 15.11,
    "split": true
   },
   {
@@ -1165,14 +1165,14 @@
    ],
    "shares": 10.0,
    "cost": 1769.4199999999998,
-   "market_value_krw": 3177484,
-   "cost_krw": 2508949,
+   "market_value_krw": 3174952,
+   "cost_krw": 2506950,
    "brokers": [
     "Super365 4주",
     "토스 6주"
    ],
    "avg_price": 176.94,
-   "pl_krw": 668535,
+   "pl_krw": 668002,
    "roi_pct": 26.65,
    "weight_pct": 14.63,
    "split": true
@@ -1322,7 +1322,7 @@
    "avg_price": 1656000.0,
    "pl_krw": -304000,
    "roi_pct": -9.18,
-   "weight_pct": 13.85,
+   "weight_pct": 13.86,
    "split": false
   },
   {
@@ -1462,13 +1462,13 @@
    ],
    "shares": 7.0,
    "cost": 1766.24,
-   "market_value_krw": 2957645,
-   "cost_krw": 2504440,
+   "market_value_krw": 2955288,
+   "cost_krw": 2502444,
    "brokers": [
     "Super365 7주"
    ],
    "avg_price": 252.32,
-   "pl_krw": 453205,
+   "pl_krw": 452844,
    "roi_pct": 18.1,
    "weight_pct": 13.62,
    "split": false
@@ -1610,13 +1610,13 @@
    ],
    "shares": 2.0,
    "cost": 972.3,
-   "market_value_krw": 1446309,
-   "cost_krw": 1378673,
+   "market_value_krw": 1445156,
+   "cost_krw": 1377574,
    "brokers": [
     "Super365 2주"
    ],
    "avg_price": 486.15,
-   "pl_krw": 67636,
+   "pl_krw": 67582,
    "roi_pct": 4.91,
    "weight_pct": 6.66,
    "split": false
@@ -1767,7 +1767,7 @@
    "avg_price": 114800.0,
    "pl_krw": 33600,
    "roi_pct": 3.66,
-   "weight_pct": 4.38,
+   "weight_pct": 4.39,
    "split": true
   },
   {
@@ -2063,7 +2063,7 @@
    "avg_price": 21091.0,
    "pl_krw": 151100,
    "roi_pct": 28.66,
-   "weight_pct": 3.12,
+   "weight_pct": 3.13,
    "split": false
   },
   {
@@ -2647,13 +2647,13 @@
    ],
    "shares": 16.0,
    "cost": 268.0,
-   "market_value_krw": 370255,
-   "cost_krw": 380011,
+   "market_value_krw": 369960,
+   "cost_krw": 379708,
    "brokers": [
     "토스 16주"
    ],
    "avg_price": 16.75,
-   "pl_krw": -9756,
+   "pl_krw": -9748,
    "roi_pct": -2.57,
    "weight_pct": 1.7,
    "split": false
@@ -2943,13 +2943,13 @@
    ],
    "shares": 1.0,
    "cost": 58.78,
-   "market_value_krw": 58405,
-   "cost_krw": 83347,
+   "market_value_krw": 58359,
+   "cost_krw": 83281,
    "brokers": [
     "Super365 1주"
    ],
    "avg_price": 58.78,
-   "pl_krw": -24942,
+   "pl_krw": -24922,
    "roi_pct": -29.93,
    "weight_pct": 0.27,
    "split": false
@@ -4335,9 +4335,9 @@
    "market_value": 1020.0,
    "cost": 972.3,
    "roi_pct": 4.91,
-   "market_value_krw": 1446309,
-   "cost_krw": 1378673,
-   "pl_krw": 67636,
+   "market_value_krw": 1445156,
+   "cost_krw": 1377574,
+   "pl_krw": 67582,
    "price": 510.0,
    "prev_close": 516.38,
    "chg": -1.24,
@@ -4474,7 +4474,7 @@
     516.38,
     510.0
    ],
-   "roi_delta": 0.06
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -4487,9 +4487,9 @@
    "market_value": 261.12,
    "cost": 268.0,
    "roi_pct": -2.57,
-   "market_value_krw": 370255,
-   "cost_krw": 380011,
-   "pl_krw": -9755,
+   "market_value_krw": 369960,
+   "cost_krw": 379708,
+   "pl_krw": -9748,
    "price": 16.32,
    "prev_close": 16.5,
    "chg": -1.09,
@@ -4626,7 +4626,7 @@
     16.5,
     16.32
    ],
-   "roi_delta": -1.14
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -4639,9 +4639,9 @@
    "market_value": 1157.7,
    "cost": 1301.86,
    "roi_pct": -11.07,
-   "market_value_krw": 1641561,
-   "cost_krw": 1845972,
-   "pl_krw": -204412,
+   "market_value_krw": 1640252,
+   "cost_krw": 1844501,
+   "pl_krw": -204249,
    "price": 578.85,
    "prev_close": 599.12,
    "chg": -3.38,
@@ -4778,7 +4778,7 @@
     599.12,
     578.85
    ],
-   "roi_delta": -0.13
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -4791,9 +4791,9 @@
    "market_value": 1157.7,
    "cost": 1213.78,
    "roi_pct": -4.62,
-   "market_value_krw": 1641561,
-   "cost_krw": 1721079,
-   "pl_krw": -79519,
+   "market_value_krw": 1640252,
+   "cost_krw": 1719708,
+   "pl_krw": -79455,
    "price": 578.85,
    "prev_close": 599.12,
    "chg": -3.38,
@@ -4930,7 +4930,7 @@
     599.12,
     578.85
    ],
-   "roi_delta": -0.14
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -4943,9 +4943,9 @@
    "market_value": 896.36,
    "cost": 714.56,
    "roi_pct": 25.44,
-   "market_value_krw": 1270994,
-   "cost_krw": 1013210,
-   "pl_krw": 257783,
+   "market_value_krw": 1269981,
+   "cost_krw": 1012403,
+   "pl_krw": 257578,
    "price": 224.09,
    "prev_close": 217.5,
    "chg": 3.03,
@@ -5082,7 +5082,7 @@
     217.5,
     224.09
    ],
-   "roi_delta": 0.17
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5095,9 +5095,9 @@
    "market_value": 1344.54,
    "cost": 1054.86,
    "roi_pct": 27.46,
-   "market_value_krw": 1906490,
-   "cost_krw": 1495739,
-   "pl_krw": 410752,
+   "market_value_krw": 1904971,
+   "cost_krw": 1494547,
+   "pl_krw": 410424,
    "price": 224.09,
    "prev_close": 217.5,
    "chg": 3.03,
@@ -5234,7 +5234,7 @@
     217.5,
     224.09
    ],
-   "roi_delta": 0.17
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5247,9 +5247,9 @@
    "market_value": 2085.86,
    "cost": 1766.24,
    "roi_pct": 18.1,
-   "market_value_krw": 2957645,
-   "cost_krw": 2504440,
-   "pl_krw": 453205,
+   "market_value_krw": 2955288,
+   "cost_krw": 2502444,
+   "pl_krw": 452844,
    "price": 297.98,
    "prev_close": 295.83,
    "chg": 0.73,
@@ -5386,7 +5386,7 @@
     295.83,
     297.98
    ],
-   "roi_delta": -0.17
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5399,9 +5399,9 @@
    "market_value": 1000.34,
    "cost": 870.98,
    "roi_pct": 14.85,
-   "market_value_krw": 1418432,
-   "cost_krw": 1235006,
-   "pl_krw": 183426,
+   "market_value_krw": 1417302,
+   "cost_krw": 1234022,
+   "pl_krw": 183280,
    "price": 90.94,
    "prev_close": 90.69,
    "chg": 0.28,
@@ -5538,7 +5538,7 @@
     90.69,
     90.94
    ],
-   "roi_delta": -0.11
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5551,9 +5551,9 @@
    "market_value": 1364.1,
    "cost": 1241.4,
    "roi_pct": 9.88,
-   "market_value_krw": 1934226,
-   "cost_krw": 1760243,
-   "pl_krw": 173982,
+   "market_value_krw": 1932684,
+   "cost_krw": 1758840,
+   "pl_krw": 173844,
    "price": 90.94,
    "prev_close": 90.69,
    "chg": 0.28,
@@ -5690,7 +5690,7 @@
     90.69,
     90.94
    ],
-   "roi_delta": -0.11
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5703,9 +5703,9 @@
    "market_value": 41.19,
    "cost": 58.78,
    "roi_pct": -29.93,
-   "market_value_krw": 58405,
-   "cost_krw": 83347,
-   "pl_krw": -24942,
+   "market_value_krw": 58359,
+   "cost_krw": 83281,
+   "pl_krw": -24922,
    "price": 41.19,
    "prev_close": 41.69,
    "chg": -1.2,
@@ -5842,7 +5842,7 @@
     41.69,
     41.19
    ],
-   "roi_delta": -0.04
+   "roi_delta": 0.0
   }
  ],
  "news": {
@@ -5858,12 +5858,12 @@
      "title_ko": "오늘의 기술주: CoreWeave와 Supermicro의 실적이 투자자를 압도합니다."
     },
     {
-     "title": "CoreWeave jumps 10% following Q2 earnings",
-     "url": "https://finance.yahoo.com/video/coreweave-jumps-10-following-q2-210500927.html",
-     "publisher": "Yahoo Finance Video",
-     "summary": "Yahoo Finance Tech Editor Dan Howley breaks down CoreWeave (CRWV) Q2 results.",
-     "published": "2026-08-11T21:05:00Z",
-     "title_ko": "CoreWeave, 2분기 실적에 이어 10% 뛰어오르다"
+     "title": "Expert urges investors to spread bets across the 'AI universe'",
+     "url": "https://finance.yahoo.com/video/expert-urges-investors-spread-bets-211423212.html",
+     "publisher": "Reuters Videos",
+     "summary": "<body><p>STORY: Mussio also noted that \"investors are right to concern themselves\" with companies' capital expenditures on AI buildout.</p><p>\"The market is rewarding those businesses that can finance the CapEx still within the guise of their cash flow from operations,\" Mussio said. \"It's the busine",
+     "published": "2026-08-12T21:14:23Z",
+     "title_ko": "전문가는 투자자들에게 '인공지능 우주' 에 베팅을 확산할 것을 촉구합니다."
     },
     {
      "title": "Wells Fargo Has Fresh Message for Microsoft Investors",
@@ -5911,28 +5911,28 @@
      "title_ko": "CoreWeave, AI 지출이 성장에 힘을 실어주는 네비우스"
     },
     {
-     "title": "Supermicro Soars On Report. Why Nvidia Is Also Rallying.",
-     "url": "https://www.investors.com/news/technology/supermicro-stock-analysts-cautious-nvidia-positive-news/?src=A00220&yptr=yahoo",
-     "publisher": "Investor's Business Daily",
-     "summary": "Super Micro Computer's upbeat second-quarter earnings report provided a positive read-through for partner Nvidia.",
-     "published": "2026-08-12T20:32:32Z",
-     "title_ko": "슈퍼마이크로가 보고서에 솟구칩니다. 엔비디아도 결집하는 이유."
+     "title": "Why Wendy's Stock Blasted Almost 15% Higher Today",
+     "url": "https://www.fool.com/investing/2026/08/12/why-wendys-stock-blasted-almost-15-higher-today/",
+     "publisher": "Motley Fool",
+     "summary": "One of its largest and long-standing institutional investors is reportedly leading a go-private bid.",
+     "published": "2026-08-12T21:30:40Z",
+     "title_ko": "오늘 웬디의 주식이 거의 15% 상승한 이유"
     },
     {
-     "title": "How to Earn $500 a Month From Enbridge Stock",
-     "url": "https://www.fool.com/investing/2026/08/12/how-to-earn-500-a-month-from-enbridge-stock/",
+     "title": "Berkshire CEO Greg Abel Is Sitting on More Than $360 Billion in Cash. Here's How His Deal-Making Approach Differs From Warren Buffett's.",
+     "url": "https://www.fool.com/investing/2026/08/12/berkshire-ceo-greg-abel-is-sitting-on-more-than-36/",
      "publisher": "Motley Fool",
-     "summary": "The Canadian pipeline giant is still a rock-solid income investment.",
-     "published": "2026-08-12T20:30:00Z",
-     "title_ko": "Enbridge Stock에서 월 $ 500의 수입을 올리는 방법"
+     "summary": "Greg Abel is putting Berkshire Hathaway's massive cash pile to work.",
+     "published": "2026-08-12T21:25:00Z",
+     "title_ko": "버크셔의 CEO 그렉 아벨 (Greg Abel) 은 $ 3600억 이상의 현금을 보유하고 있습니다. 그의 딜 메이킹 접근 방식이 워렌 버핏의 접근 방식과 어떻게 다른지 알아보세요."
     },
     {
-     "title": "Alphabet and Apple Are Among Berkshire Hathaway's Top Holdings. Here's What That Tells Us About CEO Greg Abel's Investing Style in Tech Stocks.",
-     "url": "https://www.fool.com/investing/2026/08/12/alphabet-and-apple-are-among-berkshire-hathaways-t/",
+     "title": "Stock Market Today, Aug. 12: Stocks Edge Higher as Inflation Data Eases Fed Rate Pressure",
+     "url": "https://www.fool.com/coverage/stock-market-today/2026/08/12/stock-market-today-aug-12-stocks-edge-higher-as-inflation-data-eases-fed-rate-pressure/",
      "publisher": "Motley Fool",
-     "summary": "Abel is following Warren Buffett's longstanding playbook of disciplined investing, but the conglomerate's portfolio is increasingly including tech stocks.",
-     "published": "2026-08-12T20:26:00Z",
-     "title_ko": "알파벳과 애플은 버크셔 해서웨이의 최고 지주 중 하나입니다. 다음은 그렉 아벨 (Greg Abel) CEO의 기술 주식 투자 스타일에 대해 알려주는 내용입니다."
+     "summary": "AI infrastructure demand and moderating inflation drove broad gains, though geopolitical tensions remain, today, Aug. 12, 2026.",
+     "published": "2026-08-12T21:23:45Z",
+     "title_ko": "8월 12일 주식 시장: 인플레이션 데이터가 연준 금리 압력을 완화함에 따라 주식 가장자리 상승"
     }
    ]
   },
@@ -5948,6 +5948,14 @@
      "title_ko": null
     },
     {
+     "title": "미 투자지 \"마이크론 말고 SK하이닉스 사라\" 호평인데… 한국선 왜 주가 빠지나",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObnpDdmJlWDFMVkk0amprZldMbXlZeTg5b2Z2VFp2VmJTeTAwUlpiZnA1MU14ZzRSbUwwR3ZhN19GMFFJbXVTWk9oMmNmVmlITmxFSEY0NWtvR2RRQ0JMRGhuTlBTMEtZam5vNjQxd3kzbl9GOWVWa2pfOXBhNEsyRw?oc=5",
+     "publisher": "조선일보",
+     "summary": "미 투자지 \"마이크론 말고 SK하이닉스 사라\" 호평인데… 한국선 왜 주가 빠지나  조선일보",
+     "published": "Tue, 11 Aug 2026 00:44:05 GMT",
+     "title_ko": null
+    },
+    {
      "title": "\"하이닉스 지금 줍줍하면 돈 번다\"…美서 극찬 쏟아진 이유 [종목+]",
      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKQ2JTMTlEZm5JTUp5Ul9kUGd2Zkh5NTZnNnNxRDdpV05xMTRYd0xSTGJRcUdSTTFYVENEeUZBN0dJTFdLMHVqTk1Na3V2d3JLdmFJNENEc0Rodw?oc=5",
      "publisher": "한국경제",
@@ -5956,27 +5964,19 @@
      "title_ko": null
     },
     {
+     "title": "“마이크론 말고 SK하이닉스 사라” 美 투자지 추천에도…한국선 주가 빠지는 이유",
+     "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE11b29ldjlXTE9aRTVpSF9vYWFNTXZsWFdVR181Y2M2ek8wVTR5anQ0bkpGei1yWXRUOHc4bkVXTnJURFkzdks5ZDRFT2t1dw?oc=5",
+     "publisher": "전자신문",
+     "summary": "“마이크론 말고 SK하이닉스 사라” 美 투자지 추천에도…한국선 주가 빠지는 이유  전자신문",
+     "published": "Tue, 11 Aug 2026 02:12:53 GMT",
+     "title_ko": null
+    },
+    {
      "title": "삼성전자 SK하이닉스 주주환원 강화로 주가 상승 여력 충분 블룸버그 전망, \"장기 계약으로 현금흐름 안정적\"",
      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5STWlyYXVNMW45eE5ZSHRycTRadkdCTG1aYThLcUlad1A0SURoTzhWZG1hTHZIS2s5dHZsa2tmclRyQUhqM1hoRlhkanA5ZXFraGxvRkhYdW1fZU9WZlF6RGpObkxTaDB2aUVmNjJiekl3M0k?oc=5",
      "publisher": "비즈니스포스트",
-     "summary": "삼성전자 SK하이닉스 주주환원 강화로 주가 상승 여력 충분 블룸버그 전망, \"장기 계약으로 현금흐름 안정적\"  비즈니스포스트",
+     "summary": "삼성전자 SK하이닉스 주주환원 강화로 주가 상승 여력 충분 블룸버그 전망, \"장기 계약으로 현금흐름 안정적\"  비즈니스포스트SK하이닉스 주주들은 한 달 뒤에 웃을 수 있을까 [핫클립]  KBS 뉴스지금 줍는게 맞다?…\"SK하이닉스, 40조 '통 큰 주주환원' 기대\"[클릭e종목]  v.daum.net",
      "published": "Wed, 12 Aug 2026 08:12:40 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "“주가 반전 노린다”···SK하이닉스의 ‘주주환원 승부수’",
-     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0xSG9sVndqUndyRm4tVnBvak10NmdIUXdPZVhveEhXN044MU16cGNrX2J6aFY1Rlk3OHdUV1pCMHF6ZXdmUGEzVVhTM0ZZX3o1aWxreGtmcDJhYmR5T1VIaTFJbkc2ZWQwZUt4dlpfbUrSAXRBVV95cUxOUk53QlE3NUFQb0NZMTdtQ0hhS1VNZVZrOUo1WldVdzVNQW9jNm9KXzZySXpMMWQySU1ZenFERDJmWnZCUU8yYU52UW1hUFJNOUxtbk03bzFWZXFkMlhaY0N2eThlc09ZaGdHb1RwSzMzU252cw?oc=5",
-     "publisher": "이뉴스투데이",
-     "summary": "“주가 반전 노린다”···SK하이닉스의 ‘주주환원 승부수’  이뉴스투데이",
-     "published": "Tue, 11 Aug 2026 23:00:00 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "KB \"삼전 주주환원 10배 예상\"… 6000피 횡보장 벗어날까",
-     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPb214U1l4em1iVTJlYUc5QzRJSGRsZ1NYMFgzRmhXTGxqSEltOFRjNVdkMkV1SXFKd21fbHNnMEhRZzhPYVpCcE1LM2xBaGdybzNkQU9wTXQ0Z2hkYUJuN0QtcGRfOTd2LTRnQ3o4ZDhjX3VmenVuNDk5ejJWTnB3ZA?oc=5",
-     "publisher": "조선일보",
-     "summary": "KB \"삼전 주주환원 10배 예상\"… 6000피 횡보장 벗어날까  조선일보",
-     "published": "Mon, 10 Aug 2026 04:10:00 GMT",
      "title_ko": null
     }
    ]
@@ -5984,6 +5984,14 @@
   "BRK-B": {
    "name": "Berkshire Hathaway B",
    "items": [
+    {
+     "title": "Berkshire CEO Greg Abel Is Sitting on More Than $360 Billion in Cash. Here's How His Deal-Making Approach Differs From Warren Buffett's.",
+     "url": "https://www.fool.com/investing/2026/08/12/berkshire-ceo-greg-abel-is-sitting-on-more-than-36/",
+     "publisher": "Motley Fool",
+     "summary": "Greg Abel is putting Berkshire Hathaway's massive cash pile to work.",
+     "published": "2026-08-12T21:25:00Z",
+     "title_ko": "버크셔의 CEO 그렉 아벨 (Greg Abel) 은 $ 3600억 이상의 현금을 보유하고 있습니다. 그의 딜 메이킹 접근 방식이 워렌 버핏의 접근 방식과 어떻게 다른지 알아보세요."
+    },
     {
      "title": "Alphabet and Apple Are Among Berkshire Hathaway's Top Holdings. Here's What That Tells Us About CEO Greg Abel's Investing Style in Tech Stocks.",
      "url": "https://www.fool.com/investing/2026/08/12/alphabet-and-apple-are-among-berkshire-hathaways-t/",
@@ -6015,14 +6023,6 @@
      "summary": "SiriusXM is no longer a high-growth company, but it still has a new revenue opportunity in managing advertising for other platforms.",
      "published": "2026-08-12T15:35:00Z",
      "title_ko": "이 회사 버크셔가 오디오 광고의 Google이 되기 위해 37% 의 지분을 소유할 수 있습니까?"
-    },
-    {
-     "title": "Could Trump’s Capital Gains Plan Hand Warren Buffett a $0 Tax Bill? No — But the Savings Would Be Massive",
-     "url": "https://247wallst.com/investing/2026/08/12/could-trumps-capital-gains-plan-hand-warren-buffett-a-0-tax-bill-no-but-the-savings-would-be-massive/",
-     "publisher": "24/7 Wall St.",
-     "summary": "A Washington proposal to strip inflation out of capital gains calculations has investors asking a simple question: after 60 years of buy-and-hold investing, could Warren Buffett's tax bill all but disappear? The real answer is more surprising than either side of the debate admits.",
-     "published": "2026-08-12T14:43:50Z",
-     "title_ko": "Trump's Capital Gains Plan Hand Warren Buffett에게 $ 0 세금 계산서를 줄 수 있습니까? 아니요 — 하지만 저축액은 엄청날 것입니다."
     }
    ]
   },
