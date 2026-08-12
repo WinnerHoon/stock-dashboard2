@@ -167,6 +167,18 @@ def mock(base):
 def build(cfg, use_mock=False):
     s = cfg.get("settings", {})
     days = int(s.get("history_days", 400))
+
+    # 거래 원장이 있으면 그걸로 보유종목·현금을 계산합니다.
+    # 없으면 예전처럼 portfolio.json 의 holdings 를 그대로 씁니다.
+    import ledger
+    led_hold, led_cash, led_realized, led_warn = ledger.build_holdings(
+        os.path.join(BASE, "transactions.json"))
+    if led_hold:
+        log(f"거래 원장에서 보유 {len(led_hold)}건 계산")
+        for m in led_warn:
+            log(f"  ⚠ {m}")
+    holdings_src = led_hold if led_hold else cfg.get("holdings", [])
+
     prev = None
     p = os.path.join(DIST, "data.json")
     if os.path.exists(p):
@@ -192,7 +204,7 @@ def build(cfg, use_mock=False):
     # 보유 종목
     log("보유 종목")
     positions = []
-    for h in cfg.get("holdings", []):
+    for h in holdings_src:
         mk = h.get("market", "KR").upper()
         tk, nm = str(h["ticker"]), h.get("name", h["ticker"])
         log(f"  - {nm} ({tk})")
@@ -268,12 +280,21 @@ def build(cfg, use_mock=False):
         allocation["by_broker"][b] = round(
             allocation["by_broker"].get(b, 0) + x["market_value_krw"])
 
+    # 현금 잔고 (거래 원장이 있을 때만)
+    cash = ledger.summarize_cash(led_cash, float(fx)) if led_cash else None
+
     totals = {
         "market_value_krw": round(tv), "cost_krw": round(tc), "pl_krw": round(tv - tc),
         "roi_pct": round((tv - tc) / tc * 100, 2) if tc else None,
         "usdkrw": round(float(fx), 2),
         "positions_count": len(consolidated), "failed_count": len(positions) - len(ok),
     }
+    if cash:
+        totals["cash_krw"] = cash["total_krw"]
+        totals["net_worth_krw"] = round(tv + cash["total_krw"])
+        log(f'현금 {cash["total_krw"]:,}원 (원화 {cash["KRW"]:,} / 달러 {cash["USD"]:,.2f})')
+    if led_realized:
+        totals["realized"] = {k: round(v, 2) for k, v in led_realized.items()}
     pv = (prev or {}).get("totals", {}).get("market_value_krw")
     if pv:
         totals["delta_krw"] = round(tv - pv)
@@ -302,7 +323,7 @@ def build(cfg, use_mock=False):
         "generated_at": datetime.now(KST).isoformat(timespec="seconds"),
         "date": os.getenv("FAKE_DATE") or datetime.now(KST).strftime("%Y-%m-%d"),
         "owner": cfg.get("owner", ""), "style": s.get("style", "long_term"),
-        "mock": use_mock, "totals": totals, "allocation": allocation,
+        "mock": use_mock, "totals": totals, "allocation": allocation, "cash": cash,
         "indices": indices, "consolidated": consolidated, "positions": positions,
         "news": news, "prev_date": (prev or {}).get("date"),
     }
