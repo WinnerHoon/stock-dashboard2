@@ -112,15 +112,15 @@ footer{color:var(--dim);font-size:11.5px;text-align:center;margin-top:22px;line-
 .mvn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chips{margin-top:10px}
 </style><header><h1>일별 변화</h1>
-<div class="sb"><span id="fresh">갱신 확인 중</span><span>최근 0일 비교</span></div></header>
-<div class="card"><h2>총 평가금액 추이</h2><p class="em">데이터가 2일 이상 쌓이면 그래프가 나타납니다.</p></div><div class="card"><p class="em">아직 비교할 이전 기록이 없습니다.<br>내일 빌드가 한 번 더 돌면 일별 변화가 표시됩니다.</p></div>
+<div class="sb"><span id="fresh">갱신 확인 중</span><span>최근 1일 비교</span></div></header>
+<div class="card"><div class="hero"><div><div class="lb">기록 기간</div><div class="bg s">2일</div><div class="s2">2026-08-12 ~ 2026-08-13</div></div><div><div class="lb">기간 중 변화</div><div class="bg s down">-28,918원</div></div><div><div class="lb">최고 평가액</div><div class="bg s">21,726,687원</div></div><div><div class="lb">최저 평가액</div><div class="bg s">21,697,769원</div></div></div></div><div class="card"><h2>총 평가금액 추이</h2><svg class="lc" viewBox="0 0 1000 170" preserveAspectRatio="none"><polygon points="0,170 0.0,12.0 1000.0,158.0 1000,170" fill="var(--down)" opacity="0.10"/><polyline points="0.0,12.0 1000.0,158.0" fill="none" stroke="var(--down)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="1000.0" cy="158.0" r="4" fill="var(--down)"/></svg><div class="lcx"><span>2026-08-12</span><span>2,173만 최고 · 2,170만 최저</span><span>2026-08-13</span></div></div><div class="card"><div class="dh"><div><b class="dd">2026-08-13</b><span class="s2">2026-08-12 대비</span></div><div class="dv down">-28,918원<span class="dp">-0.13%</span></div></div><div class="dsub">총 21,697,769원 · 수익률 +7.82% (<span class="down">-0.22%</span>) · 환율 1,416.28 (<span class="up">+1.34</span>)</div><div class="mv"><span class="mvn">Meta Platforms</span><span class="n down">-0.82%</span><span class="n down">-26,088원</span></div><div class="mv"><span class="mvn">SPDR Portfolio S&amp;P 5</span><span class="n down">-0.05%</span><span class="n up">+1,511원</span></div><div class="mv"><span class="mvn">NVIDIA</span><span class="n down">-0.17%</span><span class="n down">-1,255원</span></div><div class="mv"><span class="mvn">Berkshire Hathaway B</span><span class="n down">-0.18%</span><span class="n down">-1,151원</span></div><div class="mv"><span class="mvn">Invesco NASDAQ 100 E</span><span class="n down">-0.16%</span><span class="n down">-1,019원</span></div></div>
 <footer>매 정시(장중) GitHub Actions 가 자동 갱신 · 시세는 지연될 수 있습니다<br>
 해외 종목 평단은 환율 환산 근사치이며, 뉴스 번역은 기계번역입니다<br>
 정보 제공용이며 투자 권유가 아닙니다. 투자 판단과 책임은 본인에게 있습니다.</footer>
 </div>
 <script>
 (function(){
- var BAKED="2026-08-12T23:22:07+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-08-13T01:00:54+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
