@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme:dark)">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme:light)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="내 주식">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>거래 입력 · 승훈님의 주식</title>
+<style>
+:root{color-scheme:light dark;--bg:#0f1115;--card:#171a21;--line:#252a34;--txt:#e6e8ec;--dim:#8b93a1;
+--up:#e5484d;--down:#2f81f7;--flat:#8b93a1;--ac:#f0b429;
+--c1:#5b8def;--c2:#f0b429;--c3:#3fb984;--c4:#c05fd6;--hl:#1e222b}
+@media(prefers-color-scheme:light){:root{--bg:#f6f7f9;--card:#fff;--line:#e3e6ea;--txt:#1a1d23;--dim:#6b7280;--hl:#f0f2f5}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;padding:0 0 60px;background:var(--bg);color:var(--txt);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;
+-webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+padding:0 16px;display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav a{flex:0 0 auto;padding:14px 16px;color:var(--dim);text-decoration:none;font-size:14px;
+font-weight:600;border-bottom:2px solid transparent;white-space:nowrap}
+nav a.on{color:var(--txt);border-bottom-color:var(--c1)}
+header{padding:20px 0 4px}
+h1{font-size:20px;margin:0 0 4px}
+.sb{color:var(--dim);font-size:12.5px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+#fresh,#live{border:1px solid var(--line);border-radius:20px;padding:2px 10px;font-size:11.5px}
+#live.on{border-color:var(--c3);color:var(--c3)}
+#live.off{border-color:var(--ac);color:var(--ac)}
+#refresh{background:none;border:1px solid var(--line);border-radius:20px;padding:2px 10px;
+font-size:11.5px;color:var(--dim);cursor:pointer;font-family:inherit}
+#refresh:hover{color:var(--txt);border-color:var(--dim)}
+#refresh:active{transform:scale(.96)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+h2{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);margin:0 0 13px;font-weight:700}
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+.lb{color:var(--dim);font-size:11.5px;margin-bottom:3px}
+.bg{font-size:27px;font-weight:700;letter-spacing:-.02em}
+.bg.s{font-size:20px}
+.td{font-size:12.5px;margin-top:5px}
+.ics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.ic{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.in{color:var(--dim);font-size:11.5px}
+.iv{font-size:16px;font-weight:600;margin:3px 0}
+.ig{font-size:12.5px;font-weight:600}
+.is{color:var(--dim);font-size:10.5px}
+.abs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:12px}
+.ah{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.at{height:7px;background:var(--bg);border-radius:4px;overflow:hidden}
+.af{height:100%;border-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:5px 11px;font-size:12px;color:var(--dim)}
+.chip b{color:var(--txt);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:right;color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
+padding:0 8px 9px;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child{text-align:left}
+td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.tk{color:var(--dim);font-size:10.5px;margin-left:6px}
+.s2{color:var(--dim);font-size:10.5px;margin-top:2px;font-weight:400}
+.bd{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:12px;background:var(--bg);
+border:1px solid var(--line);font-size:9.5px;vertical-align:middle}
+.bd.e{border-color:var(--c3);color:var(--c3)}
+.bd.s{border-color:var(--c1);color:var(--c1)}
+.wb{height:4px;background:var(--line);border-radius:3px;margin-top:4px}
+.wb i{display:block;height:100%;background:var(--c1);border-radius:3px}
+.rb{position:relative;height:5px;background:var(--line);border-radius:3px;display:inline-block;width:64px;vertical-align:middle}
+.rf{position:absolute;inset:0;background:linear-gradient(90deg,var(--down),var(--up));border-radius:3px;opacity:.5}
+.rd{position:absolute;top:-2.5px;width:3px;height:10px;background:var(--txt);border-radius:2px}
+.rt{color:var(--dim);font-size:10.5px;margin-left:6px}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--flat)}
+.spk{width:110px;height:30px;display:block}
+.em{color:var(--dim);font-size:13px;margin:0}
+footer{color:var(--dim);font-size:11.5px;text-align:center;margin-top:22px;line-height:1.8;padding:0 16px}
+.cards{display:none}
+@media(max-width:760px){
+ .wrap{padding:0 12px}
+ h1{font-size:18px}
+ .bg{font-size:23px}
+ .hero{grid-template-columns:1fr 1fr;gap:14px}
+ .card{padding:14px;border-radius:12px}
+ table.resp{display:none}
+ .cards{display:block}
+ nav a{padding:13px 13px;font-size:13.5px}
+}
+.mc{border-bottom:1px solid var(--line);padding:13px 0}
+.mc:last-child{border-bottom:none}
+.mc-t{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mc-n{font-weight:600;font-size:14.5px}
+.mc-r{font-size:15px;font-weight:700;white-space:nowrap}
+.mc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;font-size:11.5px}
+.mc-g div{color:var(--dim)}
+.mc-g b{display:block;color:var(--txt);font-size:12.5px;font-variant-numeric:tabular-nums;font-weight:600}
+</style></head><body>
+<nav><a href="index.html" class="">포트폴리오</a><a href="news.html" class="">뉴스</a><a href="history.html" class="">일별 변화</a><a href="add.html" class="on">거래 입력</a></nav>
+<div class="wrap">
+<style>
+form{max-width:520px}
+.fg{margin-bottom:14px}
+label{display:block;font-size:12px;color:var(--dim);margin-bottom:5px;font-weight:600}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--bg);color:var(--txt);font:15px/1.4 inherit;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--c1)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.types{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.types button{padding:9px 15px;border:1px solid var(--line);background:var(--bg);color:var(--dim);
+border-radius:20px;font-size:13.5px;cursor:pointer;font-family:inherit;font-weight:600}
+.types button.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.save{width:100%;padding:14px;border:none;border-radius:10px;background:var(--c1);color:#fff;
+font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px}
+.save:disabled{opacity:.5;cursor:default}
+#msg{margin-top:12px;font-size:13.5px;padding:11px 13px;border-radius:9px;display:none}
+#msg.ok{display:block;background:rgba(63,185,132,.13);color:var(--c3);border:1px solid var(--c3)}
+#msg.err{display:block;background:rgba(229,72,77,.11);color:var(--up);border:1px solid var(--up)}
+.hide{display:none}
+.rt2{font-size:12.5px;border-collapse:collapse;width:100%}
+.rt2 td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.rt2 .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hint{color:var(--dim);font-size:11.5px;margin-top:5px}
+</style><header><h1>거래 입력</h1>
+<div class="sb"><span>매수·매도·입금·환전을 기록하면 수량·평단·현금이 자동으로 계산됩니다</span></div></header>
+
+<div class="card"><form onsubmit="return false">
+<div class="types">
+<button data-t="buy" class="on">매수</button><button data-t="sell">매도</button>
+<button data-t="deposit">입금</button><button data-t="withdraw">출금</button>
+<button data-t="fx">환전</button><button data-t="dividend">배당</button>
+<button data-t="fee">수수료</button>
+</div>
+
+<div class="row">
+<div class="fg"><label>날짜</label><input type="date" id="date"></div>
+<div class="fg"><label>증권사</label><select id="broker"><option>Super365</option><option>미래에셋</option><option>토스</option>
+<option>미래에셋 ISA</option><option>토스</option><option>Super365</option></select></div>
+</div>
+
+<div id="gStock">
+<div class="fg"><label>종목</label><select id="ticker"><option value="">— 보유 종목에서 선택 —</option><option value="META" data-name="Meta Platforms" data-market="US">Meta Platforms (META)</option><option value="SPYM" data-name="SPDR Portfolio S&amp;P 500 ETF" data-market="US">SPDR Portfolio S&amp;P 500 ETF (SPYM)</option><option value="NVDA" data-name="NVIDIA" data-market="US">NVIDIA (NVDA)</option><option value="000660" data-name="SK하이닉스" data-market="KR">SK하이닉스 (000660)</option><option value="QQQM" data-name="Invesco NASDAQ 100 ETF" data-market="US">Invesco NASDAQ 100 ETF (QQQM)</option><option value="BRK-B" data-name="Berkshire Hathaway B" data-market="US">Berkshire Hathaway B (BRK-B)</option><option value="138040" data-name="메리츠금융지주" data-market="KR">메리츠금융지주 (138040)</option><option value="381170" data-name="TIGER 미국테크TOP10 INDXX" data-market="KR">TIGER 미국테크TOP10 INDXX (381170)</option><option value="360750" data-name="TIGER 미국S&amp;P500" data-market="KR">TIGER 미국S&amp;P500 (360750)</option><option value="491010" data-name="TIGER 글로벌AI전력인프라액티브" data-market="KR">TIGER 글로벌AI전력인프라액티브 (491010)</option><option value="381180" data-name="TIGER 미국필라델피아반도체나스닥" data-market="KR">TIGER 미국필라델피아반도체나스닥 (381180)</option><option value="011790" data-name="SKC" data-market="KR">SKC (011790)</option><option value="CPNG" data-name="Coupang" data-market="US">Coupang (CPNG)</option><option value="458760" data-name="TIGER 미국배당다우존스타겟커버드콜2호" data-market="KR">TIGER 미국배당다우존스타겟커버드콜2호 (458760)</option><option value="SYM" data-name="Symbotic" data-market="US">Symbotic (SYM)</option></select></div>
+<div class="row"><div class="fg"><label>종목명 (신규 매수 시 직접 입력)</label><input id="name" placeholder="예: 삼성전자"></div>
+<div class="fg"><label>시장</label><select id="market"><option value="KR">국내 (KR)</option><option value="US">해외 (US)</option></select></div></div>
+<div class="row3">
+<div class="fg"><label>수량</label><input id="shares" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>단가</label><input id="price" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>수수료</label><input id="fee" type="number" step="any" inputmode="decimal" placeholder="0"></div>
+</div>
+<div class="hint">국내는 원, 해외는 달러 기준으로 입력하세요. 종목코드를 직접 넣으려면 위 드롭다운 대신 종목명을 적고 국내는 6자리 코드를 종목 칸에 선택하세요.</div>
+</div>
+
+<div id="gAmt" class="hide">
+<div class="row">
+<div class="fg"><label>통화</label><select id="cur"><option value="KRW">원화 (KRW)</option><option value="USD">달러 (USD)</option></select></div>
+<div class="fg"><label>금액</label><input id="amount" type="number" step="any" inputmode="decimal"></div>
+</div></div>
+
+<div id="gFx" class="hide">
+<div class="row3">
+<div class="fg"><label>방향</label><select id="fxFrom"><option value="KRW">원화 → 달러</option><option value="USD">달러 → 원화</option></select></div>
+<div class="fg"><label>파는 금액</label><input id="fxAmt" type="number" step="any" inputmode="decimal"></div>
+<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1415.16"></div>
+</div>
+<div class="hint">원화 → 달러면 "파는 금액"에 원화를, 달러 → 원화면 달러를 넣으세요.</div>
+</div>
+
+<div class="fg"><label>메모 (선택)</label><input id="memo" placeholder=""></div>
+<div class="fg"><label>비밀번호</label><input id="pw" type="password" placeholder="Vercel 에 등록한 TX_PASSWORD"></div>
+<button class="save" id="btnSave">매수 저장</button>
+<div id="msg"></div>
+</form></div>
+
+<div class="card"><h2>최근 거래 <span class="tk" id="cnt"></span></h2>
+<div id="recent"><p class="em">불러오는 중...</p></div></div>
+<script>
+(function(){
+ var T='buy', pw='';
+ var el=function(i){return document.getElementById(i);};
+ var LABEL={buy:'매수',sell:'매도',deposit:'입금',withdraw:'출금',fx:'환전',dividend:'배당',fee:'수수료'};
+
+ function show(){
+  var stock=(T==='buy'||T==='sell'), fx=(T==='fx'), amt=!stock&&!fx;
+  el('gStock').className=stock?'':'hide';
+  el('gFx').className=fx?'':'hide';
+  el('gAmt').className=amt?'':'hide';
+  el('btnSave').textContent=LABEL[T]+' 저장';
+  var bs=document.querySelectorAll('.types button');
+  for(var i=0;i<bs.length;i++) bs[i].className=(bs[i].dataset.t===T)?'on':'';
+ }
+ document.querySelectorAll('.types button').forEach(function(b){
+   b.onclick=function(){T=b.dataset.t;show();};
+ });
+ el('ticker').onchange=function(){
+   var o=el('ticker').selectedOptions[0];
+   if(o&&o.dataset.name){el('name').value=o.dataset.name;el('market').value=o.dataset.market;}
+ };
+ function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
+
+ function collect(){
+  var tx={type:T,date:el('date').value,broker:el('broker').value,memo:el('memo').value};
+  if(T==='buy'||T==='sell'){
+   tx.ticker=el('ticker').value; tx.name=el('name').value; tx.market=el('market').value;
+   tx.shares=el('shares').value; tx.price=el('price').value; tx.fee=el('fee').value||0;
+  } else if(T==='fx'){
+   tx.from=el('fxFrom').value; tx.to=(el('fxFrom').value==='KRW')?'USD':'KRW';
+   tx.amount=el('fxAmt').value; tx.rate=el('fxRate').value;
+  } else {
+   tx.currency=el('cur').value; tx.amount=el('amount').value;
+  }
+  return tx;
+ }
+
+ el('btnSave').onclick=function(){
+  pw=el('pw').value;
+  if(!pw){msg('비밀번호를 입력해 주세요','err');return;}
+  var b=el('btnSave'); b.disabled=true; msg('저장 중...','ok');
+  fetch('/api/tx',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({password:pw,tx:collect()})})
+   .then(function(r){return r.json();})
+   .then(function(j){
+     b.disabled=false;
+     if(!j.ok){msg('실패: '+j.error,'err');return;}
+     msg('저장했습니다. 2~3분 뒤 빌드가 끝나면 포트폴리오에 반영됩니다.','ok');
+     el('shares').value='';el('price').value='';el('fee').value='';
+     el('amount').value='';el('fxAmt').value='';el('memo').value='';
+     load();
+   })
+   .catch(function(e){b.disabled=false;msg('오류: '+e.message,'err');});
+ };
+
+ function load(){
+  fetch('/api/tx',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
+   if(!j.ok){el('recent').innerHTML='<p class="em">'+(j.error||'불러오지 못했습니다')+'</p>';return;}
+   var rows=j.recent.map(function(t){
+    var what=t.name||t.ticker||((t.from||'')+'→'+(t.to||''))||t.currency||'';
+    var num=t.shares?(t.shares+'주 x '+Number(t.price).toLocaleString('ko-KR'))
+            :(t.amount?Number(t.amount).toLocaleString('ko-KR'):'');
+    return '<tr><td>'+t.date+'</td><td>'+(LABEL[t.type]||t.type)+'</td><td>'+what
+      +'</td><td class="r">'+num+'</td><td class="r">'+(t.broker||'')+'</td></tr>';
+   }).join('');
+   el('recent').innerHTML='<table class="rt2"><tbody>'+rows+'</tbody></table>';
+   el('cnt').textContent='전체 '+j.count+'건';
+  }).catch(function(){el('recent').innerHTML='<p class="em">불러오지 못했습니다</p>';});
+ }
+ el('date').value=new Date().toISOString().slice(0,10);
+ show(); load();
+})();
+</script>
+<footer>매 정시(장중) GitHub Actions 가 자동 갱신 · 시세는 지연될 수 있습니다<br>
+해외 종목 평단은 환율 환산 근사치이며, 뉴스 번역은 기계번역입니다<br>
+정보 제공용이며 투자 권유가 아닙니다. 투자 판단과 책임은 본인에게 있습니다.</footer>
+</div>
+<script>
+(function(){
+ var BAKED="2026-08-12T14:33:27+09:00", KEY='reloaded-'+BAKED;
+ var el=document.getElementById('fresh');
+ function ago(iso){
+  var d=(Date.now()-new Date(iso).getTime())/60000;
+  if(d<1)return '방금';
+  if(d<60)return Math.floor(d)+'분 전';
+  if(d<1440)return Math.floor(d/60)+'시간 전';
+  return Math.floor(d/1440)+'일 전';
+ }
+ if(el) el.textContent='갱신 '+ago(BAKED);
+ // 방문할 때마다 최신 데이터가 있는지 확인하고, 있으면 새 페이지를 받아옵니다
+ fetch('data.json?t='+Date.now(),{cache:'no-store'})
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(j){
+    if(!j||j.generated_at===BAKED) return;
+    if(sessionStorage.getItem(KEY)) return;   // 무한 새로고침 방지
+    sessionStorage.setItem(KEY,'1');
+    location.reload();
+  }).catch(function(){});
+})();
+</script></body></html>
