@@ -408,50 +408,78 @@ def page_index(d):
 # ── 2. 뉴스 ─────────────────────────────────────────────────
 def page_news(d):
     news = d.get("news") or {}
-    order = {m["ticker"]: m["weight_pct"] for m in d.get("consolidated", [])}
-    groups = sorted(news.items(), key=lambda kv: -order.get(kv[0], 0))
+    meta = {m["ticker"]: m for m in d.get("consolidated", [])}
 
-    blocks = []
-    for tk, v in groups:
-        items = []
-        for n in v["items"]:
-            ko, orig = n.get("title_ko"), n.get("title", "")
-            head = escape(ko or orig)
-            sub = f'<div class="s2">{escape(orig)}</div>' if ko else ""
-            summ = n.get("summary_ko") or n.get("summary") or ""
-            sm = f'<div class="nsum">{escape(summ[:220])}</div>' if summ else ""
-            src = escape(n.get("publisher") or "")
-            url = escape(n.get("url") or "#")
-            items.append(f'<li><a href="{url}" target="_blank" rel="noopener">{head}</a>'
-                         f'{sub}{sm}<div class="s2 nsrc">{src}</div></li>')
-        w_ = order.get(tk)
-        wt = f'<span class="tk">비중 {w_:.1f}%</span>' if w_ else ""
-        blocks.append(f'<div class="card"><h2>{escape(v["name"])} '
-                      f'<span class="tk">{escape(tk)}</span>{wt}</h2>'
-                      f'<ul class="nl">{"".join(items)}</ul></div>')
+    def item_html(n):
+        ko, orig = n.get("title_ko"), n.get("title", "")
+        sub = f'<div class="no">{escape(orig)}</div>' if ko else ""
+        return (f'<li><a href="{escape(n.get("url") or "#")}" target="_blank" rel="noopener">'
+                f'<span class="nt">{escape(ko or orig)}</span>{sub}'
+                f'<span class="ns">{escape(n.get("publisher") or "")}</span></a></li>')
 
-    empty = ('<div class="card"><p class="em">수집된 뉴스가 없습니다.<br><br>'
-             '국내 종목 뉴스는 <b>NAVER_CLIENT_ID</b> / <b>NAVER_CLIENT_SECRET</b> 시크릿이 필요합니다.<br>'
-             '해외 뉴스는 yfinance 로 자동 수집됩니다.</p></div>')
+    def group(market):
+        rows = [(tk, v) for tk, v in news.items()
+                if (meta.get(tk, {}).get("market") or "US") == market]
+        rows.sort(key=lambda kv: -(meta.get(kv[0], {}).get("weight_pct") or 0))
+        out = []
+        for i, (tk, v) in enumerate(rows):
+            m = meta.get(tk, {})
+            w_ = m.get("weight_pct")
+            roi = m.get("roi_pct")
+            out.append(
+                f'<details class="nd"{" open" if i == 0 else ""}><summary>'
+                f'<span class="nn">{escape(v["name"])}</span>'
+                f'<span class="ntk">{escape(tk)}</span>'
+                + (f'<span class="nw">{w_:.1f}%</span>' if w_ else "")
+                + (f'<span class="nr {c(roi)}">{p(roi)}</span>' if roi is not None else "")
+                + f'<span class="nc">{len(v["items"])}건</span>'
+                f'<span class="nx"></span></summary>'
+                f'<ul class="nl">{"".join(item_html(n) for n in v["items"])}</ul></details>')
+        if not out:
+            return ""
+        label = "한국 주식" if market == "KR" else "미국 주식"
+        return (f'<div class="card"><h2>{label} <span class="tk">{len(out)}종목</span></h2>'
+                f'{"".join(out)}</div>')
 
-    tcount = sum(1 for v in news.values() for n in v["items"] if n.get("title_ko"))
+    kr, us = group("KR"), group("US")
+    empty = ('<div class="card"><p class="em">수집된 뉴스가 없습니다.</p></div>')
+
     total = sum(len(v["items"]) for v in news.values())
-    note = (f'<div class="sb"><span id="fresh">갱신 확인 중</span>'
-            f'<span>{total}건</span>'
-            f'<span>{tcount}건 한글 번역</span></div>')
+    tcount = sum(1 for v in news.values() for n in v["items"] if n.get("title_ko"))
 
     css = """<style>
-.nl{list-style:none;margin:0;padding:0}
-.nl li{padding:13px 0;border-bottom:1px solid var(--line)}
-.nl li:last-child{border-bottom:none}
-.nl a{color:var(--txt);text-decoration:none;font-weight:600;font-size:14.5px;line-height:1.45}
-.nl a:hover{text-decoration:underline}
-.nsum{color:var(--dim);font-size:12.5px;margin-top:6px;line-height:1.6}
-.nsrc{margin-top:6px}
+.nd{border-bottom:1px solid var(--line)}
+.nd:last-child{border-bottom:none}
+summary{display:flex;align-items:center;gap:9px;padding:14px 2px;cursor:pointer;
+list-style:none;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary:hover .nn{color:var(--c1)}
+.nn{font-weight:600;font-size:14.5px;flex:0 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ntk{color:var(--dim);font-size:11px;font-variant-numeric:tabular-nums}
+.nw{color:var(--dim);font-size:11.5px;margin-left:auto;font-variant-numeric:tabular-nums}
+.nr{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;min-width:58px;text-align:right}
+.nc{color:var(--dim);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:1px 8px}
+.nx{width:9px;height:9px;border-right:1.6px solid var(--dim);border-bottom:1.6px solid var(--dim);
+transform:rotate(45deg);margin:-4px 3px 0 2px;transition:transform .15s;flex:0 0 auto}
+.nd[open] .nx{transform:rotate(225deg);margin-top:2px}
+.nl{list-style:none;margin:0 0 10px;padding:0 0 0 2px}
+.nl li{border-top:1px solid var(--line)}
+.nl a{display:block;padding:11px 2px;color:var(--txt);text-decoration:none}
+.nl a:hover .nt{text-decoration:underline}
+.nt{display:block;font-size:14px;font-weight:500;line-height:1.45}
+.no{color:var(--dim);font-size:11.5px;margin-top:3px;line-height:1.4}
+.ns{display:block;color:var(--dim);font-size:11px;margin-top:5px}
+@media(max-width:760px){
+ .nw{display:none}
+ .nn{font-size:14px}
+ .nr{min-width:52px;font-size:11.5px;margin-left:auto}
+}
 </style>"""
 
-    body = f"""{css}<header><h1>뉴스</h1>{note}</header>
-{"".join(blocks) if blocks else empty}"""
+    body = f"""{css}<header><h1>뉴스</h1>
+<div class="sb"><span id="fresh">갱신 확인 중</span><span>{total}건</span>
+<span>{tcount}건 한글 번역</span><span>종목을 누르면 펼쳐집니다</span></div></header>
+{kr}{us}{"" if (kr or us) else empty}"""
     return shell("news.html", d, body)
 
 
