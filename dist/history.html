@@ -26,7 +26,13 @@ nav a.on{color:var(--txt);border-bottom-color:var(--c1)}
 header{padding:20px 0 4px}
 h1{font-size:20px;margin:0 0 4px}
 .sb{color:var(--dim);font-size:12.5px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-#fresh{border:1px solid var(--line);border-radius:20px;padding:2px 10px;font-size:11.5px}
+#fresh,#live{border:1px solid var(--line);border-radius:20px;padding:2px 10px;font-size:11.5px}
+#live.on{border-color:var(--c3);color:var(--c3)}
+#live.off{border-color:var(--ac);color:var(--ac)}
+#refresh{background:none;border:1px solid var(--line);border-radius:20px;padding:2px 10px;
+font-size:11.5px;color:var(--dim);cursor:pointer;font-family:inherit}
+#refresh:hover{color:var(--txt);border-color:var(--dim)}
+#refresh:active{transform:scale(.96)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
 h2{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);margin:0 0 13px;font-weight:700}
 .hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
@@ -114,7 +120,7 @@ footer{color:var(--dim);font-size:11.5px;text-align:center;margin-top:22px;line-
 </div>
 <script>
 (function(){
- var BAKED="2026-08-12T13:17:34+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-08-12T13:42:31+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
