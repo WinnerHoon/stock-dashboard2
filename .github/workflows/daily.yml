@@ -54,8 +54,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # dist 는 매번 새로 생성되므로 원격 최신 커밋 위에 그대로 얹습니다.
+          # (워크플로는 트리거 커밋을 체크아웃하므로 origin/main 보다 뒤일 수 있고,
+          #  그 상태로 rebase 하면 생성물끼리 충돌해서 push 가 실패합니다)
+          git fetch origin main
+          git reset --mixed origin/main
           git add dist
           git diff --staged --quiet && exit 0
           git commit -m "브리핑 갱신 $(TZ=Asia/Seoul date +%Y-%m-%d_%H:%M)"
-          git pull --rebase --autostash origin main || true
-          git push
+          git push origin HEAD:main
