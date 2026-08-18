@@ -7,6 +7,7 @@
 """
 
 import json
+import os
 from datetime import datetime
 from html import escape
 
@@ -507,6 +508,49 @@ def line_chart(pts, W=1000, H=170):
             f'<span>{escape(pts[-1][0])}</span></div>')
 
 
+def cash_txs():
+    """거래 원장에서 입출금 거래만 뽑습니다 (없으면 빈 리스트)."""
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "transactions.json")
+    if not os.path.exists(p):
+        return []
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return []
+    tx = d.get("transactions", []) if isinstance(d, dict) else d
+    return [t for t in tx if t.get("type") in ("deposit", "withdraw")]
+
+
+def flow_chips(txs, d0, d1):
+    """d0 다음날부터 d1 까지의 입출금을 통화별로 합쳐 칩 HTML 로 만듭니다."""
+    tot = {}
+    for t in txs:
+        dt = t.get("date") or ""
+        if not (d0 < dt <= d1):
+            continue
+        try:
+            amt = float(t.get("amount") or 0)
+        except (TypeError, ValueError):
+            amt = 0.0
+        if not amt:
+            continue
+        key = (t.get("type"), (t.get("currency") or "KRW").upper())
+        tot[key] = tot.get(key, 0.0) + amt
+    chips = []
+    for ty, cur in (("deposit", "KRW"), ("withdraw", "KRW"), ("deposit", "USD"), ("withdraw", "USD")):
+        amt = tot.get((ty, cur), 0.0)
+        if not amt:
+            continue
+        label = "입금" if ty == "deposit" else "출금"
+        cls = "up" if ty == "deposit" else "down"
+        sign = "+" if ty == "deposit" else "-"
+        val = f"{sign}{amt:,.0f}원" if cur == "KRW" else f"{sign}${amt:,.2f}"
+        chips.append(f'<span class="chip">{label} <span class="{cls}">{val}</span></span>')
+    if not chips:
+        return ""
+    return '<div class="chips flow">' + "".join(chips) + '</div>'
+
+
 def page_history(d, hist, diffs):
     snaps = hist.get("snapshots", [])
     pts = [(s["date"], s["total"]) for s in snaps]
@@ -525,6 +569,7 @@ def page_history(d, hist, diffs):
 
     chart = f'<div class="card"><h2>총 평가금액 추이</h2>{line_chart(pts)}</div>'
 
+    ctxs = cash_txs()
     days = []
     for f in diffs[:60]:
         movers = [m for m in f["moves"] if m.get("d_val")][:5]
@@ -545,6 +590,7 @@ def page_history(d, hist, diffs):
             f'<div class="dsub">총 {f["total"]:,}원 · 수익률 {p(f["roi"])} '
             f'(<span class="{c(f["d_roi"])}">{p(f["d_roi"])}</span>) · '
             f'환율 {f["fx"]:,.2f} (<span class="{c(f["d_fx"])}">{f["d_fx"]:+.2f}</span>)</div>'
+            f'{flow_chips(ctxs, f["prev_date"], f["date"])}'
             f'{mv}{f"<div class=chips>{newly}{gone}</div>" if (newly or gone) else ""}</div>')
 
     if not days:
@@ -563,7 +609,7 @@ def page_history(d, hist, diffs):
 .mv{display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:6px 0;font-size:13px;align-items:baseline}
 .mv .n{font-variant-numeric:tabular-nums;text-align:right;min-width:74px}
 .mvn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chips{margin-top:10px}
+.chips{margin-top:10px}.flow{margin:0 0 10px}
 </style>"""
 
     body = f"""{css}<header><h1>일별 변화</h1>
