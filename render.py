@@ -573,6 +573,12 @@ def flow_chips(txs, d0, d1):
     return '<div class="chips flow">' + "".join(chips) + '</div>'
 
 
+def rec_at(f):
+    """스냅샷이 기록된 시각 (HH:MM)."""
+    at = f.get("at") or ""
+    return f' · {escape(at[11:16])} 기록' if len(at) >= 16 else ""
+
+
 def page_history(d, hist, diffs):
     snaps = hist.get("snapshots", [])
     pts = [(s["date"], s["total"]) for s in snaps]
@@ -606,7 +612,7 @@ def page_history(d, hist, diffs):
         days.append(
             f'<div class="card"><div class="dh">'
             f'<div><b class="dd">{escape(f["date"])}</b>'
-            f'<span class="s2">{escape(f["prev_date"])} 대비</span></div>'
+            f'<span class="s2">{escape(f["prev_date"])} 대비{rec_at(f)}</span></div>'
             f'<div class="dv {c(f["d_total"])}">{w(f["d_total"])}원'
             f'<span class="dp">{p(f["d_total_pct"])}</span></div></div>'
             f'<div class="dsub">총 {f["total"]:,}원 · 수익률 {p(f["roi"])} '
