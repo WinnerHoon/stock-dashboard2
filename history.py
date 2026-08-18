@@ -89,7 +89,7 @@ def diffs(snaps):
         gone = [{"ticker": tk, "name": q["name"]}
                 for tk, q in prev["positions"].items() if tk not in cur["positions"]]
         out.append({
-            "date": cur["date"], "prev_date": prev["date"],
+            "date": cur["date"], "prev_date": prev["date"], "at": cur.get("at"),
             "total": cur["total"], "d_total": round(dv),
             "d_total_pct": round(dv / base * 100, 2),
             "roi": cur["roi"], "d_roi": round((cur["roi"] or 0) - (prev["roi"] or 0), 2),
