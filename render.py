@@ -530,8 +530,8 @@ def line_chart(pts, W=1000, H=170):
             f'<span>{escape(pts[-1][0])}</span></div>')
 
 
-def cash_txs():
-    """거래 원장에서 입출금 거래만 뽑습니다 (없으면 빈 리스트)."""
+def day_txs():
+    """거래 원장 전체를 읽어옵니다 (없으면 빈 리스트)."""
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "transactions.json")
     if not os.path.exists(p):
         return []
@@ -539,38 +539,69 @@ def cash_txs():
         d = json.load(open(p, encoding="utf-8"))
     except Exception:
         return []
-    tx = d.get("transactions", []) if isinstance(d, dict) else d
-    return [t for t in tx if t.get("type") in ("deposit", "withdraw")]
+    return d.get("transactions", []) if isinstance(d, dict) else d
 
 
-def flow_chips(txs, d0, d1):
-    """d0 다음날부터 d1 까지의 입출금을 통화별로 합쳐 칩 HTML 로 만듭니다."""
-    tot = {}
-    for t in txs:
-        dt = t.get("date") or ""
-        if not (d0 < dt <= d1):
-            continue
-        try:
-            amt = float(t.get("amount") or 0)
-        except (TypeError, ValueError):
-            amt = 0.0
-        if not amt:
-            continue
-        key = (t.get("type"), (t.get("currency") or "KRW").upper())
-        tot[key] = tot.get(key, 0.0) + amt
+def _num(v):
+    try:
+        return float(v or 0)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _chip(label, val, cls):
+    return (f'<span class="chip">{escape(label)} '
+            f'<span class="{cls}">{escape(val)}</span></span>')
+
+
+MARK_LABEL = {"deposit": "입금", "withdraw": "출금", "dividend": "배당", "fee": "수수료"}
+MARK_SIGN = {"deposit": "+", "withdraw": "-", "dividend": "+", "fee": "-"}
+MARK_CLS = {"deposit": "up", "withdraw": "down", "dividend": "up", "fee": "down"}
+
+
+def day_marks(txs, d0, d1):
+    """d0 다음날 ~ d1 사이의 거래를 요약 칩으로 만듭니다 (매수·매도·환전·입금 등)."""
+    sel = [t for t in txs if d0 < (t.get("date") or "") <= d1]
+    if not sel:
+        return ""
     chips = []
-    for ty, cur in (("deposit", "KRW"), ("withdraw", "KRW"), ("deposit", "USD"), ("withdraw", "USD")):
-        amt = tot.get((ty, cur), 0.0)
-        if not amt:
-            continue
-        label = "입금" if ty == "deposit" else "출금"
-        cls = "up" if ty == "deposit" else "down"
-        sign = "+" if ty == "deposit" else "-"
-        val = f"{sign}{amt:,.0f}원" if cur == "KRW" else f"{sign}${amt:,.2f}"
-        chips.append(f'<span class="chip">{label} <span class="{cls}">{val}</span></span>')
+    money = {}
+    for t in sel:
+        ty = t.get("type")
+        if ty in MARK_LABEL:
+            cur = (t.get("currency") or "KRW").upper()
+            money[(ty, cur)] = money.get((ty, cur), 0.0) + _num(t.get("amount"))
+    for ty in ("deposit", "withdraw", "dividend", "fee"):
+        for cur in ("KRW", "USD"):
+            amt = money.get((ty, cur), 0.0)
+            if not amt:
+                continue
+            val = (f"{MARK_SIGN[ty]}{amt:,.0f}원" if cur == "KRW"
+                   else f"{MARK_SIGN[ty]}${amt:,.2f}")
+            chips.append(_chip(MARK_LABEL[ty], val, MARK_CLS[ty]))
+    for t in sel:
+        ty = t.get("type")
+        if ty in ("buy", "sell"):
+            sh = _num(t.get("shares"))
+            nm = t.get("name") or t.get("ticker") or ""
+            qty = f" {sh:,.0f}주" if sh else ""
+            chips.append(_chip("매수" if ty == "buy" else "매도",
+                               f"{nm}{qty}", "up" if ty == "buy" else "down"))
+        elif ty == "fx":
+            frm = (t.get("from") or "KRW").upper()
+            to = (t.get("to") or "USD").upper()
+            amt, rate = _num(t.get("amount")), _num(t.get("rate"))
+            src = f"{amt:,.0f}원" if frm == "KRW" else f"${amt:,.2f}"
+            got = ""
+            if rate > 0:
+                if frm == "KRW" and to == "USD":
+                    got = f" → ${amt / rate:,.2f}"
+                elif frm == "USD" and to == "KRW":
+                    got = f" → {amt * rate:,.0f}원"
+            chips.append(_chip("환전", f"{src}{got}", "flat"))
     if not chips:
         return ""
-    return '<div class="chips flow">' + "".join(chips) + '</div>'
+    return '<div class="chips marks">' + "".join(chips) + "</div>"
 
 
 def rec_at(f):
@@ -597,10 +628,10 @@ def page_history(d, hist, diffs):
 
     chart = f'<div class="card"><h2>총 평가금액 추이</h2>{line_chart(pts)}</div>'
 
-    ctxs = cash_txs()
+    ctxs = day_txs()
     days = []
     for f in diffs[:60]:
-        movers = [m for m in f["moves"] if m.get("d_val")][:5]
+        movers = [m for m in f["moves"] if m.get("d_val")]
         mv = "".join(
             f'<div class="mv"><span class="mvn">{escape(m["name"][:20])}</span>'
             f'<span class="n {c(m.get("d_roi"))}">{p(m.get("d_roi"))}</span>'
@@ -609,8 +640,10 @@ def page_history(d, hist, diffs):
         newly = "".join(f'<span class="chip">신규 {escape(m["name"])}</span>'
                         for m in f["moves"] if m.get("new"))
         gone = "".join(f'<span class="chip">제외 {escape(m["name"])}</span>' for m in f["removed"])
+        extra = f'<div class="chips">{newly}{gone}</div>' if (newly or gone) else ""
         days.append(
-            f'<div class="card"><div class="dh">'
+            f'<details class="card day"><summary>'
+            f'<div class="dh">'
             f'<div><b class="dd">{escape(f["date"])}</b>'
             f'<span class="s2">{escape(f["prev_date"])} 대비{rec_at(f)}</span></div>'
             f'<div class="dv {c(f["d_total"])}">{w(f["d_total"])}원'
@@ -618,8 +651,11 @@ def page_history(d, hist, diffs):
             f'<div class="dsub">총 {f["total"]:,}원 · 수익률 {p(f["roi"])} '
             f'(<span class="{c(f["d_roi"])}">{p(f["d_roi"])}</span>) · '
             f'환율 {f["fx"]:,.2f} (<span class="{c(f["d_fx"])}">{f["d_fx"]:+.2f}</span>)</div>'
-            f'{flow_chips(ctxs, f["prev_date"], f["date"])}'
-            f'{mv}{f"<div class=chips>{newly}{gone}</div>" if (newly or gone) else ""}</div>')
+            f'{day_marks(ctxs, f["prev_date"], f["date"])}'
+            f'<span class="dx">종목별 변화 {len(movers)}건</span>'
+            f'</summary>'
+            f'<div class="dbody">{mv}{extra}</div>'
+            f'</details>')
 
     if not days:
         days = ['<div class="card"><p class="em">아직 비교할 이전 기록이 없습니다.<br>'
@@ -637,7 +673,13 @@ def page_history(d, hist, diffs):
 .mv{display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:6px 0;font-size:13px;align-items:baseline}
 .mv .n{font-variant-numeric:tabular-nums;text-align:right;min-width:74px}
 .mvn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chips{margin-top:10px}.flow{margin:0 0 10px}
+.chips{margin-top:10px}.marks{margin:0 0 8px}
+details.day summary{display:block;list-style:none;cursor:pointer}
+details.day summary::-webkit-details-marker{display:none}
+.dx{color:var(--dim);font-size:11.5px}
+.dx::after{content:" ▾"}
+details.day[open] .dx::after{content:" ▴"}
+.dbody{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
 </style>"""
 
     body = f"""{css}<header><h1>일별 변화</h1>
