@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["portfolio.json", "**.py", ".github/workflows/daily.yml"]
+    paths: ["portfolio.json", "**.py", ".github/workflows/daily.yml", "transactions.json"]
 
 permissions:
   contents: write
