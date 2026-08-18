@@ -577,8 +577,7 @@ def page_add(d):
     C = d.get("consolidated", [])
     brokers = sorted({b.split()[0] for m in C for b in (m.get("brokers") or [])})
     opts = "".join(f'<option value="{escape(m["ticker"])}" data-name="{escape(m["name"])}" '
-                   f'data-market="{m["market"]}">{escape(m["name"])} ({escape(m["ticker"])})</option>'
-                   for m in C)
+                   f'data-market="{m["market"]}">{escape(m["name"])}</option>' for m in C)
     bopts = "".join(f'<option>{escape(b)}</option>' for b in brokers)
 
     css = """<style>
@@ -625,9 +624,13 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
  document.querySelectorAll('.types button').forEach(function(b){
    b.onclick=function(){T=b.dataset.t;show();};
  });
- el('ticker').onchange=function(){
-   var o=el('ticker').selectedOptions[0];
-   if(o&&o.dataset.name){el('name').value=o.dataset.name;el('market').value=o.dataset.market;}
+ // 보유 종목을 고르면 종목명·시장을 자동으로 채우고, 새 종목이면 그대로 둡니다
+ el('ticker').oninput=function(){
+   var v=el('ticker').value.trim();
+   if(/^[A-Za-z.\\-]+$/.test(v)){ v=v.toUpperCase(); el('ticker').value=v; }
+   var o=document.querySelector('#tklist option[value="'+v.replace(/"/g,'')+'"]');
+   if(o){ el('name').value=o.dataset.name; el('market').value=o.dataset.market; }
+   else if(v){ el('market').value=/^\\d{6}$/.test(v)?'KR':'US'; }
  };
  function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
 
@@ -700,15 +703,19 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 </div>
 
 <div id="gStock">
-<div class="fg"><label>종목</label><select id="ticker"><option value="">— 보유 종목에서 선택 —</option>{opts}</select></div>
-<div class="row"><div class="fg"><label>종목명 (신규 매수 시 직접 입력)</label><input id="name" placeholder="예: 삼성전자"></div>
+<div class="fg"><label>종목코드</label>
+<input id="ticker" list="tklist" autocapitalize="characters" autocomplete="off"
+ placeholder="해외는 티커 (AAPL), 국내는 6자리 (005930)">
+<datalist id="tklist">{opts}</datalist>
+<div class="hint">보유 종목은 칸을 누르면 목록에서 고를 수 있고, <b>새 종목은 그냥 타이핑하면 됩니다.</b></div></div>
+<div class="row"><div class="fg"><label>종목명</label><input id="name" placeholder="예: Apple / 삼성전자"></div>
 <div class="fg"><label>시장</label><select id="market"><option value="KR">국내 (KR)</option><option value="US">해외 (US)</option></select></div></div>
 <div class="row3">
 <div class="fg"><label>수량</label><input id="shares" type="number" step="any" inputmode="decimal"></div>
 <div class="fg"><label>단가</label><input id="price" type="number" step="any" inputmode="decimal"></div>
 <div class="fg"><label>수수료</label><input id="fee" type="number" step="any" inputmode="decimal" placeholder="0"></div>
 </div>
-<div class="hint">국내는 원, 해외는 달러 기준으로 입력하세요. 종목코드를 직접 넣으려면 위 드롭다운 대신 종목명을 적고 국내는 6자리 코드를 종목 칸에 선택하세요.</div>
+<div class="hint">단가는 <b>국내는 원, 해외는 달러</b> 기준입니다. 해외 티커를 넣으면 시장이 자동으로 US 로, 6자리 숫자면 KR 로 바뀝니다.</div>
 </div>
 
 <div id="gAmt" class="hide">
