@@ -164,6 +164,34 @@ def mock(base):
 # 조립
 # ────────────────────────────────────────────────────────────
 
+FNG_URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
+FNG_RATING = {"extreme fear": "극도의 공포", "fear": "공포", "neutral": "중립",
+              "greed": "탐욕", "extreme greed": "극도의 탐욕"}
+
+
+def fetch_fear_greed():
+    """CNN 공포·탐욕 지수 (0=극도의 공포, 100=극도의 탐욕)"""
+    import requests
+    ua = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+          "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+    r = requests.get(FNG_URL, timeout=15, headers={"User-Agent": ua})
+    r.raise_for_status()
+    g = r.json().get("fear_and_greed") or {}
+    if g.get("score") is None:
+        return None
+
+    def _r(x):
+        return round(float(x)) if x is not None else None
+
+    return {"score": _r(g.get("score")),
+            "rating": FNG_RATING.get(str(g.get("rating") or "").lower(),
+                                     g.get("rating") or "-"),
+            "prev": _r(g.get("previous_close")),
+            "w1": _r(g.get("previous_1_week")),
+            "m1": _r(g.get("previous_1_month")),
+            "y1": _r(g.get("previous_1_year"))}
+
+
 def build(cfg, use_mock=False):
     s = cfg.get("settings", {})
     days = int(s.get("history_days", 400))
@@ -191,10 +219,12 @@ def build(cfg, use_mock=False):
     indices, fx = [], None
     for i in cfg.get("indices", []):
         code, name = i["code"], i["name"]
+        getter = fetch_us if (i.get("source") or "kr").lower() == "us" else fetch_kr
         d = mock(1400 if "USD" in code else 2800) if use_mock else \
-            safe(lambda c=code: fetch_kr(c, days), None, f"지수 {name}")
+            safe(lambda c=code, fn=getter: fn(c, days), None, f"지수 {name}")
         if d:
-            indices.append({"code": code, "name": name, **d})
+            indices.append({"code": code, "name": name, "unit": i.get("unit"),
+                            "group": i.get("group") or "지수", **d})
             if code.upper().replace("/", "") == "USDKRW":
                 fx = d["price"]
     if not fx:
@@ -317,6 +347,9 @@ def build(cfg, use_mock=False):
         totals["delta_krw"] = round(tv - pv)
         totals["delta_pct"] = round(pct(tv, pv), 2)
 
+    # 시장 심리 (CNN 공포·탐욕 지수)
+    fng = None if use_mock else safe(fetch_fear_greed, None, "공포·탐욕 지수")
+
     # 뉴스 + 번역
     log("뉴스 수집")
     if use_mock:
@@ -328,9 +361,12 @@ def build(cfg, use_mock=False):
         for v in news.values():
             for n in v["items"]:
                 n["title_ko"] = "[모의] " + v["name"] + " 분기 매출 사상 최대 기록"
+        market_news = []
     else:
         import news as news_mod
         news = news_mod.collect(consolidated, int(s.get("news_per_ticker", 3)))
+        market_news = safe(lambda: news_mod.collect_market(int(s.get("market_news", 4))),
+                           [], "시장 뉴스")
         if news:
             log("뉴스 번역")
             import translate
@@ -342,7 +378,8 @@ def build(cfg, use_mock=False):
         "owner": cfg.get("owner", ""), "style": s.get("style", "long_term"),
         "mock": use_mock, "totals": totals, "allocation": allocation, "cash": cash,
         "indices": indices, "consolidated": consolidated, "positions": positions,
-        "news": news, "prev_date": (prev or {}).get("date"),
+        "news": news, "market_news": market_news, "fear_greed": fng,
+        "prev_date": (prev or {}).get("date"),
     }
 
 
