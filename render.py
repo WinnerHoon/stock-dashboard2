@@ -11,7 +11,7 @@ import os
 from datetime import datetime
 from html import escape
 
-PAGES = [("index.html", "포트폴리오"), ("news.html", "뉴스"),
+PAGES = [("index.html", "포트폴리오"), ("market.html", "시장"), ("news.html", "뉴스"),
          ("history.html", "일별 변화"), ("add.html", "거래 입력")]
 
 
@@ -861,8 +861,102 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
     return shell("add.html", d, body)
 
 
+# ── 3-1. 시장 ───────────────────────────────────────────────
+IDX_GROUPS = ["지수", "환율", "금리·심리", "원자재"]
+
+
+def ival(i):
+    """지표 값 표기 (단위별)"""
+    v, u = i.get("price"), i.get("unit") or ""
+    if v is None:
+        return "-"
+    if u == "%":
+        return f"{v:,.2f}%"
+    if u == "$":
+        return f"${v:,.2f}"
+    if u == "원":
+        return f"{v:,.2f}원"
+    return f"{v:,.2f}"
+
+
+def page_market(d):
+    idx = d.get("indices") or []
+    cards = []
+    for g in IDX_GROUPS:
+        rows = [i for i in idx if (i.get("group") or "지수") == g]
+        if not rows:
+            continue
+        cells = "".join(
+            f'<div class="mi"><div class="min">{escape(i["name"])}</div>'
+            f'<div class="mip">{ival(i)}</div>'
+            f'<div class="mic {c(i.get("chg"))}">{p(i.get("chg"))}'
+            f'<span class="mis">1개월 {p(i.get("m1"))} · 1년 {p(i.get("y1"))}</span></div>'
+            f'{spark(i.get("spark") or [])}</div>'
+            for i in rows)
+        cards.append(f'<div class="card"><h2>{escape(g)}</h2>'
+                     f'<div class="mig">{cells}</div></div>')
+
+    fng = d.get("fear_greed") or {}
+    fg = ""
+    if fng.get("score") is not None:
+        sc = fng["score"]
+        fg = (f'<div class="card"><h2>공포 · 탐욕 지수 <span class="s2">CNN</span></h2>'
+              f'<div class="fg"><div class="fgv">{sc}</div><div class="fgw">'
+              f'<div class="fgr">{escape(str(fng.get("rating") or "-"))}</div>'
+              f'<div class="fgb"><i style="left:{min(100, max(0, sc))}%"></i></div>'
+              f'<div class="s2">0 극도의 공포 · 50 중립 · 100 극도의 탐욕</div>'
+              f'</div></div><div class="chips">'
+              f'<span class="chip">전일 <b>{fng.get("prev")}</b></span>'
+              f'<span class="chip">1주 전 <b>{fng.get("w1")}</b></span>'
+              f'<span class="chip">1개월 전 <b>{fng.get("m1")}</b></span>'
+              f'<span class="chip">1년 전 <b>{fng.get("y1")}</b></span></div></div>')
+
+    nl = ""
+    for t in d.get("market_news") or []:
+        items = "".join(
+            f'<a class="ni" href="{escape(n.get("url") or "#")}" target="_blank" rel="noopener">'
+            f'<div class="nt">{escape(n.get("title_ko") or n.get("title") or "")}</div>'
+            f'<div class="np">{escape(n.get("publisher") or "")}</div></a>'
+            for n in t.get("items") or [])
+        if items:
+            nl += (f'<div class="card"><h2>{escape(t.get("topic") or "")}</h2>'
+                   f'<div class="nl">{items}</div></div>')
+    if not nl:
+        nl = ('<div class="card"><p class="em">시장 뉴스를 불러오지 못했습니다. '
+              '네이버 뉴스 API 키를 확인해 주세요.</p></div>')
+
+    css = """<style>
+.mig{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
+.mi{border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.min{color:var(--dim);font-size:12px}
+.mip{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;margin:3px 0 2px}
+.mic{font-size:13px;font-weight:600}
+.mis{display:block;color:var(--dim);font-size:11px;font-weight:400;margin-top:3px}
+.mi .spk{width:100%;height:26px;margin-top:6px;opacity:.75}
+.fg{display:flex;align-items:center;gap:18px}
+.fgv{font-size:42px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.fgw{flex:1;min-width:0}
+.fgr{font-size:15px;font-weight:600;margin-bottom:7px}
+.fgb{position:relative;height:8px;border-radius:5px;margin-bottom:7px;
+background:linear-gradient(90deg,#2563eb,#22c55e,#eab308,#ef4444)}
+.fgb i{position:absolute;top:-4px;width:3px;height:16px;background:var(--txt);
+border-radius:2px;transform:translateX(-50%)}
+.nl{display:flex;flex-direction:column}
+.ni{display:block;padding:9px 0;border-top:1px solid var(--line);
+text-decoration:none;color:inherit}
+.ni:first-child{border-top:none}
+.nt{font-size:13.5px;line-height:1.45}
+.np{color:var(--dim);font-size:11px;margin-top:3px}
+</style>"""
+    body = f"""{css}<header><h1>시장</h1>
+<div class="sb"><span id="fresh">갱신 확인 중</span><span>지표 {len(idx)}개</span></div></header>
+{"".join(cards)}{fg}{nl}"""
+    return shell("market.html", d, body)
+
+
 def render_all(d, hist, diffs):
     return {"index.html": page_index(d),
+            "market.html": page_market(d),
             "news.html": page_news(d),
             "history.html": page_history(d, hist, diffs),
             "add.html": page_add(d)}
