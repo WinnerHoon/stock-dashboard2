@@ -295,8 +295,25 @@ def build(cfg, use_mock=False):
         log(f'현금 {cash["total_krw"]:,}원 (원화 {cash["KRW"]:,} / 달러 {cash["USD"]:,.2f})')
     if led_realized:
         totals["realized"] = {k: round(v, 2) for k, v in led_realized.items()}
-    pv = (prev or {}).get("totals", {}).get("market_value_krw")
+    today = os.getenv("FAKE_DATE") or datetime.now(KST).strftime("%Y-%m-%d")
+    # 전일 대비 기준: dist/history.json 에서 오늘 이전 날짜의 마지막 스냅샷을 씁니다.
+    # 직전 빌드는 같은 날일 수 있어 그대로 쓰면 '전일 대비'가 되지 않습니다.
+    pv, pv_date = None, None
+    hp = os.path.join(DIST, "history.json")
+    if os.path.exists(hp):
+        try:
+            older = [sn for sn in json.load(open(hp, encoding="utf-8")).get("snapshots", [])
+                     if sn.get("date") and sn["date"] < today and sn.get("total")]
+            if older:
+                pv, pv_date = older[-1]["total"], older[-1]["date"]
+        except Exception as e:
+            log(f"  ! history.json 읽기 실패: {type(e).__name__}")
+    if not pv:
+        pv = (prev or {}).get("totals", {}).get("market_value_krw")
+        pv_date = (prev or {}).get("date")
     if pv:
+        totals["prev_total_krw"] = round(pv)
+        totals["prev_base_date"] = pv_date
         totals["delta_krw"] = round(tv - pv)
         totals["delta_pct"] = round(pct(tv, pv), 2)
 
@@ -321,7 +338,7 @@ def build(cfg, use_mock=False):
 
     return {
         "generated_at": datetime.now(KST).isoformat(timespec="seconds"),
-        "date": os.getenv("FAKE_DATE") or datetime.now(KST).strftime("%Y-%m-%d"),
+        "date": today,
         "owner": cfg.get("owner", ""), "style": s.get("style", "long_term"),
         "mock": use_mock, "totals": totals, "allocation": allocation, "cash": cash,
         "indices": indices, "consolidated": consolidated, "positions": positions,
