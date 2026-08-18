@@ -189,7 +189,7 @@ LIVE_JS = """
 // ── 방문할 때마다 실시간 시세로 갱신 ─────────────────────────
 // 브라우저에서 야후를 직접 부르면 CORS 에 막히므로 /api/quotes 서버리스 함수를 거칩니다.
 (function(){
- var HOLD=%s, FXSYM='KRW=X', BUILT=%s;
+ var HOLD=%s, FXSYM='KRW=X', BUILT=%s, CASH=%s, PREV=%s;
  var won=function(v){return Math.round(v).toLocaleString('ko-KR');};
  var sg=function(v){return v==null?'-':(v>0?'+':'')+v.toFixed(2)+'%%';};
  var cl=function(v){return v==null?'flat':(v>0?'up':(v<0?'down':'flat'));};
@@ -218,6 +218,7 @@ LIVE_JS = """
    var pstr=(h.cur==='KRW')?won(q.price)+'원':'$'+q.price.toFixed(2);
    setCell(h.t,'price',pstr+'<div class="s2">'+h.sh.toLocaleString('ko-KR')+'주</div>','','n');
    setCell(h.t,'chg',sg(q.chg),cl(q.chg),'n');
+  setCell(h.t,'nr',sg(r.roi),cl(r.roi),'nr');
    setCell(h.t,'roi','<b>'+sg(r.roi)+'</b><div class="s2 '+cl(r.pl)+'">'
      +(r.pl>0?'+':'')+won(r.pl)+'원</div>',cl(r.roi),'n');
    setCell(h.t,'val',won(r.val)+'원','','n');
@@ -237,6 +238,17 @@ LIVE_JS = """
   if((e=document.getElementById('hPl'))){e.textContent=(pl>0?'+':'')+won(pl)+'원';e.className='bg '+cl(pl);}
   if((e=document.getElementById('hRoi'))){e.textContent=sg(roi);e.className='bg '+cl(roi);}
   if((e=document.getElementById('hCost'))) e.textContent=won(cost)+'원';
+ var cashKrw=CASH?((CASH.KRW||0)+(CASH.USD||0)*fx):null;
+ if(cashKrw!=null){
+  if((e=document.getElementById('hNet'))) e.textContent=won(tot+cashKrw)+'원';
+  if((e=document.getElementById('hCash'))) e.textContent=won(cashKrw)+'원';
+ }
+ if(PREV&&(e=document.getElementById('hDelta'))){
+  var dv=tot-PREV;
+  e.textContent=(e.getAttribute('data-base')||'전일')+' 대비 '+(dv>0?'+':'')+won(dv)+'원 ('+sg(dv/PREV*100)+')';
+  e.className='td '+cl(dv);
+ }
+ if((e=document.getElementById('hFx'))) e.textContent='환율 '+fx.toFixed(2)+'원';
   if(badge){
    var d=new Date(at);
    badge.textContent='실시간 '+d.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
@@ -296,13 +308,30 @@ def shell(active, data, body, extra_js=""):
 
 
 # ── 1. 포트폴리오 ────────────────────────────────────────────
+def live_js(d):
+    """실시간 시세 갱신 스크립트 (index·news 공용)."""
+    C = d.get("consolidated", [])
+    hold = [{"t": m["ticker"],
+             "y": (m["ticker"] + ".KS") if m["market"] == "KR" else m["ticker"],
+             "sh": m["shares"], "avg": m["avg_price"], "cur": m["currency"]}
+            for m in C]
+    cs = d.get("cash")
+    cash = {"KRW": cs.get("KRW", 0), "USD": cs.get("USD", 0)} if cs else None
+    return LIVE_JS % (json.dumps(hold, ensure_ascii=False),
+                      json.dumps(d["generated_at"]),
+                      json.dumps(cash),
+                      json.dumps(d["totals"].get("prev_total_krw")))
+
+
 def page_index(d):
     t, a = d["totals"], d["allocation"]
     C = d.get("consolidated", [])
 
     delta = ""
     if t.get("delta_krw") is not None:
-        delta = (f'<div class="td {c(t["delta_krw"])}">전일 대비 {w(t["delta_krw"])}원 '
+        base = t.get("prev_base_date") or "전일"
+        delta = (f'<div class="td {c(t["delta_krw"])}" id="hDelta" data-base="{escape(base)}">'
+                 f'{escape(base)} 대비 {w(t["delta_krw"])}원 '
                  f'({p(t.get("delta_pct"))})</div>')
 
     hero = (f'<div class="card"><div class="hero">'
@@ -326,9 +355,9 @@ def page_index(d):
                                key=lambda x: -x[1]["krw_total"]))
         cashc = (f'<div class="card"><h2>현금 · 총자산</h2><div class="hero">'
                  f'<div><div class="lb">총자산 (주식+현금)</div>'
-                 f'<div class="bg">{t.get("net_worth_krw", t["market_value_krw"]):,}원</div></div>'
+                 f'<div class="bg" id="hNet">{t.get("net_worth_krw", t["market_value_krw"]):,}원</div></div>'
                  f'<div><div class="lb">현금 합계</div>'
-                 f'<div class="bg s">{cs["total_krw"]:,}원</div></div>'
+                 f'<div class="bg s" id="hCash">{cs["total_krw"]:,}원</div></div>'
                  f'<div><div class="lb">원화</div><div class="bg s">{cs["KRW"]:,}원</div></div>'
                  f'<div><div class="lb">달러</div><div class="bg s">${cs["USD"]:,.2f}</div></div>'
                  f'</div><div class="chips" style="margin-top:14px">{chips}</div></div>')
@@ -385,25 +414,18 @@ def page_index(d):
             ", ".join(f'{escape(x["name"])}({escape(x["ticker"])})' for x in fails) +
             '</p></div>') if fails else ""
 
-    hold = [{"t": m["ticker"],
-             "y": (m["ticker"] + ".KS") if m["market"] == "KR" else m["ticker"],
-             "sh": m["shares"], "avg": m["avg_price"], "cur": m["currency"]}
-            for m in C]
-
     body = f"""<header><h1>승훈님의 주식 포트폴리오</h1>
 <div class="sb"><span id="live">시세 불러오는 중</span>
 <button id="refresh" title="지금 다시 조회">새로고침</button>
 <span id="fresh"></span>
-<span>환율 {t.get('usdkrw','-')}원</span><span>장기 보유 관점</span></div></header>
+<span id="hFx">환율 {t.get('usdkrw','-')}원</span><span>장기 보유 관점</span></div></header>
 {hero}{cashc}{alloc}{idxc}
 <div class="card"><h2>보유 종목 {t['positions_count']}개 · 증권사 합산</h2>
 <table class="resp"><thead><tr><th>종목</th><th>비중</th><th>현재가</th><th>전일비</th><th>수익률</th>
 <th>평가금액</th><th>3개월</th><th>1년</th><th>52주</th><th></th></tr></thead><tbody>{rows}</tbody></table>
 <div class="cards">{cards}</div></div>
 {fail}"""
-    return shell("index.html", d, body,
-                 LIVE_JS % (json.dumps(hold, ensure_ascii=False),
-                            json.dumps(d["generated_at"])))
+    return shell("index.html", d, body, live_js(d))
 
 
 # ── 2. 뉴스 ─────────────────────────────────────────────────
@@ -428,11 +450,11 @@ def page_news(d):
             w_ = m.get("weight_pct")
             roi = m.get("roi_pct")
             out.append(
-                f'<details class="nd"{" open" if i == 0 else ""}><summary>'
+                f'<details class="nd"{" open" if i == 0 else ""}><summary data-tk="{escape(tk)}">'
                 f'<span class="nn">{escape(v["name"])}</span>'
                 f'<span class="ntk">{escape(tk)}</span>'
                 + (f'<span class="nw">{w_:.1f}%</span>' if w_ else "")
-                + (f'<span class="nr {c(roi)}">{p(roi)}</span>' if roi is not None else "")
+                + (f'<span class="nr {c(roi)}" data-f="nr">{p(roi)}</span>' if roi is not None else "")
                 + f'<span class="nc">{len(v["items"])}건</span>'
                 f'<span class="nx"></span></summary>'
                 f'<ul class="nl">{"".join(item_html(n) for n in v["items"])}</ul></details>')
@@ -481,7 +503,7 @@ transform:rotate(45deg);margin:-4px 3px 0 2px;transition:transform .15s;flex:0 0
 <div class="sb"><span id="fresh">갱신 확인 중</span><span>{total}건</span>
 <span>{tcount}건 한글 번역</span><span>종목을 누르면 펼쳐집니다</span></div></header>
 {kr}{us}{"" if (kr or us) else empty}"""
-    return shell("news.html", d, body)
+    return shell("news.html", d, body, live_js(d))
 
 
 # ── 3. 일별 변화 ─────────────────────────────────────────────
