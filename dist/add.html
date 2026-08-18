@@ -140,15 +140,19 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 </div>
 
 <div id="gStock">
-<div class="fg"><label>종목</label><select id="ticker"><option value="">— 보유 종목에서 선택 —</option><option value="000660" data-name="SK하이닉스" data-market="KR">SK하이닉스 (000660)</option><option value="SPYM" data-name="SPDR Portfolio S&amp;P 500 ETF" data-market="US">SPDR Portfolio S&amp;P 500 ETF (SPYM)</option><option value="META" data-name="Meta Platforms" data-market="US">Meta Platforms (META)</option><option value="NVDA" data-name="NVIDIA" data-market="US">NVIDIA (NVDA)</option><option value="QQQM" data-name="Invesco NASDAQ 100 ETF" data-market="US">Invesco NASDAQ 100 ETF (QQQM)</option><option value="BRK-B" data-name="Berkshire Hathaway B" data-market="US">Berkshire Hathaway B (BRK-B)</option><option value="138040" data-name="메리츠금융지주" data-market="KR">메리츠금융지주 (138040)</option><option value="381170" data-name="TIGER 미국테크TOP10 INDXX" data-market="KR">TIGER 미국테크TOP10 INDXX (381170)</option><option value="360750" data-name="TIGER 미국S&amp;P500" data-market="KR">TIGER 미국S&amp;P500 (360750)</option><option value="491010" data-name="TIGER 글로벌AI전력인프라액티브" data-market="KR">TIGER 글로벌AI전력인프라액티브 (491010)</option><option value="381180" data-name="TIGER 미국필라델피아반도체나스닥" data-market="KR">TIGER 미국필라델피아반도체나스닥 (381180)</option><option value="011790" data-name="SKC" data-market="KR">SKC (011790)</option><option value="CPNG" data-name="Coupang" data-market="US">Coupang (CPNG)</option><option value="458760" data-name="TIGER 미국배당다우존스타겟커버드콜2호" data-market="KR">TIGER 미국배당다우존스타겟커버드콜2호 (458760)</option><option value="SYM" data-name="Symbotic" data-market="US">Symbotic (SYM)</option></select></div>
-<div class="row"><div class="fg"><label>종목명 (신규 매수 시 직접 입력)</label><input id="name" placeholder="예: 삼성전자"></div>
+<div class="fg"><label>종목코드</label>
+<input id="ticker" list="tklist" autocapitalize="characters" autocomplete="off"
+ placeholder="해외는 티커 (AAPL), 국내는 6자리 (005930)">
+<datalist id="tklist"><option value="000660" data-name="SK하이닉스" data-market="KR">SK하이닉스</option><option value="SPYM" data-name="SPDR Portfolio S&amp;P 500 ETF" data-market="US">SPDR Portfolio S&amp;P 500 ETF</option><option value="META" data-name="Meta Platforms" data-market="US">Meta Platforms</option><option value="NVDA" data-name="NVIDIA" data-market="US">NVIDIA</option><option value="QQQM" data-name="Invesco NASDAQ 100 ETF" data-market="US">Invesco NASDAQ 100 ETF</option><option value="BRK-B" data-name="Berkshire Hathaway B" data-market="US">Berkshire Hathaway B</option><option value="138040" data-name="메리츠금융지주" data-market="KR">메리츠금융지주</option><option value="381170" data-name="TIGER 미국테크TOP10 INDXX" data-market="KR">TIGER 미국테크TOP10 INDXX</option><option value="360750" data-name="TIGER 미국S&amp;P500" data-market="KR">TIGER 미국S&amp;P500</option><option value="491010" data-name="TIGER 글로벌AI전력인프라액티브" data-market="KR">TIGER 글로벌AI전력인프라액티브</option><option value="381180" data-name="TIGER 미국필라델피아반도체나스닥" data-market="KR">TIGER 미국필라델피아반도체나스닥</option><option value="011790" data-name="SKC" data-market="KR">SKC</option><option value="CPNG" data-name="Coupang" data-market="US">Coupang</option><option value="458760" data-name="TIGER 미국배당다우존스타겟커버드콜2호" data-market="KR">TIGER 미국배당다우존스타겟커버드콜2호</option><option value="SYM" data-name="Symbotic" data-market="US">Symbotic</option></datalist>
+<div class="hint">보유 종목은 칸을 누르면 목록에서 고를 수 있고, <b>새 종목은 그냥 타이핑하면 됩니다.</b></div></div>
+<div class="row"><div class="fg"><label>종목명</label><input id="name" placeholder="예: Apple / 삼성전자"></div>
 <div class="fg"><label>시장</label><select id="market"><option value="KR">국내 (KR)</option><option value="US">해외 (US)</option></select></div></div>
 <div class="row3">
 <div class="fg"><label>수량</label><input id="shares" type="number" step="any" inputmode="decimal"></div>
 <div class="fg"><label>단가</label><input id="price" type="number" step="any" inputmode="decimal"></div>
 <div class="fg"><label>수수료</label><input id="fee" type="number" step="any" inputmode="decimal" placeholder="0"></div>
 </div>
-<div class="hint">국내는 원, 해외는 달러 기준으로 입력하세요. 종목코드를 직접 넣으려면 위 드롭다운 대신 종목명을 적고 국내는 6자리 코드를 종목 칸에 선택하세요.</div>
+<div class="hint">단가는 <b>국내는 원, 해외는 달러</b> 기준입니다. 해외 티커를 넣으면 시장이 자동으로 US 로, 6자리 숫자면 KR 로 바뀝니다.</div>
 </div>
 
 <div id="gAmt" class="hide">
@@ -161,7 +165,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <div class="row3">
 <div class="fg"><label>방향</label><select id="fxFrom"><option value="KRW">원화 → 달러</option><option value="USD">달러 → 원화</option></select></div>
 <div class="fg"><label>파는 금액</label><input id="fxAmt" type="number" step="any" inputmode="decimal"></div>
-<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1410.78"></div>
+<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1407.88"></div>
 </div>
 <div class="hint">원화 → 달러면 "파는 금액"에 원화를, 달러 → 원화면 달러를 넣으세요.</div>
 </div>
@@ -192,9 +196,13 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
  document.querySelectorAll('.types button').forEach(function(b){
    b.onclick=function(){T=b.dataset.t;show();};
  });
- el('ticker').onchange=function(){
-   var o=el('ticker').selectedOptions[0];
-   if(o&&o.dataset.name){el('name').value=o.dataset.name;el('market').value=o.dataset.market;}
+ // 보유 종목을 고르면 종목명·시장을 자동으로 채우고, 새 종목이면 그대로 둡니다
+ el('ticker').oninput=function(){
+   var v=el('ticker').value.trim();
+   if(/^[A-Za-z.\-]+$/.test(v)){ v=v.toUpperCase(); el('ticker').value=v; }
+   var o=document.querySelector('#tklist option[value="'+v.replace(/"/g,'')+'"]');
+   if(o){ el('name').value=o.dataset.name; el('market').value=o.dataset.market; }
+   else if(v){ el('market').value=/^\d{6}$/.test(v)?'KR':'US'; }
  };
  function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
 
@@ -254,7 +262,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 </div>
 <script>
 (function(){
- var BAKED="2026-08-18T11:11:11+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-08-18T11:58:10+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
