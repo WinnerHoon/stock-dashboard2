@@ -167,11 +167,18 @@
   ],
 
   "indices": [
-    { "code": "KS11",    "name": "코스피" },
-    { "code": "KQ11",    "name": "코스닥" },
-    { "code": "IXIC",    "name": "나스닥" },
-    { "code": "US500",   "name": "S&P 500" },
-    { "code": "USD/KRW", "name": "원/달러 환율" }
+    { "code": "KS11",     "name": "코스피" },
+    { "code": "KQ11",     "name": "코스닥" },
+    { "code": "IXIC",     "name": "나스닥" },
+    { "code": "US500",    "name": "S&P 500" },
+    { "code": "USD/KRW",  "name": "원/달러 환율", "unit": "원", "group": "환율" },
+    { "code": "JPYKRW=X", "name": "엔/원 환율", "source": "us", "unit": "원", "group": "환율" },
+    { "code": "DX-Y.NYB", "name": "달러인덱스", "source": "us", "group": "환율" },
+    { "code": "^TNX",     "name": "미 10년물 금리", "source": "us", "unit": "%", "group": "금리·심리" },
+    { "code": "^VIX",     "name": "VIX 변동성", "source": "us", "group": "금리·심리" },
+    { "code": "GC=F",     "name": "금", "source": "us", "unit": "$", "group": "원자재" },
+    { "code": "CL=F",     "name": "WTI 유가", "source": "us", "unit": "$", "group": "원자재" },
+    { "code": "BTC-USD",  "name": "비트코인", "source": "us", "unit": "$", "group": "원자재" }
   ],
 
   "settings": {
