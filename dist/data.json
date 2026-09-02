@@ -1,23 +1,23 @@
 {
- "generated_at": "2026-09-03T05:39:56+09:00",
+ "generated_at": "2026-09-03T08:04:09+09:00",
  "date": "2026-09-03",
  "owner": "승훈",
  "style": "long_term",
  "mock": false,
  "totals": {
-  "market_value_krw": 21484456,
-  "cost_krw": 19826385,
-  "pl_krw": 1658071,
+  "market_value_krw": 21490042,
+  "cost_krw": 19831501,
+  "pl_krw": 1658541,
   "roi_pct": 8.36,
-  "usdkrw": 1358.36,
+  "usdkrw": 1358.89,
   "positions_count": 16,
   "failed_count": 0,
-  "cash_krw": 343461,
-  "net_worth_krw": 21827917,
+  "cash_krw": 343558,
+  "net_worth_krw": 21833600,
   "prev_total_krw": 21369348,
   "prev_base_date": "2026-09-02",
-  "delta_krw": 115108,
-  "delta_pct": 0.54
+  "delta_krw": 120694,
+  "delta_pct": 0.56
  },
  "allocation": {
   "국내": 33.4,
@@ -26,8 +26,8 @@
   "개별주": 60.7,
   "by_broker": {
    "미래에셋 ISA": 4880960,
-   "토스": 7911079,
-   "Super365": 8692417
+   "토스": 7913274,
+   "Super365": 8695808
   }
  },
  "cash": {
@@ -35,12 +35,12 @@
    "Super365": {
     "KRW": 11,
     "USD": 107.23,
-    "krw_total": 145668
+    "krw_total": 145725
    },
    "토스": {
     "KRW": 36457,
     "USD": 75.91,
-    "krw_total": 139570
+    "krw_total": 139610
    },
    "미래에셋 ISA": {
     "KRW": 58223,
@@ -50,7 +50,7 @@
   },
   "KRW": 94691,
   "USD": 183.14,
-  "total_krw": 343461
+  "total_krw": 343558
  },
  "indices": [
   {
@@ -626,19 +626,19 @@
    "name": "원/달러 환율",
    "unit": "원",
    "group": "환율",
-   "price": 1358.36,
+   "price": 1358.89,
    "prev_close": 1372.86,
-   "chg": -1.06,
-   "w1": -1.82,
-   "m1": -4.91,
-   "m3": -11.15,
-   "m6": -7.93,
-   "y1": -2.54,
+   "chg": -1.02,
+   "w1": -1.78,
+   "m1": -4.87,
+   "m3": -11.12,
+   "m6": -7.89,
+   "y1": -2.5,
    "high_52w": 1554.48,
-   "low_52w": 1358.36,
-   "from_high": -12.62,
+   "low_52w": 1358.89,
+   "from_high": -12.58,
    "band_pos": 0.0,
-   "ma60": 1463.54,
+   "ma60": 1463.55,
    "ma200": 1471.01,
    "spark": [
     1489.84,
@@ -760,7 +760,7 @@
     1377.11,
     1366.62,
     1372.86,
-    1358.36
+    1358.89
    ]
   },
   {
@@ -768,22 +768,21 @@
    "name": "엔/원 환율",
    "unit": "원",
    "group": "환율",
-   "price": 8.537,
-   "prev_close": 8.5545,
-   "chg": -0.2,
-   "w1": -1.55,
-   "m1": -5.84,
-   "m3": -11.93,
-   "m6": -8.34,
-   "y1": -9.55,
+   "price": 8.535,
+   "prev_close": 8.5651,
+   "chg": -0.35,
+   "w1": -1.76,
+   "m1": -5.76,
+   "m3": -10.56,
+   "m6": -8.0,
+   "y1": -9.56,
    "high_52w": 9.6932,
-   "low_52w": 8.537,
-   "from_high": -11.93,
+   "low_52w": 8.535,
+   "from_high": -11.95,
    "band_pos": 0.0,
-   "ma60": 9.12,
-   "ma200": 9.29,
+   "ma60": 9.1,
+   "ma200": 9.28,
    "spark": [
-    9.4225,
     9.4338,
     9.4475,
     9.366,
@@ -902,7 +901,8 @@
     8.6649,
     8.6006,
     8.5545,
-    8.537
+    8.5651,
+    8.535
    ]
   },
   {
@@ -910,18 +910,18 @@
    "name": "달러인덱스",
    "unit": null,
    "group": "환율",
-   "price": 99.556,
+   "price": 99.577,
    "prev_close": 99.67,
-   "chg": -0.11,
-   "w1": 0.64,
-   "m1": -0.4,
-   "m3": 0.03,
-   "m6": 0.8,
-   "y1": 1.17,
+   "chg": -0.09,
+   "w1": 0.66,
+   "m1": -0.38,
+   "m3": 0.05,
+   "m6": 0.82,
+   "y1": 1.2,
    "high_52w": 101.61,
    "low_52w": 96.22,
-   "from_high": -2.02,
-   "band_pos": 61.9,
+   "from_high": -2.0,
+   "band_pos": 62.3,
    "ma60": 100.32,
    "ma200": 99.17,
    "spark": [
@@ -1044,7 +1044,7 @@
     99.16,
     99.43,
     99.67,
-    99.556
+    99.577
    ]
   },
   {
@@ -1336,20 +1336,20 @@
    "name": "금",
    "unit": "$",
    "group": "원자재",
-   "price": 4433.8999,
+   "price": 4430.1001,
    "prev_close": 4348.0,
-   "chg": 1.98,
-   "w1": -3.57,
-   "m1": 8.27,
-   "m3": -0.94,
-   "m6": -12.47,
-   "y1": 23.4,
+   "chg": 1.89,
+   "w1": -3.66,
+   "m1": 8.17,
+   "m3": -1.02,
+   "m6": -12.54,
+   "y1": 23.29,
    "high_52w": 5318.3999,
    "low_52w": 3565.8,
-   "from_high": -16.63,
-   "band_pos": 49.5,
-   "ma60": 4222.39,
-   "ma200": 4516.97,
+   "from_high": -16.7,
+   "band_pos": 49.3,
+   "ma60": 4222.33,
+   "ma200": 4516.95,
    "spark": [
     5052.5,
     4994.0,
@@ -1470,7 +1470,7 @@
     4478.1001,
     4431.1001,
     4348.0,
-    4433.8999
+    4430.1001
    ]
   },
   {
@@ -1478,17 +1478,17 @@
    "name": "WTI 유가",
    "unit": "$",
    "group": "원자재",
-   "price": 90.72,
+   "price": 90.76,
    "prev_close": 90.22,
-   "chg": 0.55,
-   "w1": 10.32,
-   "m1": 19.73,
-   "m3": -2.49,
-   "m6": 11.99,
-   "y1": 41.82,
+   "chg": 0.6,
+   "w1": 10.37,
+   "m1": 19.78,
+   "m3": -2.45,
+   "m6": 12.04,
+   "y1": 41.88,
    "high_52w": 112.95,
    "low_52w": 55.27,
-   "from_high": -19.68,
+   "from_high": -19.65,
    "band_pos": 61.5,
    "ma60": 80.27,
    "ma200": 78.5,
@@ -1612,7 +1612,7 @@
     83.4,
     85.76,
     90.22,
-    90.72
+    90.76
    ]
   },
   {
@@ -1620,20 +1620,20 @@
    "name": "비트코인",
    "unit": "$",
    "group": "원자재",
-   "price": 77440.5312,
+   "price": 77051.25,
    "prev_close": 77403.625,
-   "chg": 0.05,
-   "w1": -0.5,
-   "m1": 22.14,
-   "m3": 25.95,
-   "m6": 1.49,
-   "y1": -11.23,
+   "chg": -0.46,
+   "w1": -1.0,
+   "m1": 21.53,
+   "m3": 25.32,
+   "m6": 0.98,
+   "y1": -11.67,
    "high_52w": 96929.3281,
    "low_52w": 58558.8594,
-   "from_high": -20.11,
-   "band_pos": 49.2,
-   "ma60": 67361.41,
-   "ma200": 69506.48,
+   "from_high": -20.51,
+   "band_pos": 48.2,
+   "ma60": 67354.93,
+   "ma200": 69504.54,
    "spark": [
     81427.5312,
     80009.9922,
@@ -1754,7 +1754,7 @@
     77667.5703,
     78548.6328,
     77403.625,
-    77440.5312
+    77051.25
    ]
   },
   {
@@ -1762,20 +1762,20 @@
    "name": "이더리움",
    "unit": "$",
    "group": "원자재",
-   "price": 2394.25,
+   "price": 2379.7,
    "prev_close": 2417.842,
-   "chg": -0.98,
-   "w1": -1.98,
-   "m1": 27.48,
-   "m3": 40.99,
-   "m6": 6.12,
-   "y1": -17.54,
+   "chg": -1.58,
+   "w1": -2.57,
+   "m1": 26.71,
+   "m3": 40.13,
+   "m6": 5.47,
+   "y1": -18.04,
    "high_52w": 3354.7227,
    "low_52w": 1564.8167,
-   "from_high": -28.63,
-   "band_pos": 46.3,
-   "ma60": 2009.45,
-   "ma200": 2028.65,
+   "from_high": -29.06,
+   "band_pos": 45.5,
+   "ma60": 2009.2,
+   "ma200": 2028.57,
    "spark": [
     2350.802,
     2291.1077,
@@ -1896,7 +1896,7 @@
     2417.9387,
     2466.8203,
     2417.842,
-    2394.25
+    2379.7
    ]
   }
  ],
@@ -2046,7 +2046,7 @@
    "avg_price": 1656000.0,
    "pl_krw": -86000,
    "roi_pct": -2.6,
-   "weight_pct": 15.02,
+   "weight_pct": 15.01,
    "split": false
   },
   {
@@ -2186,16 +2186,16 @@
    ],
    "shares": 4.0,
    "cost": 2515.64,
-   "market_value_krw": 3221214,
-   "cost_krw": 3417145,
+   "market_value_krw": 3222472,
+   "cost_krw": 3418479,
    "brokers": [
     "Super365 2주",
     "토스 2주"
    ],
    "avg_price": 628.91,
-   "pl_krw": -195931,
+   "pl_krw": -196007,
    "roi_pct": -5.73,
-   "weight_pct": 14.99,
+   "weight_pct": 15.0,
    "split": true
   },
   {
@@ -2335,14 +2335,14 @@
    ],
    "shares": 26.0,
    "cost": 2112.38,
-   "market_value_krw": 3181034,
-   "cost_krw": 2869372,
+   "market_value_krw": 3182275,
+   "cost_krw": 2870492,
    "brokers": [
     "Super365 11주",
     "토스 15주"
    ],
    "avg_price": 81.25,
-   "pl_krw": 311662,
+   "pl_krw": 311783,
    "roi_pct": 10.86,
    "weight_pct": 14.81,
    "split": true
@@ -2484,14 +2484,14 @@
    ],
    "shares": 10.0,
    "cost": 1769.4199999999998,
-   "market_value_krw": 3048295,
-   "cost_krw": 2403510,
+   "market_value_krw": 3049485,
+   "cost_krw": 2404447,
    "brokers": [
     "Super365 4주",
     "토스 6주"
    ],
    "avg_price": 176.94,
-   "pl_krw": 644785,
+   "pl_krw": 645038,
    "roi_pct": 26.83,
    "weight_pct": 14.19,
    "split": true
@@ -2633,15 +2633,15 @@
    ],
    "shares": 7.0,
    "cost": 1766.24,
-   "market_value_krw": 2776678,
-   "cost_krw": 2399190,
+   "market_value_krw": 2777761,
+   "cost_krw": 2400126,
    "brokers": [
     "Super365 7주"
    ],
    "avg_price": 252.32,
-   "pl_krw": 377488,
+   "pl_krw": 377635,
    "roi_pct": 15.73,
-   "weight_pct": 12.92,
+   "weight_pct": 12.93,
    "split": false
   },
   {
@@ -2781,13 +2781,13 @@
    ],
    "shares": 2.0,
    "cost": 972.3,
-   "market_value_krw": 1372596,
-   "cost_krw": 1320733,
+   "market_value_krw": 1373131,
+   "cost_krw": 1321249,
    "brokers": [
     "Super365 2주"
    ],
    "avg_price": 486.15,
-   "pl_krw": 51863,
+   "pl_krw": 51882,
    "roi_pct": 3.93,
    "weight_pct": 6.39,
    "split": false
@@ -3818,13 +3818,13 @@
    ],
    "shares": 16.0,
    "cost": 268.0,
-   "market_value_krw": 347088,
-   "cost_krw": 364040,
+   "market_value_krw": 347224,
+   "cost_krw": 364183,
    "brokers": [
     "토스 16주"
    ],
    "avg_price": 16.75,
-   "pl_krw": -16952,
+   "pl_krw": -16959,
    "roi_pct": -4.66,
    "weight_pct": 1.62,
    "split": false
@@ -3966,13 +3966,13 @@
    ],
    "shares": 10.0,
    "cost": 184.9,
-   "market_value_krw": 313238,
-   "cost_krw": 251161,
+   "market_value_krw": 313360,
+   "cost_krw": 251259,
    "brokers": [
     "Super365 10주"
    ],
    "avg_price": 18.49,
-   "pl_krw": 62077,
+   "pl_krw": 62101,
    "roi_pct": 24.72,
    "weight_pct": 1.46,
    "split": false
@@ -4262,13 +4262,13 @@
    ],
    "shares": 1.0,
    "cost": 58.78,
-   "market_value_krw": 54158,
-   "cost_krw": 79844,
+   "market_value_krw": 54179,
+   "cost_krw": 79876,
    "brokers": [
     "Super365 1주"
    ],
    "avg_price": 58.78,
-   "pl_krw": -25686,
+   "pl_krw": -25697,
    "roi_pct": -32.17,
    "weight_pct": 0.25,
    "split": false
@@ -5654,9 +5654,9 @@
    "market_value": 230.6,
    "cost": 184.9,
    "roi_pct": 24.72,
-   "market_value_krw": 313238,
-   "cost_krw": 251161,
-   "pl_krw": 62077,
+   "market_value_krw": 313360,
+   "cost_krw": 251259,
+   "pl_krw": 62101,
    "price": 23.06,
    "prev_close": 23.37,
    "chg": -1.33,
@@ -5793,7 +5793,7 @@
     23.37,
     23.06
    ],
-   "roi_delta": -1.54
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5806,9 +5806,9 @@
    "market_value": 1010.48,
    "cost": 972.3,
    "roi_pct": 3.93,
-   "market_value_krw": 1372596,
-   "cost_krw": 1320733,
-   "pl_krw": 51862,
+   "market_value_krw": 1373131,
+   "cost_krw": 1321249,
+   "pl_krw": 51882,
    "price": 505.24,
    "prev_close": 502.33,
    "chg": 0.58,
@@ -5945,7 +5945,7 @@
     502.33,
     505.24
    ],
-   "roi_delta": -0.51
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -5958,9 +5958,9 @@
    "market_value": 255.52,
    "cost": 268.0,
    "roi_pct": -4.66,
-   "market_value_krw": 347088,
-   "cost_krw": 364040,
-   "pl_krw": -16952,
+   "market_value_krw": 347224,
+   "cost_krw": 364183,
+   "pl_krw": -16959,
    "price": 15.97,
    "prev_close": 15.8,
    "chg": 1.08,
@@ -6097,7 +6097,7 @@
     15.8,
     15.97
    ],
-   "roi_delta": -0.39
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6110,9 +6110,9 @@
    "market_value": 1185.7,
    "cost": 1301.86,
    "roi_pct": -8.92,
-   "market_value_krw": 1610607,
-   "cost_krw": 1768395,
-   "pl_krw": -157787,
+   "market_value_krw": 1611236,
+   "cost_krw": 1769085,
+   "pl_krw": -157849,
    "price": 592.85,
    "prev_close": 578.54,
    "chg": 2.47,
@@ -6249,7 +6249,7 @@
     578.54,
     592.85
    ],
-   "roi_delta": 0.02
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6262,9 +6262,9 @@
    "market_value": 1185.7,
    "cost": 1213.78,
    "roi_pct": -2.31,
-   "market_value_krw": 1610607,
-   "cost_krw": 1648750,
-   "pl_krw": -38143,
+   "market_value_krw": 1611236,
+   "cost_krw": 1649394,
+   "pl_krw": -38158,
    "price": 592.85,
    "prev_close": 578.54,
    "chg": 2.47,
@@ -6401,7 +6401,7 @@
     578.54,
     592.85
    ],
-   "roi_delta": 0.02
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6414,9 +6414,9 @@
    "market_value": 897.64,
    "cost": 714.56,
    "roi_pct": 25.62,
-   "market_value_krw": 1219318,
-   "cost_krw": 970630,
-   "pl_krw": 248689,
+   "market_value_krw": 1219794,
+   "cost_krw": 971008,
+   "pl_krw": 248786,
    "price": 224.41,
    "prev_close": 217.44,
    "chg": 3.21,
@@ -6553,7 +6553,7 @@
     217.44,
     224.41
    ],
-   "roi_delta": -0.07
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6566,9 +6566,9 @@
    "market_value": 1346.46,
    "cost": 1054.86,
    "roi_pct": 27.64,
-   "market_value_krw": 1828977,
-   "cost_krw": 1432880,
-   "pl_krw": 396098,
+   "market_value_krw": 1829691,
+   "cost_krw": 1433439,
+   "pl_krw": 396252,
    "price": 224.41,
    "prev_close": 217.44,
    "chg": 3.21,
@@ -6705,7 +6705,7 @@
     217.44,
     224.41
    ],
-   "roi_delta": -0.07
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6718,9 +6718,9 @@
    "market_value": 2044.14,
    "cost": 1766.24,
    "roi_pct": 15.73,
-   "market_value_krw": 2776678,
-   "cost_krw": 2399190,
-   "pl_krw": 377488,
+   "market_value_krw": 2777761,
+   "cost_krw": 2400126,
+   "pl_krw": 377636,
    "price": 292.02,
    "prev_close": 291.4,
    "chg": 0.21,
@@ -6857,7 +6857,7 @@
     291.4,
     292.02
    ],
-   "roi_delta": 0.15
+   "roi_delta": 0.0
   },
   {
    "market": "US",
@@ -6870,9 +6870,9 @@
    "market_value": 990.77,
    "cost": 870.98,
    "roi_pct": 13.75,
-   "market_value_krw": 1345822,
-   "cost_krw": 1183104,
-   "pl_krw": 162718,
+   "market_value_krw": 1346347,
+   "cost_krw": 1183566,
+   "pl_krw": 162781,
    "price": 90.07,
    "prev_close": 89.65,
    "chg": 0.47,
@@ -7022,9 +7022,9 @@
    "market_value": 1351.05,
    "cost": 1241.4,
    "roi_pct": 8.83,
-   "market_value_krw": 1835212,
-   "cost_krw": 1686268,
-   "pl_krw": 148944,
+   "market_value_krw": 1835928,
+   "cost_krw": 1686926,
+   "pl_krw": 149002,
    "price": 90.07,
    "prev_close": 89.65,
    "chg": 0.47,
@@ -7174,9 +7174,9 @@
    "market_value": 39.87,
    "cost": 58.78,
    "roi_pct": -32.17,
-   "market_value_krw": 54158,
-   "cost_krw": 79844,
-   "pl_krw": -25687,
+   "market_value_krw": 54179,
+   "cost_krw": 79876,
+   "pl_krw": -25697,
    "price": 39.87,
    "prev_close": 38.22,
    "chg": 4.32,
@@ -7313,13 +7313,21 @@
     38.22,
     39.87
    ],
-   "roi_delta": 0.26
+   "roi_delta": 0.0
   }
  ],
  "news": {
   "000660": {
    "name": "SK하이닉스",
    "items": [
+    {
+     "title": "[연금] SK하이닉스로 살펴보는 반도체ETF... 11일 연속 65만주, 총 715만주 매수",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNY2YxUm5TTk9RNkZ5N3lEekxEZjZrUlpObjhyMGhQa29fai1WMlJvYk9tX3hqZWJCSndHRHdEcTR3bzZvazg4TldUeVQtQnJPUkdRdWNQMThOaVFpa3dHVEszUmYwSTcwTlQ1bGl2QVgtSjlWSmdLeTM3bUJLNURRVTFZSjZJZw?oc=5",
+     "publisher": "네이버 프리미엄콘텐츠",
+     "summary": "[연금] SK하이닉스로 살펴보는 반도체ETF... 11일 연속 65만주, 총 715만주 매수  네이버 프리미엄콘텐츠",
+     "published": "Wed, 02 Sep 2026 22:01:16 GMT",
+     "title_ko": null
+    },
     {
      "title": "LS증권 \"삼성전자 목표주가 상향·SK하이닉스 하향, HBM 경쟁구도 정상화\"",
      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0tYzU3V2R6VDh2N1FaeFJoTFB6Y0JWaVNreklpWGIzMUdkZjBlOTZmZUhiVTRCUk8wNUExckswaGUwTE9ZbTZPZ3UwRUFfaU1vcXRhazVkZzRNRDdhallsWVpLbnNpTUdxaWFjMFphSUo4aTg?oc=5",
@@ -7329,35 +7337,27 @@
      "title_ko": null
     },
     {
-     "title": "“SK하닉 330만→240만”…‘뚝’ 떨어진 목표가, 무슨 일? [오늘, 이 종목]",
-     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1jZEl4MjdrYVM1VDVvRGdSTktWNUNxVHBkeHU2bERzSVJvVWRfVTZ3MGFvRE84a3JfSmFGLXRiT3RrNmM4MS1LOVBJRjhqajc0cko0NGVB?oc=5",
-     "publisher": "mk.co.kr",
-     "summary": "“SK하닉 330만→240만”…‘뚝’ 떨어진 목표가, 무슨 일? [오늘, 이 종목]  mk.co.kr",
-     "published": "Mon, 31 Aug 2026 02:37:29 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "\"SK하이닉스, 목표가 330→240만원…삼성 HBM4 경쟁 심화\"-LS",
-     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4ySUx5NzFEOUpVbElmRi1HLUJjckNGTFgzVzNXa09HTTJNWUg5bEpmLU9mblhGbjJ5dFlDeVB3YjJreUNfdTQzLWc4UFFUR2hDdmllM2MwY0VjUQ?oc=5",
-     "publisher": "한국경제",
-     "summary": "\"SK하이닉스, 목표가 330→240만원…삼성 HBM4 경쟁 심화\"-LS  한국경제",
-     "published": "Sun, 30 Aug 2026 22:55:31 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "하이닉스 목표가 ‘240만원’으로 ‘뚝’…삼성전자는 올랐다? HBM4 경쟁 구도 재평가",
-     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBFRGdGVlhWdHR2ZnVfR25ONVJ3WEJCbGs2eW1OS3NKTkQwa2NSallTZXdIS1B4Q0VXdUVDZXJub3laVlVnZWFnRUFFWkFQZzVTVFpiSm53?oc=5",
-     "publisher": "헤럴드경제",
-     "summary": "하이닉스 목표가 ‘240만원’으로 ‘뚝’…삼성전자는 올랐다? HBM4 경쟁 구도 재평가  헤럴드경제",
-     "published": "Mon, 31 Aug 2026 13:30:00 GMT",
-     "title_ko": null
-    },
-    {
      "title": "[속보] 코스피 0.52% 내린 6784.29...삼성전자·SK하이닉스 주가 약세",
      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE84QXJqeDJPLUJOWWRBMkVsYjVKS2gyVzdUcGdfdzNISzhxRTVHb2pBRFFaSXVlRTNhYjlTYkpMQ3hqTVRuWERGQXFGUTFFclIzVndwY2xWTHVMSkVyVXhOdWNOZDc3Q0Z6dTQtdktB?oc=5",
      "publisher": "gukjenews.com",
      "summary": "[속보] 코스피 0.52% 내린 6784.29...삼성전자·SK하이닉스 주가 약세  gukjenews.com",
      "published": "Tue, 01 Sep 2026 00:12:39 GMT",
+     "title_ko": null
+    },
+    {
+     "title": "“고점 물린 개미들 구하러 온다”…‘삼전닉스’ 주가 반등 신호탄, 뭐길래",
+     "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9tYVVuMUFIT1VPMzNyem1WeDNBdXZWY2lnT1h0Ri1BNGhLbUZMZEZFbGE1TElqM2s5aVFTUEhxVjQ3UEtFMi1JV3RBTFFVcm1xa2c?oc=5",
+     "publisher": "매일경제",
+     "summary": "“고점 물린 개미들 구하러 온다”…‘삼전닉스’ 주가 반등 신호탄, 뭐길래  매일경제",
+     "published": "Mon, 31 Aug 2026 07:28:16 GMT",
+     "title_ko": null
+    },
+    {
+     "title": "주가 떨어졌는데 ‘10억 임원’ 105명이 늘었다…삼전·하이닉스에서 무슨 일이",
+     "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE85Rzg2b0NnNHdLMElfdElIWmd5VF80UGRvX0pGeHpBSzJmeXdXMmRaRHdoY3RuWTVMd0dhbVdySG5DZ0NwR0xaeXFhSzc3cE0?oc=5",
+     "publisher": "v.daum.net",
+     "summary": "주가 떨어졌는데 ‘10억 임원’ 105명이 늘었다…삼전·하이닉스에서 무슨 일이  v.daum.net",
+     "published": "Mon, 31 Aug 2026 01:15:00 GMT",
      "title_ko": null
     }
    ]
@@ -7365,6 +7365,22 @@
   "META": {
    "name": "Meta Platforms",
    "items": [
+    {
+     "title": "Broadcom’s Outlook Weighs on Stock Even as AI Business Booms",
+     "url": "https://www.barrons.com/articles/broadcom-earnings-todya-stock-price-13672771?siteid=yhoof2&yptr=yahoo",
+     "publisher": "Barrons.com",
+     "summary": "Broadcom, a key beneficiary of AI data center investment, grew its revenue by 86% in the latest quarter.",
+     "published": "2026-09-02T21:03:00Z",
+     "title_ko": "Broadcom의 전망은 AI 비즈니스 호황에도 불구하고 주식에 비중을 둡니다."
+    },
+    {
+     "title": "META Stock Jumps To Best Day In Nearly A Month — Meta Platforms Unveils Most Powerful AI Model To Compete With AI Rivals",
+     "url": "https://stocktwits.com/news-articles/markets/equity/meta-platforms-unveils-most-powerful-ai-model/cZsrcb8RJHB",
+     "publisher": "Stocktwits",
+     "summary": "Meta Platforms Inc. has launched Muse Spark 1.3, its most advanced artificial intelligence model to date.",
+     "published": "2026-09-02T20:53:11Z",
+     "title_ko": "거의 한 달 만에 최고의 날로 뛰어오른 메타 주식 — 메타 플랫폼, AI 라이벌과 경쟁할 수 있는 가장 강력한 AI 모델 공개"
+    },
     {
      "title": "US judge rejects bid to break up Google's ad business",
      "url": "https://finance.yahoo.com/media-advertising/articles/us-judge-rejects-bid-break-161532322.html",
@@ -7388,22 +7404,6 @@
      "summary": "Oracle (NYSE:ORCL) could become a weak link in the AI boom if OpenAI runs into trouble, according to Council on Foreign Relations senior fellow Sebastian Mallaby. “If OpenAI runs into trouble, I think we can say that there’s a good...",
      "published": "2026-09-02T17:44:12Z",
      "title_ko": "OpenAI의 $ 300B 거래는 오라클을 AI 붐의 약한 고리로 만들 수 있습니다"
-    },
-    {
-     "title": "U.S. Debt, AI Borrowing Binge Spurs Bessent's Bond Market Gambit; Risks Rise For Stocks, Dollar",
-     "url": "https://www.investors.com/news/us-debt-ai-borrowing-bessent-bond-market-stocks-dollar/?src=A00220&yptr=yahoo",
-     "publisher": "Investor's Business Daily",
-     "summary": "Surging U.S. debt and AI borrowing are pushing up Treasury yields, spurring an unusual bond market move by Treasury Secretary Scott Bessent.",
-     "published": "2026-09-02T17:41:38Z",
-     "title_ko": "미국 부채, AI 차입, Bessent의 채권 시장 갬빗 박차; 주식, 달러에 대한 위험 증가"
-    },
-    {
-     "title": "Should You Hold on to RDDT Stock Despite Its 15% Dip in Three Months?",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/hold-rddt-stock-despite-15-172900315.html",
-     "publisher": "Zacks",
-     "summary": "Reddit's 15% slide reflects search traffic volatility and valuation concerns, even as ad revenues, users, and ARPU continue to grow.",
-     "published": "2026-09-02T17:29:00Z",
-     "title_ko": "3 개월 만에 15% 하락에도 불구하고 RDDT 주식을 보유해야합니까?"
     }
    ]
   },
@@ -7411,50 +7411,58 @@
    "name": "NVIDIA",
    "items": [
     {
-     "title": "AI has become a 'non-negotiable', Sam Altman says at G20 summit",
-     "url": "https://finance.yahoo.com/video/ai-become-non-negotiable-sam-194000759.html",
+     "title": "Broadcom's Q3 earnings beat just isn't 'enough' to keep investors happy",
+     "url": "https://finance.yahoo.com/video/broadcoms-q3-earnings-beat-just-204909744.html",
      "publisher": "Yahoo Finance Video",
-     "summary": "Big Tech CEOs convened in North Carolina to speak at the G20 summit on Wednesday, laying out the virtues and benefits of AI to world leaders. Yahoo Finance Breaking Business News Reporter Jake Conley discusses OpenAI (OPAI.PVT) CEO Sam Altman's comments at the event.",
-     "published": "2026-09-02T19:40:00Z",
-     "title_ko": "Sam Altman은 G20 정상회의에서 AI는 '협상 불가능한 것' 이 되었다고 말합니다."
+     "summary": "Broadcom (AVGO) reported third quarter earnings results that modestly beat Wall Street's estimates. StoneX Financial equity research analyst Cody Acree shares his thoughts on the earnings print.",
+     "published": "2026-09-02T20:49:09Z",
+     "title_ko": "Broadcom의 3분기 실적은 투자자를 만족시키기에 '충분하지' 않습니다."
     },
     {
-     "title": "Where Will IonQ Stock Be in 1 Year?",
-     "url": "https://www.fool.com/investing/2026/09/02/where-will-ionq-stock-be-in-1-year/",
-     "publisher": "Motley Fool",
-     "summary": "There are a lot of moving parts at IonQ, but it might take a while for the stock to gain new traction.",
-     "published": "2026-09-02T20:20:00Z",
-     "title_ko": "1년 후 IonQ 주식은 어디에 있을까요?"
+     "title": "Nvidia didn't like Wall Street's estimates. So it tried to reset them.",
+     "url": "https://finance.yahoo.com/technology/article/nvidia-didnt-like-wall-streets-estimates-so-it-tried-to-reset-them-122218541.html",
+     "publisher": "Yahoo Finance",
+     "summary": "More insight on Nvidia's guidance emerges.",
+     "published": "2026-09-02T12:22:18Z",
+     "title_ko": "엔비디아는 월스트리트의 추정치를 좋아하지 않았다. 그래서 리셋을 시도했습니다."
     },
     {
-     "title": "Wall St ends higher as stocks reclaim some shine",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/us-stock-index-futures-subdued-085810751.html",
-     "publisher": "Reuters",
-     "summary": "By Stephen Culp and Niket Nishant NEW YORK, Sept 2 (Reuters) - Wall Street advanced on Wednesday, notching a partial rebound from a three-day losing streak as investors searched for deals among stocks",
-     "published": "2026-09-02T20:17:58Z",
-     "title_ko": "Wall St는 재고가 어느 정도 빛을 되찾으면서 더 높게 끝납니다."
+     "title": "Dow Jones Futures: Snowflake, Broadcom, HPE Are Big Earnings Movers; Tesla Cybercab Event Due",
+     "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-snowflake-broadcom-hpe-earnings-tesla-cybercab-event/?src=A00220&yptr=yahoo",
+     "publisher": "Investor's Business Daily",
+     "summary": "The stock market rose modestly Wednesday. Snowflake surged late on earnings while Broadcom and HPE fell. A Tesla Cybercab event looms.",
+     "published": "2026-09-02T22:49:24Z",
+     "title_ko": "Dow Jones Futures: Snowflake, Broadcom, HPE는 큰 수익을 올리고 있습니다. Tesla Cybercab 이벤트 마감"
     },
     {
-     "title": "Why Is Palantir Stock Down Today?",
-     "url": "https://www.fool.com/investing/2026/09/02/why-is-palantir-stock-down-today/",
-     "publisher": "Motley Fool",
-     "summary": "Palantir stock is falling on Sept. 2, 2026, even after the company landed a new U.S. Army TITAN contract and hired AIG's Peter Zaffino as its global head of financial services.",
-     "published": "2026-09-02T20:08:19Z",
-     "title_ko": "오늘 Palantir 재고가 감소한 이유는 무엇입니까?"
+     "title": "Nscale doubles contracted revenue to $103 billion after Anthropic win - report",
+     "url": "https://finance.yahoo.com/technology/ai/articles/nscale-doubles-contracted-revenue-103-222526129.html",
+     "publisher": "Investing.com",
+     "summary": "Investing.com -- UK-based neocloud provider Nscale is informing prospective investors that its total contracted revenue has expanded to approximately $103 billion, bolstered by a landmark $45 billion computing deal with Anthropic, according to investor materials reviewed by The Information. The Nvid",
+     "published": "2026-09-02T22:25:26Z",
+     "title_ko": "Nscale, Anthropic 수주 후 계약 수익을 $ 1,030억으로 두 배 증가 - 보고서"
     },
     {
-     "title": "Eli Lilly Just Announced a Major Acquisition. Here's What It Means.",
-     "url": "https://www.fool.com/investing/2026/09/02/eli-lilly-just-announced-a-major-acquisition-heres/",
-     "publisher": "Motley Fool",
-     "summary": "The drug giant added to its immunotherapy portfolio.",
-     "published": "2026-09-02T20:03:00Z",
-     "title_ko": "일라이 릴리 (Eli Lilly) 가 대대적인 인수 합병을 발표했습니다. 의미는 다음과 같습니다."
+     "title": "Wall Street Just Put a $280 Target on SpaceX's AI Bet",
+     "url": "https://finance.yahoo.com/technology/ai/articles/wall-street-just-put-280-220746044.html",
+     "publisher": "GuruFocus.com",
+     "summary": "Oppenheimer raised its SpaceX target to $280 from $250 as stronger AI usage and compute economics lifted its long-term revenue outlook.",
+     "published": "2026-09-02T22:07:46Z",
+     "title_ko": "월스트리트는 SpaceX의 AI 베팅에 $ 280 타겟을 넣었습니다."
     }
    ]
   },
   "BRK-B": {
    "name": "Berkshire Hathaway B",
    "items": [
+    {
+     "title": "Berkshire Is Making a Big Bet on Google. This Is Why, According to CEO Greg Abel",
+     "url": "https://www.investopedia.com/berkshire-is-making-a-big-bet-on-google-this-is-why-according-to-ceo-greg-abel-googl-brk-12077304",
+     "publisher": "Investopedia",
+     "summary": "Google’s strength in AI was a “fundamental” reason behind Berkshire Hathaway’s decision to invest in the tech giant, according to CEO Greg Abel.",
+     "published": "2026-09-02T21:03:44Z",
+     "title_ko": "Berkshire는 Google에 큰 베팅을 하고 있습니다. CEO 그렉 아벨 (Greg Abel) 에 따르면 이것이 이유입니다."
+    },
     {
      "title": "MicroStrategy Reserve Capital Beats All S&P 500 Financials But Berkshire, MSTR Still Slips",
      "url": "https://beincrypto.com/mstr-stock-microstrategy-reserve-capital-berkshire/",
@@ -7486,14 +7494,6 @@
      "summary": "Berkshire Hathaway bought a lot of Alphabet in the second quarter, but it was Buffett who made the buy call.",
      "published": "2026-09-02T15:35:00Z",
      "title_ko": "버크셔의 가장 큰 새로운 포지션은 그렉 아벨이 아닌 워렌 버핏에서 나왔습니다."
-    },
-    {
-     "title": "Berkshire's $37.8 Billion Alphabet Stake Highlights Its Two-Front AI Exposure",
-     "url": "https://finance.yahoo.com/technology/ai/articles/berkshires-37-8-billion-alphabet-153405804.html",
-     "publisher": "GuruFocus.com",
-     "summary": "Alphabet is Berkshire's third-largest stock holding, while data centers supplied roughly 8% of Iowa's electricity demand last year.",
-     "published": "2026-09-02T15:34:05Z",
-     "title_ko": "버크셔의 $ 37.8 Billion Alphabet Stake는 양면 AI 노출을 강조합니다."
     }
    ]
   },
@@ -7533,11 +7533,11 @@
      "title_ko": null
     },
     {
-     "title": "메리츠금융지주, 5000억원 자사주 취득 신탁계약 체결…NH투자증권에 위탁",
-     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE54MF9QZThlVVdUY2IyRTBqRTM3NU01dVpKS045VE50c29oNEllQU81T042eVpLLThGanJ1NjBVUlN0MEFjYVdjQUJuUmRiQVpMOUtLWTh0bVlqQV9nWEN1VENiWkNpUlZCcDNSQ1c0a1k0bkk?oc=5",
-     "publisher": "디지털투데이",
-     "summary": "메리츠금융지주, 5000억원 자사주 취득 신탁계약 체결…NH투자증권에 위탁  디지털투데이",
-     "published": "Fri, 28 Aug 2026 09:41:04 GMT",
+     "title": "삼성증권, 한국금융지주·메리츠금융지주 목표주가 상향",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBMdEhWWlFNRzdENzJNRDdaTk5aLTdGaHliUWx3Zzl1Z0w5RV96OHBselc3WFlYMVdvYXZCWWZINzE5UVR0eXE4ZDdlMzJOaHI1a3UwdFdYdjV2QjDSAWBBVV95cUxOaVNBWjgwN01lRHN0emUzNlZ0c0R5N3M0UGdFb1FWV0tma1ZBUzlOaXFULWx3XzBoOFZIeW5jdUdXVXhYa21MelUwcFE0d1haLXQ4N2ltNkRxYUROYUF1V3Y?oc=5",
+     "publisher": "연합뉴스",
+     "summary": "삼성증권, 한국금융지주·메리츠금융지주 목표주가 상향  연합뉴스",
+     "published": "Thu, 12 Feb 2026 08:00:00 GMT",
      "title_ko": null
     }
    ]
@@ -7547,9 +7547,9 @@
    "items": [
     {
      "title": "“SKC 주가 33% 더 간다” 증권가 낙관…전지박 공급부족 초읽기 [오늘나온보고서]",
-     "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE0tRkhuWEFFbXEtSEpJcEdGU25meFBwVk5VUDNFXzJja09pYUc0OVZOUTg2cktKRlQ3RGU5TWJLYzBQdFZqdXRYa1lzbW02OEpLNmc?oc=5",
-     "publisher": "mk.co.kr",
-     "summary": "“SKC 주가 33% 더 간다” 증권가 낙관…전지박 공급부족 초읽기 [오늘나온보고서]  mk.co.kr",
+     "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PYS14YWUzMVhVODcwZGh6QlFuRXVnV0tUWU41NU5UOV95cXViMWlMZE01azRGVGhwbjI3cXZWVE5DbE5CWkJGNFVMc21MZVRMUHc?oc=5",
+     "publisher": "매일경제 마켓",
+     "summary": "“SKC 주가 33% 더 간다” 증권가 낙관…전지박 공급부족 초읽기 [오늘나온보고서]  매일경제 마켓",
      "published": "Wed, 05 Aug 2026 07:00:00 GMT",
      "title_ko": null
     },
@@ -7564,8 +7564,8 @@
     {
      "title": "유리기판 관련주, SKC 주가 전망 : 상용화 시점과 주가 상승은 언제쯤? (feat. 앱솔릭스)",
      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNZjQzSHpRZl84S1VJdE5vdUpUVXFma1hZbnZVSE15UGV6ZUlFcWdLY1lEcHh6NWpKSkFVUjRFam1zbUxDbXNSQ0lPWktmNHpoVmxubFI1THhMRWxvaDMwcDdubWlIRHV2RTNmRnhraVRvS0dCamF1MWUyY2l2Y1pSTVVQWQ?oc=5",
-     "publisher": "contents.premium.naver.com",
-     "summary": "유리기판 관련주, SKC 주가 전망 : 상용화 시점과 주가 상승은 언제쯤? (feat. 앱솔릭스)  contents.premium.naver.com",
+     "publisher": "네이버 프리미엄콘텐츠",
+     "summary": "유리기판 관련주, SKC 주가 전망 : 상용화 시점과 주가 상승은 언제쯤? (feat. 앱솔릭스)  네이버 프리미엄콘텐츠",
      "published": "Sat, 22 Aug 2026 07:00:00 GMT",
      "title_ko": null
     },
@@ -7580,8 +7580,8 @@
     {
      "title": "\"채권을 주식으로\"…AI 랠리 속 SK하이닉스·SKC EB 부담 해소",
      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vQTFGaUpRdmZ4NklpWWNlaFoyNTM3dVo5VEFxQUx1WkVUWWFHVWRoZnNxaUVoejJtaG1ndXhfWjZoMXB4U2ExRGd4dXVWZ3JqbV82czJ6Z3RndE9aOGJKcHdLNm8xRC1pR1lVUnA5VHQ?oc=5",
-     "publisher": "news.einfomax.co.kr",
-     "summary": "\"채권을 주식으로\"…AI 랠리 속 SK하이닉스·SKC EB 부담 해소  news.einfomax.co.kr",
+     "publisher": "연합인포맥스",
+     "summary": "\"채권을 주식으로\"…AI 랠리 속 SK하이닉스·SKC EB 부담 해소  연합인포맥스",
      "published": "Tue, 12 May 2026 07:00:00 GMT",
      "title_ko": null
     }
@@ -7735,45 +7735,31 @@
      "published": "Wed, 02 Sep 2026 08:54:00 GMT"
     },
     {
-     "title": "[증시-마감] 미·이란 충돌 공포 덮친 코스피, 3.99% 급락",
-     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9GdHNQUXhOclRiVC1odjRPLU1meGlnVzBMRklGWWRIb2RSS0dlWXQzdkNJRENKMW5vNGtpdm04ZVM2RjBUMzg0VWN3Q1RWYVdRQndJWU5GcTJsX1FCWkhzSVVhVHUtN3hLNDlremUyT1RfQQ?oc=5",
-     "publisher": "kbthink.com",
-     "summary": "[증시-마감] 미·이란 충돌 공포 덮친 코스피, 3.99% 급락  kbthink.com",
-     "published": "Wed, 02 Sep 2026 06:46:44 GMT"
+     "title": "[마감시황] 코스피, 외인·기관 4조 '팔자'에 4%↓…6560선 후퇴",
+     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9tMXk3clVlOHN2ZEd2NElxODRRb2hwTEZ0ZEpLUG94RDVjOXRjbElITndlNktXREUzT2JiSWJkWnNWTUhYeTJDbjNjSWVkcENnNmF0ekJjalBuZmFN?oc=5",
+     "publisher": "뉴스핌",
+     "summary": "[마감시황] 코스피, 외인·기관 4조 '팔자'에 4%↓…6560선 후퇴  뉴스핌",
+     "published": "Wed, 02 Sep 2026 06:53:00 GMT"
     },
     {
-     "title": "코스피, 유가·금리 부담에 4%대 하락 마감",
-     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1IdTA1MTNZdTBaaktFQVV0UDZUdGFlZVd5UW5ReGYtUmVLaWxuaGpFWC1vbHNxdDVWSk9uSThlNWk4TTE1Rk52SFBoc1Q4RFZTSU8xNU40T01DLXJXRXZtVQ?oc=5",
-     "publisher": "아시아경제",
-     "summary": "코스피, 유가·금리 부담에 4%대 하락 마감  아시아경제",
-     "published": "Wed, 02 Sep 2026 06:51:44 GMT"
+     "title": "코스피 6820.02 마감…삼전닉스 '자사주 매입'이 받쳤다 - 머니투데이",
+     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1pZHItNXJ4Q1JpQmpvbkVwel8wdHBqeERDMVdINzlGNG5WVkU4eHl5MHZqdS1iaUFnS1RHNjlvM3FncVNWSzVzWFpJMkh6SkUtdHNhdTVpWTRQWEwtaVFDYzVjX0ZCaGtm0gFuQVVfeXFMTUZvRkxJYWNPRVVReFdHOGdmV3plRjNjZ3VlM3RpeWQxc1RwbTdhM3pSeS1LbDBYdTE0Nnc4TDFxSmtwYTM2OWU5Q1JERzRKRjBhelpJb0hocDBhWUFaZ0tER01Fd1NFcFFnZy15MGc?oc=5",
+     "publisher": "머니투데이",
+     "summary": "코스피 6820.02 마감…삼전닉스 '자사주 매입'이 받쳤다 - 머니투데이  머니투데이",
+     "published": "Mon, 31 Aug 2026 07:14:35 GMT"
     },
     {
-     "title": "코스피, 사흘 만에 하락 마감…코스닥도 내려",
-     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1qTDZYZXlNek4tdmFxRHFObUtOejNfVmJoQldmaDU0ckhrTzJvamU5aVJQb3pQZXJIZnQ2Qnp0S05rSVlxTXp3ZjFVN3NkdFJ3V3NLbDJBQ0V0ZFNnMTZ6Zw?oc=5",
-     "publisher": "newstomato.com",
-     "summary": "코스피, 사흘 만에 하락 마감…코스닥도 내려  newstomato.com",
-     "published": "Wed, 02 Sep 2026 07:21:21 GMT"
+     "title": "코스피, 유가·금리 불안에 4% 털썩…6500대 마감",
+     "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1uZkpmMm1DYVpwSjl4dmtJM3o4bVdiMTk1NnhEYWdNU21vUkpqVk1pekx3cXE2XzNwdnNWV0t1OHQ0ek9IWjJQdzJfYVZxNW4wWmdHQm0zbElCczZkM3JwN2lldms?oc=5",
+     "publisher": "서울경제TV",
+     "summary": "코스피, 유가·금리 불안에 4% 털썩…6500대 마감  서울경제TV",
+     "published": "Wed, 02 Sep 2026 07:08:14 GMT"
     }
    ]
   },
   {
    "topic": "금리·연준·물가",
    "items": [
-    {
-     "title": "임팩스 \"연준 9월 금리 결정 예측 어려워…물가·고용 지표에 국채 변동성 확대\"",
-     "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5FaW5SWG03Wks2ck9uaEhGdXFvSWFoOWZMLU9pal83YXVtNDk5TnIwOWszXzVVeGZnV3NlMUtiUjBTaVJ0eVVXX3JIRW5KQ2dz?oc=5",
-     "publisher": "블루밍비트",
-     "summary": "임팩스 \"연준 9월 금리 결정 예측 어려워…물가·고용 지표에 국채 변동성 확대\"  블루밍비트",
-     "published": "Wed, 02 Sep 2026 15:02:22 GMT"
-    },
-    {
-     "title": "은행주, 韓 두달 연속 금리 인상, 美 연준 ‘매파적’ 기조에 강세",
-     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPaC1qV3BwZ2tPUzUxOHB6ekxQYmt6VVQwVXZ4RWoybVh3YWx2STZkakdSdTZQTWVDLVNXOFFfV2RqTnFicFVOVkp3cnIybzcwUGhLb2ZXbzNVcTdqM0ZiWFk3bE1zWHM0aHFpdjFXS1M1ZDhsSnlXY2ZPTDRPbEdrNA?oc=5",
-     "publisher": "조선일보",
-     "summary": "은행주, 韓 두달 연속 금리 인상, 美 연준 ‘매파적’ 기조에 강세  조선일보",
-     "published": "Tue, 01 Sep 2026 00:03:00 GMT"
-    },
     {
      "title": "“연준 금리만 올린다”…‘매파 본색’ 워시, 트럼프와 정면충돌하나 [이슈+]",
      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5DeEs3Vlo5Tm5FRzZvSE02b3FhUUNtYy1GZkFMeTBOSVNCS0hQMmx5WVEzV09OalVnVXJhZ2I0aUVvWVVRYzZoTWVQZjlHNW5naHREa3Z5UFBpOEU?oc=5",
@@ -7787,12 +7773,33 @@
      "publisher": "연합뉴스",
      "summary": "美연준발 삭풍에 6,600대로 밀린 코스피…불확실성 우려↑  연합뉴스",
      "published": "Mon, 31 Aug 2026 02:29:53 GMT"
+    },
+    {
+     "title": "속보 연준, 기준금리 3.5∼3.75%로 동결...5차례 연속",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1NSG5oWEhTRHpUSlBPbjlxYnNCN0VKUll6Xy1NT0VRaGxTQXN4UWszRERuc2hPYkNsM2huT0RpSFU4WW1LSWlnQzkyRV9HRllKUGVUNVZONFoxamRrZ0E?oc=5",
+     "publisher": "YTN",
+     "summary": "속보 연준, 기준금리 3.5∼3.75%로 동결...5차례 연속  YTN",
+     "published": "Thu, 30 Jul 2026 07:00:00 GMT"
+    },
+    {
+     "title": "'금리 인상' 군불 뗀 美 연준, 9월 FOMC에서 트럼프와 충돌?",
+     "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1tMTJjYUpKVkVuelVmMnMtSGgzenBlNkk5RVZtNUhJYmRFRmJLdHNnaFAtS3dtbnBndDl0SGFSa2hWWnZrY2htaEJEbUFRc3M?oc=5",
+     "publisher": "v.daum.net",
+     "summary": "'금리 인상' 군불 뗀 美 연준, 9월 FOMC에서 트럼프와 충돌?  v.daum.net",
+     "published": "Sun, 30 Aug 2026 06:36:13 GMT"
     }
    ]
   },
   {
    "topic": "환율",
    "items": [
+    {
+     "title": "‘강엔’반전에 원달러 환율 1350원대로…2년만 최저",
+     "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1tM1FwRFl4VG9MalZqa1J5UC0wWFlic0RmSTVCM2ExLVFXbHpXcnk2U2F3ekwyTzhxVE1kOEZlTTltMHZrNjk0Z0VsX3NrdGs?oc=5",
+     "publisher": "v.daum.net",
+     "summary": "‘강엔’반전에 원달러 환율 1350원대로…2년만 최저  v.daum.net",
+     "published": "Wed, 02 Sep 2026 20:02:07 GMT"
+    },
     {
      "title": "원·달러 환율 13개월 만에 1,360원대로 하락",
      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9iLUI3M25GTlpKU2pmc1d5MlVmY3U0MThLaDhBQUZzX0JmeGFYZ3FKYWJnVnJZYmp3dUd2RGVtNzVVdU5fTFBCY1Zhc0d5U3ZPbFoxbGhQTHdsZ1NpR3NoMXVfSkIzZEk?oc=5",
@@ -7801,31 +7808,31 @@
      "published": "Mon, 31 Aug 2026 08:38:00 GMT"
     },
     {
-     "title": "달러-원, 뉴욕장서 1,360원 초반대 거래",
-     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1FaFg5SGFTRXRhQkpiaWdXTmJKOVJoU05YdTViajdQWjU0cUx5NkVNRU1PUWFPZzV5UmF2cWhaZ2Y3SWo5RGtnMVcwME1LMTF0V042RGFFX2gxSWtIRmYtWTdGdDVRMVN3dGpuV0ZWZGJzQQ?oc=5",
-     "publisher": "kbthink.com",
-     "summary": "달러-원, 뉴욕장서 1,360원 초반대 거래  kbthink.com",
-     "published": "Wed, 02 Sep 2026 11:36:27 GMT"
-    },
-    {
      "title": "우리銀 \"달러-원 내년 초까지 하락세…하단 1,340원으로 하향\"",
      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE04ZlVxSFZBUzc5UTRZelBQczZlQ1gxM3V4SGR2d2lIczJhcG9BSWJiLUhNaHc5RF9WV2RzT0xqQWlUcmQ0ZXp4bXJLRmo0Z3pmcHlybVdBUHFLNDVNeVF4ZHo1MkxLR0hhaTllOC1TNknSAXRBVV95cUxNclV1bkRkS1NpX09oNFQ1YTFlSXFfUjc5MzhlSDNTVTM3YXd5V0FsSnY3YW1YNnNBVl9sdksyTl80VG1fR3pHM2FFa0dxTWN4bkZCUWtVb25mMHZPSGZTanJtZ19UZG0wY0gybmVTRFVzQVBNWg?oc=5",
-     "publisher": "news.einfomax.co.kr",
-     "summary": "우리銀 \"달러-원 내년 초까지 하락세…하단 1,340원으로 하향\"  news.einfomax.co.kr",
+     "publisher": "연합인포맥스",
+     "summary": "우리銀 \"달러-원 내년 초까지 하락세…하단 1,340원으로 하향\"  연합인포맥스",
      "published": "Tue, 01 Sep 2026 08:24:57 GMT"
     },
     {
-     "title": "‘강엔’반전에 원달러 환율 1350원대로…2년만 최저",
-     "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1tM1FwRFl4VG9MalZqa1J5UC0wWFlic0RmSTVCM2ExLVFXbHpXcnk2U2F3ekwyTzhxVE1kOEZlTTltMHZrNjk0Z0VsX3NrdGs?oc=5",
-     "publisher": "v.daum.net",
-     "summary": "‘강엔’반전에 원달러 환율 1350원대로…2년만 최저  v.daum.net",
-     "published": "Wed, 02 Sep 2026 20:02:07 GMT"
+     "title": "달러-원, 뉴욕장서 1,360원 초반대 거래",
+     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1FaFg5SGFTRXRhQkpiaWdXTmJKOVJoU05YdTViajdQWjU0cUx5NkVNRU1PUWFPZzV5UmF2cWhaZ2Y3SWo5RGtnMVcwME1LMTF0V042RGFFX2gxSWtIRmYtWTdGdDVRMVN3dGpuV0ZWZGJzQQ?oc=5",
+     "publisher": "KB Think",
+     "summary": "달러-원, 뉴욕장서 1,360원 초반대 거래  KB Think",
+     "published": "Wed, 02 Sep 2026 11:36:27 GMT"
     }
    ]
   },
   {
    "topic": "반도체·AI",
    "items": [
+    {
+     "title": "티씨케이, 중국 반도체 시장 성장이 기회…'매수'-IBK",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxORlhkUXAtenI1M2UxT1dyYkFYMjd2S2x5LVhKUW4zd0RRbUVJYlQ0aGVyTGp5RHFKcTBwLVlNMHFRZjdDSGZxSGVJZjMzbG5SYjc1Ym54a0FHUGY2M20tREZtNFIzdko0ZHM5a1ZUSGNQRUZfLTFXR3FuaEMzMTBOTw?oc=5",
+     "publisher": "edaily.co.kr",
+     "summary": "티씨케이, 중국 반도체 시장 성장이 기회…'매수'-IBK  edaily.co.kr",
+     "published": "Wed, 02 Sep 2026 22:35:44 GMT"
+    },
     {
      "title": "[MK시그널] 솔브레인, 반도체 업황 회복에 따른 핵심소재 경쟁력 부각 등에 주가 상승세... MK시그널 추천 후 상승률 6.89% 기록",
      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9JdlhITGFxbmd1RkY1b0tLcEVUQlVlaWw4WEJKWG1ZbDlvTW1DZVh5eV9EYWFkVlVEdldYbTZqcnJhbFpGRVZGM1JKSkJhcnNnZ0E?oc=5",
@@ -7846,13 +7853,6 @@
      "publisher": "조세일보",
      "summary": "반도체·증시 세수 믿고 821조 슈퍼예산…호황에 올라탄 팽창재정  조세일보",
      "published": "Wed, 02 Sep 2026 00:38:58 GMT"
-    },
-    {
-     "title": "8월 코스피 10조 던진 외국인 … 반도체 팔고 방산·바이오 샀다",
-     "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5HMHRhcmE5QzlwNXhXWFRMMXR5RV9zN1JDSUxLOTFyYmtuR0h5TUtmdXF6aGJUekZzX3YwNHY5Z1pDS29KWWpSV3NGcTFhOUtXVXdWMjMzSC1rU3o3MVRrbkkycUdZUG45WTZaWEM4aW5FZGZfekFudTl2NNIBgAFBVV95cUxOdlh0ZEFaV3hGUjNENEEwSTV1dlBaWGlyazhEaW1lZmdyS3AtWTFJREkwa3VqV0RzZlJLaTBoUm1TMk1jWm5xOEowRUNZdktnUUJEWUlDZXNsejkzYTFfVE9kbzRyTGFJSGQwb1UyeGZBaU5oTkU5Sm1iNjB3RE4xMw?oc=5",
-     "publisher": "뉴데일리",
-     "summary": "8월 코스피 10조 던진 외국인 … 반도체 팔고 방산·바이오 샀다  뉴데일리",
-     "published": "Tue, 01 Sep 2026 00:59:35 GMT"
     }
    ]
   }
