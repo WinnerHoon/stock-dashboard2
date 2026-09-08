@@ -12,7 +12,8 @@ from datetime import datetime
 from html import escape
 
 PAGES = [("index.html", "포트폴리오"), ("market.html", "시장"), ("news.html", "뉴스"),
-         ("history.html", "일별 변화"), ("add.html", "거래 입력")]
+         ("history.html", "일별 변화"), ("realized.html", "실현수익"),
+         ("add.html", "거래 입력")]
 
 
 # ── 포맷 헬퍼 ────────────────────────────────────────────────
@@ -954,9 +955,120 @@ text-decoration:none;color:inherit}
     return shell("market.html", d, body)
 
 
+# ── 3-2. 실현수익 ───────────────────────────────────────────
+RZ_LABEL = {"sell": "매도 차익", "dividend": "배당", "fee": "수수료"}
+RZ_WINDOWS = [("all", "전체"), ("y1", "최근 1년"),
+              ("m3", "최근 3개월"), ("m1", "최근 1개월")]
+
+
+def usd(v):
+    return "-" if v is None else (f"{v:+,.2f}" if v else "0")
+
+
+def rzrow(label, b, sub=""):
+    """국내 / 해외 / 합계 3열 한 줄"""
+    note = f'<div class="s2">{escape(sub)}</div>' if sub else ""
+    return (f'<tr><td><b>{escape(label)}</b>{note}</td>'
+            f'<td class="n {c(b.get("KRW"))}">{w(b.get("KRW"))}원</td>'
+            f'<td class="n {c(b.get("USD"))}">${usd(b.get("USD"))}</td>'
+            f'<td class="n b {c(b.get("krw_total"))}">{w(b.get("krw_total"))}원</td></tr>')
+
+
+def rztable(head, rows):
+    return (f'<table class="rt"><thead><tr><th>{escape(head)}</th>'
+            f'<th class="n">국내</th><th class="n">해외</th>'
+            f'<th class="n">합계 (원 환산)</th></tr></thead><tbody>{rows}</tbody></table>')
+
+
+RZ_CSS = """<style>
+.rt{width:100%;border-collapse:collapse;font-size:13.5px}
+.rt th{color:var(--dim);font-size:11.5px;font-weight:500;text-align:left;
+padding:0 0 8px;border-bottom:1px solid var(--line)}
+.rt td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rt tr:last-child td{border-bottom:none}
+.rt .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rt .b{font-weight:700}
+.rt .dt{color:var(--dim);font-size:12px;white-space:nowrap;padding-right:12px}
+.tag{margin-left:7px;font-size:11px;color:var(--dim);border:1px solid var(--line);
+border-radius:10px;padding:1px 7px;white-space:nowrap}
+</style>"""
+
+
+def page_realized(d):
+    r = d.get("realized") or {}
+    win = r.get("windows") or {}
+    allb = win.get("all") or {}
+    fx = r.get("fx") or 0
+
+    if not allb.get("count"):
+        body = (f'{RZ_CSS}<header><h1>실현수익</h1></header>'
+                f'<div class="card"><p class="em">아직 실현된 손익이 없습니다.<br>'
+                f'매도 · 배당 · 수수료가 기록되면 여기에 집계됩니다.</p></div>')
+        return shell("realized.html", d, body)
+
+    hero = (f'<div class="card"><div class="hero">'
+            f'<div><div class="lb">누적 실현손익</div>'
+            f'<div class="bg {c(allb.get("krw_total"))}">{w(allb.get("krw_total"))}원</div>'
+            f'<div class="s2">원화 환산 · 환율 {fx:,.2f}원</div></div>'
+            f'<div><div class="lb">국내 (원화)</div>'
+            f'<div class="bg s {c(allb.get("KRW"))}">{w(allb.get("KRW"))}원</div></div>'
+            f'<div><div class="lb">해외 (달러)</div>'
+            f'<div class="bg s {c(allb.get("USD"))}">${usd(allb.get("USD"))}</div></div>'
+            f'<div><div class="lb">실현 건수</div>'
+            f'<div class="bg s">{allb.get("count", 0)}건</div></div></div></div>')
+
+    prow = "".join(rzrow(lb, win[k], (win[k].get("since") or "") and
+                         f'{win[k]["since"]} 이후')
+                   for k, lb in RZ_WINDOWS if win.get(k))
+    period = f'<div class="card"><h2>기간별</h2>{rztable("기간", prow)}</div>'
+
+    krow = ""
+    for ty in ("sell", "dividend", "fee"):
+        k, u = allb.get(ty + "_KRW", 0), allb.get(ty + "_USD", 0)
+        if not k and not u:
+            continue
+        krow += rzrow(RZ_LABEL[ty], {"KRW": k, "USD": u,
+                                     "krw_total": round(k + u * fx)})
+    kind = (f'<div class="card"><h2>항목별 <span class="s2">전체 기간</span></h2>'
+            f'{rztable("항목", krow)}</div>') if krow else ""
+
+    yrow = "".join(rzrow(y["year"] + "년", y, f'{y.get("count", 0)}건')
+                   for y in r.get("by_year") or [])
+    year = (f'<div class="card"><h2>연도별</h2>{rztable("연도", yrow)}</div>'
+            if yrow else "")
+
+    ev = r.get("events") or []
+    erow = ""
+    for e in ev:
+        ty, cur = e.get("type"), (e.get("currency") or "KRW")
+        amt = e.get("amount")
+        val = f'{w(amt)}원' if cur == "KRW" else f'${usd(amt)}'
+        nm = e.get("name") or e.get("ticker") or RZ_LABEL.get(ty, "-")
+        det = ""
+        if ty == "sell" and e.get("shares"):
+            av, px = e.get("avg_price") or 0, e.get("price") or 0
+            det = (f'{e["shares"]:,.0f}주 · {av:,.0f}원 → {px:,.0f}원' if cur == "KRW"
+                   else f'{e["shares"]:,.0f}주 · ${av:,.2f} → ${px:,.2f}')
+        sub = f'<div class="s2">{escape(det)}</div>' if det else ""
+        erow += (f'<tr><td class="dt">{escape(e.get("date") or "")}</td>'
+                 f'<td><b>{escape(nm)}</b>'
+                 f'<span class="tag">{escape(RZ_LABEL.get(ty, ty or ""))}</span>{sub}</td>'
+                 f'<td class="n b {c(amt)}">{val}</td></tr>')
+    detail = (f'<div class="card"><h2>실현 내역 <span class="s2">{len(ev)}건</span></h2>'
+              f'<table class="rt"><thead><tr><th>날짜</th><th>내용</th>'
+              f'<th class="n">금액</th></tr></thead><tbody>{erow}</tbody></table></div>')
+
+    body = f"""{RZ_CSS}<header><h1>실현수익</h1>
+<div class="sb"><span id="fresh">갱신 확인 중</span>
+<span>매도 차익 + 배당 − 수수료</span></div></header>
+{hero}{period}{kind}{year}{detail}"""
+    return shell("realized.html", d, body)
+
+
 def render_all(d, hist, diffs):
     return {"index.html": page_index(d),
             "market.html": page_market(d),
+            "realized.html": page_realized(d),
             "news.html": page_news(d),
             "history.html": page_history(d, hist, diffs),
             "add.html": page_add(d)}
