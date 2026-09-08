@@ -199,8 +199,9 @@ def build(cfg, use_mock=False):
     # 거래 원장이 있으면 그걸로 보유종목·현금을 계산합니다.
     # 없으면 예전처럼 portfolio.json 의 holdings 를 그대로 씁니다.
     import ledger
-    led_hold, led_cash, led_realized, led_warn = ledger.build_holdings(
-        os.path.join(BASE, "transactions.json"))
+    _led = ledger.build_holdings(os.path.join(BASE, "transactions.json"))
+    led_hold, led_cash, led_realized, led_warn = _led[:4]
+    led_events = _led[4] if len(_led) > 4 else []
     if led_hold:
         log(f"거래 원장에서 보유 {len(led_hold)}건 계산")
         for m in led_warn:
@@ -347,6 +348,13 @@ def build(cfg, use_mock=False):
         totals["delta_krw"] = round(tv - pv)
         totals["delta_pct"] = round(pct(tv, pv), 2)
 
+    # 실현손익 (매도 차익 + 배당 − 수수료) — 기간·연도별
+    realized_sum = (ledger.summarize_realized(led_events, float(fx), today)
+                    if led_events else None)
+    if realized_sum:
+        log(f'실현손익 {realized_sum["windows"]["all"]["krw_total"]:,}원 '
+            f'({realized_sum["windows"]["all"]["count"]}건)')
+
     # 시장 심리 (CNN 공포·탐욕 지수)
     fng = None if use_mock else safe(fetch_fear_greed, None, "공포·탐욕 지수")
 
@@ -379,6 +387,7 @@ def build(cfg, use_mock=False):
         "mock": use_mock, "totals": totals, "allocation": allocation, "cash": cash,
         "indices": indices, "consolidated": consolidated, "positions": positions,
         "news": news, "market_news": market_news, "fear_greed": fng,
+        "realized": realized_sum,
         "prev_date": (prev or {}).get("date"),
     }
 
