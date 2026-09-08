@@ -22,6 +22,7 @@ transactions.json 의 거래를 날짜순으로 재생해서
 import json
 import os
 from collections import defaultdict
+from datetime import date
 
 TYPES = ("open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee")
 
@@ -48,6 +49,7 @@ def replay(tx):
     cash = defaultdict(lambda: defaultdict(float))   # broker -> currency -> amount
     realized = defaultdict(float)              # ticker -> 실현손익 (현지통화)
     warn = []
+    events = []                                # 실현 이벤트 (매도·배당·수수료)
 
     for i, t in enumerate(tx):
         ty = t.get("type")
@@ -86,7 +88,13 @@ def replay(tx):
                 if qty > p["shares"] + 1e-9:
                     warn.append(f'{i+1}번째: {p["name"]} 보유 {p["shares"]:g}주보다 많은 {qty:g}주 매도')
                     qty = p["shares"]
-                realized[tk] += (px - p["avg_price"]) * qty - fee
+                gain = (px - p["avg_price"]) * qty - fee
+                realized[tk] += gain
+                events.append({"date": t.get("date"), "seq": t.get("seq") or i,
+                               "type": "sell", "market": p["market"], "currency": cur,
+                               "ticker": tk, "name": p["name"], "broker": br,
+                               "amount": round(gain, 2), "shares": qty,
+                               "price": px, "avg_price": p["avg_price"]})
                 p["shares"] -= qty
                 cash[br][cur] += px * qty - fee
                 if p["shares"] <= 1e-9:
@@ -97,9 +105,21 @@ def replay(tx):
         elif ty == "withdraw":
             cash[br][(t.get("currency") or "KRW").upper()] -= _f(t.get("amount"))
         elif ty == "dividend":
-            cash[br][(t.get("currency") or "KRW").upper()] += _f(t.get("amount"))
+            dc = (t.get("currency") or "KRW").upper()
+            cash[br][dc] += _f(t.get("amount"))
+            events.append({"date": t.get("date"), "seq": t.get("seq") or i,
+                           "type": "dividend", "market": "KR" if dc == "KRW" else "US",
+                           "currency": dc, "ticker": t.get("ticker") or "",
+                           "name": t.get("name") or "", "broker": br,
+                           "amount": round(_f(t.get("amount")), 2)})
         elif ty == "fee":
-            cash[br][(t.get("currency") or "KRW").upper()] -= _f(t.get("amount"))
+            fc = (t.get("currency") or "KRW").upper()
+            cash[br][fc] -= _f(t.get("amount"))
+            events.append({"date": t.get("date"), "seq": t.get("seq") or i,
+                           "type": "fee", "market": "KR" if fc == "KRW" else "US",
+                           "currency": fc, "ticker": t.get("ticker") or "",
+                           "name": t.get("name") or "", "broker": br,
+                           "amount": -round(_f(t.get("amount")), 2)})
 
         elif ty == "fx":
             src = (t.get("from") or "KRW").upper()
@@ -119,7 +139,7 @@ def replay(tx):
 
     holdings = [p for p in pos.values() if p["shares"] > 1e-9]
     holdings.sort(key=lambda p: (p["market"], p["ticker"]))
-    return holdings, cash, dict(realized), warn
+    return holdings, cash, dict(realized), warn, events
 
 
 def summarize_cash(cash, fx):
@@ -144,9 +164,87 @@ def build_holdings(path):
     """build.py 가 쓰는 진입점. portfolio.json 의 holdings 와 같은 형태로 반환."""
     tx = load(path)
     if not tx:
-        return None, None, None, []
-    holdings, cash, realized, warn = replay(tx)
+        return None, None, None, [], []
+    holdings, cash, realized, warn, events = replay(tx)
     out = [{"market": p["market"], "ticker": p["ticker"], "name": p["name"],
             "shares": round(p["shares"], 6), "avg_price": round(p["avg_price"], 4),
             "broker": p["broker"]} for p in holdings]
-    return out, cash, realized, warn
+    return out, cash, realized, warn, events
+
+
+def _months_ago(ds, n):
+    """YYYY-MM-DD 에서 n개월 전 날짜 (없는 날짜는 그 달의 마지막 날로 보정)"""
+    y, m, dd = int(ds[0:4]), int(ds[5:7]), int(ds[8:10])
+    m -= n
+    while m <= 0:
+        m += 12
+        y -= 1
+    while dd > 0:
+        try:
+            return date(y, m, dd).isoformat()
+        except ValueError:
+            dd -= 1
+    return f"{y:04d}-{m:02d}-01"
+
+
+def summarize_realized(events, fx, today):
+    """실현손익 요약 — 누적·기간별·연도별. 국내(원화)/해외(달러)를 나눠서 집계합니다.
+
+    해외분의 원화 환산은 매매 당시가 아니라 '현재 환율' 기준입니다 (과거 환율 미보관).
+    """
+    rate = float(fx or 0)
+
+    def bucket():
+        return {"KRW": 0.0, "USD": 0.0,
+                "sell_KRW": 0.0, "sell_USD": 0.0,
+                "dividend_KRW": 0.0, "dividend_USD": 0.0,
+                "fee_KRW": 0.0, "fee_USD": 0.0, "count": 0}
+
+    def add(b, e):
+        cur = e.get("currency") or "KRW"
+        amt = _f(e.get("amount"))
+        b[cur] = b.get(cur, 0.0) + amt
+        key = str(e.get("type")) + "_" + cur
+        if key in b:
+            b[key] += amt
+        b["count"] += 1
+
+    def close(b):
+        out = {k: (round(v) if k.endswith("KRW") else round(v, 2))
+               for k, v in b.items() if k != "count"}
+        out["count"] = b["count"]
+        out["krw_total"] = round(b["KRW"] + b["USD"] * rate)
+        return out
+
+    windows = {}
+    ball = bucket()
+    for e in events:
+        add(ball, e)
+    windows["all"] = close(ball)
+    windows["all"]["since"] = None
+    for key, months in (("m1", 1), ("m3", 3), ("y1", 12)):
+        since = _months_ago(today, months)
+        b = bucket()
+        for e in events:
+            if (e.get("date") or "") >= since:
+                add(b, e)
+        windows[key] = close(b)
+        windows[key]["since"] = since
+
+    years = {}
+    for e in events:
+        y = (e.get("date") or "")[:4]
+        if not y:
+            continue
+        years.setdefault(y, bucket())
+        add(years[y], e)
+    by_year = []
+    for y in sorted(years, reverse=True):
+        row = close(years[y])
+        row["year"] = y
+        by_year.append(row)
+
+    ev = sorted(events, key=lambda e: ((e.get("date") or ""), e.get("seq") or 0),
+                reverse=True)[:120]
+    return {"fx": round(rate, 2) if rate else None, "today": today,
+            "windows": windows, "by_year": by_year, "events": ev}
