@@ -24,7 +24,7 @@ import os
 from collections import defaultdict
 from datetime import date
 
-TYPES = ("open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee")
+TYPES = ("open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee", "tax")
 
 
 def load(path):
@@ -112,11 +112,11 @@ def replay(tx):
                            "currency": dc, "ticker": t.get("ticker") or "",
                            "name": t.get("name") or "", "broker": br,
                            "amount": round(_f(t.get("amount")), 2)})
-        elif ty == "fee":
+        elif ty in ("fee", "tax"):
             fc = (t.get("currency") or "KRW").upper()
             cash[br][fc] -= _f(t.get("amount"))
             events.append({"date": t.get("date"), "seq": t.get("seq") or i,
-                           "type": "fee", "market": "KR" if fc == "KRW" else "US",
+                           "type": ty, "market": "KR" if fc == "KRW" else "US",
                            "currency": fc, "ticker": t.get("ticker") or "",
                            "name": t.get("name") or "", "broker": br,
                            "amount": -round(_f(t.get("amount")), 2)})
@@ -198,7 +198,8 @@ def summarize_realized(events, fx, today):
         return {"KRW": 0.0, "USD": 0.0,
                 "sell_KRW": 0.0, "sell_USD": 0.0,
                 "dividend_KRW": 0.0, "dividend_USD": 0.0,
-                "fee_KRW": 0.0, "fee_USD": 0.0, "count": 0}
+                "fee_KRW": 0.0, "fee_USD": 0.0,
+                "tax_KRW": 0.0, "tax_USD": 0.0, "count": 0}
 
     def add(b, e):
         cur = e.get("currency") or "KRW"
