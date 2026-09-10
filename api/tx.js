@@ -35,7 +35,7 @@ async function readFile(repo, token) {
   return { doc: JSON.parse(text), sha: j.sha };
 }
 
-const VALID = ["open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee"];
+const VALID = ["open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee", "tax"];
 
 function validate(tx) {
   if (!tx || typeof tx !== "object") return "거래 데이터가 없습니다";
@@ -120,7 +120,7 @@ export default async function handler(req, res) {
     list.push(entry);
 
     const label = { open: "기초잔고", buy: "매수", sell: "매도", deposit: "입금",
-                    withdraw: "출금", fx: "환전", dividend: "배당", fee: "수수료" }[tx.type];
+                    withdraw: "출금", fx: "환전", dividend: "배당", fee: "수수료", tax: "세금" }[tx.type];
     const what = entry.name || entry.ticker || entry.currency || "";
     const msg = `거래 추가: ${entry.date} ${label} ${what}`.trim();
 
