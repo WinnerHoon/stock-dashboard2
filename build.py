@@ -192,6 +192,28 @@ def fetch_fear_greed():
             "y1": _r(g.get("previous_1_year"))}
 
 
+_DPS_CACHE = {}
+
+
+def fetch_dps(ticker, market):
+    """최근 12개월 주당배당금(현지통화). 조회 실패나 무배당이면 0."""
+    key = (ticker, market)
+    if key in _DPS_CACHE:
+        return _DPS_CACHE[key]
+    val = 0.0
+    try:
+        import yfinance as yf
+        sym = ticker + ".KS" if market == "KR" else ticker
+        ser = yf.Ticker(sym).dividends
+        if ser is not None and len(ser):
+            cut = (datetime.now(KST) - timedelta(days=365)).strftime("%Y-%m-%d")
+            val = float(sum(float(x) for dt, x in ser.items() if str(dt)[:10] >= cut))
+    except Exception as e:
+        log(f"  · {ticker} 배당 조회 실패 ({type(e).__name__})")
+    _DPS_CACHE[key] = val
+    return val
+
+
 def build(cfg, use_mock=False):
     s = cfg.get("settings", {})
     days = int(s.get("history_days", 400))
@@ -261,6 +283,10 @@ def build(cfg, use_mock=False):
         old = prev_pos.get(f'{tk}|{h.get("broker","")}')
         if old and old.get("roi_pct") is not None and pos["roi_pct"] is not None:
             pos["roi_delta"] = round(pos["roi_pct"] - old["roi_pct"], 2)
+        dps = 0.0 if use_mock else (safe(lambda: fetch_dps(tk, mk), 0.0, nm + " 배당") or 0.0)
+        pos["dps"] = round(dps, 4)
+        pos["div_annual"] = round(dps * sh, 2)
+        pos["div_annual_krw"] = round(dps * sh * rate)
         positions.append(pos)
 
     ok = [x for x in positions if "error" not in x]
@@ -277,11 +303,14 @@ def build(cfg, use_mock=False):
             "m3": x.get("m3"), "y1": x.get("y1"), "from_high": x.get("from_high"),
             "band_pos": x.get("band_pos"), "ma200": x.get("ma200"), "spark": x.get("spark"),
             "shares": 0.0, "cost": 0.0, "market_value_krw": 0, "cost_krw": 0, "brokers": [],
+            "dps": x.get("dps", 0.0), "div_annual": 0.0, "div_annual_krw": 0,
         })
         m["shares"] += x["shares"]
         m["cost"] += x["cost"]
         m["market_value_krw"] += x["market_value_krw"]
         m["cost_krw"] += x["cost_krw"]
+        m["div_annual"] += x.get("div_annual", 0.0)
+        m["div_annual_krw"] += x.get("div_annual_krw", 0)
         if x.get("broker"):
             m["brokers"].append(f'{x["broker"]} {x["shares"]:,.0f}주')
 
@@ -291,6 +320,8 @@ def build(cfg, use_mock=False):
         m["pl_krw"] = round(m["market_value_krw"] - m["cost_krw"])
         m["roi_pct"] = round(pct(m["price"], m["avg_price"]), 2) if m["avg_price"] else None
         m["weight_pct"] = round(m["market_value_krw"] / tv * 100, 2) if tv else 0
+        m["div_yield_pct"] = (round(m["dps"] / m["price"] * 100, 2)
+                              if (m["price"] and m["dps"]) else None)
         m["split"] = len(m["brokers"]) > 1
         consolidated.append(m)
     consolidated.sort(key=lambda x: -x["market_value_krw"])
@@ -319,6 +350,7 @@ def build(cfg, use_mock=False):
         "roi_pct": round((tv - tc) / tc * 100, 2) if tc else None,
         "usdkrw": round(float(fx), 2),
         "positions_count": len(consolidated), "failed_count": len(positions) - len(ok),
+        "div_annual_krw": round(sum(m.get("div_annual_krw", 0) for m in consolidated)),
     }
     if cash:
         totals["cash_krw"] = cash["total_krw"]
