@@ -135,7 +135,7 @@ transform:rotate(45deg);margin:-4px 3px 0 2px;transition:transform .15s;flex:0 0
 </div>
 <script>
 (function(){
- var BAKED="2026-09-10T18:52:59+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-09-10T18:55:40+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
@@ -159,7 +159,7 @@ transform:rotate(45deg);margin:-4px 3px 0 2px;transition:transform .15s;flex:0 0
 // ── 방문할 때마다 실시간 시세로 갱신 ─────────────────────────
 // 브라우저에서 야후를 직접 부르면 CORS 에 막히므로 /api/quotes 서버리스 함수를 거칩니다.
 (function(){
- var HOLD=[{"t": "000660", "y": "000660.KS", "sh": 2.0, "avg": 1656000.0, "cur": "KRW"}, {"t": "META", "y": "META", "sh": 4.0, "avg": 628.91, "cur": "USD"}, {"t": "SPYM", "y": "SPYM", "sh": 26.0, "avg": 81.25, "cur": "USD"}, {"t": "NVDA", "y": "NVDA", "sh": 10.0, "avg": 176.94, "cur": "USD"}, {"t": "QQQM", "y": "QQQM", "sh": 7.0, "avg": 252.32, "cur": "USD"}, {"t": "BRK-B", "y": "BRK-B", "sh": 2.0, "avg": 486.15, "cur": "USD"}, {"t": "138040", "y": "138040.KS", "sh": 8.0, "avg": 114800.0, "cur": "KRW"}, {"t": "381170", "y": "381170.KS", "sh": 28.0, "avg": 29044.0, "cur": "KRW"}, {"t": "360750", "y": "360750.KS", "sh": 25.0, "avg": 21091.0, "cur": "KRW"}, {"t": "011790", "y": "011790.KS", "sh": 5.0, "avg": 104000.0, "cur": "KRW"}, {"t": "BMNR", "y": "BMNR", "sh": 10.0, "avg": 18.49, "cur": "USD"}, {"t": "CPNG", "y": "CPNG", "sh": 16.0, "avg": 16.75, "cur": "USD"}, {"t": "458760", "y": "458760.KS", "sh": 10.0, "avg": 10915.0, "cur": "KRW"}, {"t": "SYM", "y": "SYM", "sh": 1.0, "avg": 58.78, "cur": "USD"}], FXSYM='KRW=X', BUILT="2026-09-10T18:52:59+09:00", CASH={"KRW": 968554, "USD": 183.14}, PREV=21033641;
+ var HOLD=[{"t": "000660", "y": "000660.KS", "sh": 2.0, "avg": 1656000.0, "cur": "KRW"}, {"t": "META", "y": "META", "sh": 4.0, "avg": 628.91, "cur": "USD"}, {"t": "SPYM", "y": "SPYM", "sh": 26.0, "avg": 81.25, "cur": "USD"}, {"t": "NVDA", "y": "NVDA", "sh": 10.0, "avg": 176.94, "cur": "USD"}, {"t": "QQQM", "y": "QQQM", "sh": 7.0, "avg": 252.32, "cur": "USD"}, {"t": "BRK-B", "y": "BRK-B", "sh": 2.0, "avg": 486.15, "cur": "USD"}, {"t": "138040", "y": "138040.KS", "sh": 8.0, "avg": 114800.0, "cur": "KRW"}, {"t": "381170", "y": "381170.KS", "sh": 28.0, "avg": 29044.0, "cur": "KRW"}, {"t": "360750", "y": "360750.KS", "sh": 25.0, "avg": 21091.0, "cur": "KRW"}, {"t": "011790", "y": "011790.KS", "sh": 5.0, "avg": 104000.0, "cur": "KRW"}, {"t": "BMNR", "y": "BMNR", "sh": 10.0, "avg": 18.49, "cur": "USD"}, {"t": "CPNG", "y": "CPNG", "sh": 16.0, "avg": 16.75, "cur": "USD"}, {"t": "458760", "y": "458760.KS", "sh": 10.0, "avg": 10915.0, "cur": "KRW"}, {"t": "SYM", "y": "SYM", "sh": 1.0, "avg": 58.78, "cur": "USD"}], FXSYM='KRW=X', BUILT="2026-09-10T18:55:40+09:00", CASH={"KRW": 968554, "USD": 183.14}, PREV=21033641;
  var won=function(v){return Math.round(v).toLocaleString('ko-KR');};
  var sg=function(v){return v==null?'-':(v>0?'+':'')+v.toFixed(2)+'%';};
  var cl=function(v){return v==null?'flat':(v>0?'up':(v<0?'down':'flat'));};
