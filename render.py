@@ -615,6 +615,35 @@ def rec_at(f):
     return f' · {escape(at[11:16])} 기록' if len(at) >= 16 else ""
 
 
+TWR_WINDOWS = [("all", "전체"), ("y1", "최근 1년"),
+               ("m3", "최근 3개월"), ("m1", "최근 1개월")]
+
+
+def twr_card(d):
+    """입출금 효과를 제외한 시간가중수익률"""
+    t = d.get("twr") or {}
+    if (t.get("all") or {}).get("twr_pct") is None:
+        return ""
+    rows = ""
+    for k, lb in TWR_WINDOWS:
+        b = t.get(k) or {}
+        if b.get("twr_pct") is None:
+            continue
+        since = b.get("since") or t.get("first_date") or ""
+        rows += (f'<tr><td><b>{escape(lb)}</b>'
+                 f'<div class="s2">{escape(str(since))} 이후 · '
+                 f'{b.get("days", 0)}개 구간</div></td>'
+                 f'<td class="n b {c(b["twr_pct"])}">{p(b["twr_pct"])}</td></tr>')
+    note = ""
+    if t.get("flow_total"):
+        note = (f'<p class="s2" style="margin-top:12px">기간 중 입출금 '
+                f'{w(t["flow_total"])}원은 성과에서 제외했습니다. '
+                f'아래 \"기간 중 변화\"에는 포함되어 있습니다.</p>')
+    return (f'<div class="card"><h2>운용 성과 '
+            f'<span class="s2">시간가중수익률 · 입출금 효과 제외</span></h2>'
+            f'<table class="rt"><tbody>{rows}</tbody></table>{note}</div>')
+
+
 def page_history(d, hist, diffs):
     snaps = hist.get("snapshots", [])
     pts = [(s["date"], s["total"]) for s in snaps]
@@ -687,9 +716,9 @@ details.day[open] .dx::after{content:" ▴"}
 .dbody{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
 </style>"""
 
-    body = f"""{css}<header><h1>일별 변화</h1>
+    body = f"""{css}{RZ_CSS}<header><h1>일별 변화</h1>
 <div class="sb"><span id="fresh">갱신 확인 중</span><span>최근 {len(diffs)}일 비교</span></div></header>
-{summary}{chart}{"".join(days)}"""
+{summary}{twr_card(d)}{chart}{"".join(days)}"""
     return shell("history.html", d, body)
 
 
