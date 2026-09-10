@@ -998,6 +998,48 @@ border-radius:10px;padding:1px 7px;white-space:nowrap}
 </style>"""
 
 
+def dps_txt(m):
+    """주당배당금 표기 (통화별)"""
+    v = m.get("dps") or 0
+    return f"{v:,.0f}원" if m.get("currency") == "KRW" else f"${v:,.2f}"
+
+
+def div_card(d):
+    """배당 — 최근 12개월 실적 기준 예상 연간 배당 + 올해 수령액"""
+    C = [m for m in (d.get("consolidated") or []) if m.get("div_annual_krw")]
+    t = d.get("totals") or {}
+    ann = t.get("div_annual_krw") or 0
+    if not ann:
+        return ""
+    mv = t.get("market_value_krw") or 0
+    yld = f"{ann / mv * 100:,.2f}%" if mv else "-"
+
+    r = d.get("realized") or {}
+    fx = r.get("fx") or t.get("usdkrw") or 0
+    yr = (d.get("date") or "")[:4]
+    g = next((y for y in (r.get("by_year") or []) if y.get("year") == yr), {})
+    got = round((g.get("dividend_KRW") or 0) + (g.get("dividend_USD") or 0) * fx)
+
+    rows = "".join(
+        f'<tr><td><b>{escape(m["name"][:20])}</b>'
+        f'<div class="s2">{m["shares"]:,.0f}주 · 주당 {dps_txt(m)} · '
+        f'수익률 {m.get("div_yield_pct") or 0:,.2f}%</div></td>'
+        f'<td class="n b">{m["div_annual_krw"]:,}원</td></tr>'
+        for m in sorted(C, key=lambda x: -x["div_annual_krw"]))
+
+    return (f'<div class="card"><h2>배당 '
+            f'<span class="s2">최근 12개월 실적 기준 예상</span></h2><div class="hero">'
+            f'<div><div class="lb">연간 예상 배당</div>'
+            f'<div class="bg s">{ann:,}원</div></div>'
+            f'<div><div class="lb">배당수익률</div><div class="bg s">{yld}</div></div>'
+            f'<div><div class="lb">{escape(yr)}년 수령</div>'
+            f'<div class="bg s">{got:,}원</div></div>'
+            f'<div><div class="lb">배당 종목</div>'
+            f'<div class="bg s">{len(C)}개</div></div></div>'
+            f'<table class="rt" style="margin-top:16px"><thead><tr><th>종목</th>'
+            f'<th class="n">연간 예상</th></tr></thead><tbody>{rows}</tbody></table></div>')
+
+
 def page_realized(d):
     r = d.get("realized") or {}
     win = r.get("windows") or {}
@@ -1007,7 +1049,8 @@ def page_realized(d):
     if not allb.get("count"):
         body = (f'{RZ_CSS}<header><h1>실현수익</h1></header>'
                 f'<div class="card"><p class="em">아직 실현된 손익이 없습니다.<br>'
-                f'매도 · 배당 · 수수료가 기록되면 여기에 집계됩니다.</p></div>')
+                f'매도 · 배당 · 수수료 · 세금이 기록되면 여기에 집계됩니다.</p></div>'
+                f'{div_card(d)}')
         return shell("realized.html", d, body)
 
     hero = (f'<div class="card"><div class="hero">'
@@ -1065,7 +1108,7 @@ def page_realized(d):
     body = f"""{RZ_CSS}<header><h1>실현수익</h1>
 <div class="sb"><span id="fresh">갱신 확인 중</span>
 <span>매도 차익 + 배당 − 수수료</span></div></header>
-{hero}{period}{kind}{year}{detail}"""
+{hero}{period}{kind}{year}{div_card(d)}{detail}"""
     return shell("realized.html", d, body)
 
 
