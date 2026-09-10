@@ -249,3 +249,66 @@ def summarize_realized(events, fx, today):
                 reverse=True)[:120]
     return {"fx": round(rate, 2) if rate else None, "today": today,
             "windows": windows, "by_year": by_year, "events": ev}
+
+
+def cash_krw_as_of(tx, upto_date, fx):
+    """해당 날짜까지 재생한 뒤의 현금 총액 (원화 환산)"""
+    part = [t for t in tx if (t.get("date") or "") <= upto_date]
+    if not part:
+        return 0.0
+    _h, cash, _r, _w, _e = replay(part)
+    krw = usd = 0.0
+    for cur in cash.values():
+        krw += cur.get("KRW", 0.0)
+        usd += cur.get("USD", 0.0)
+    return krw + usd * float(fx or 0)
+
+
+def summarize_twr(snaps, tx, today):
+    """시간가중수익률(TWR) — 입출금 효과를 걷어낸 순수 운용 성과.
+
+    순자산(주식 평가액 + 현금)을 날짜별 스냅샷으로 잡고, 외부 현금흐름(입금·출금)만
+    분자에서 제외합니다. 매수·매도·환전·배당·수수료·세금은 계좌 내부 이동이라
+    성과에 그대로 반영됩니다.
+    """
+    snaps = [s for s in (snaps or []) if s.get("date")]
+    if len(snaps) < 2:
+        return None
+    daily = []
+    for s in snaps:
+        ds = s["date"]
+        fx = float(s.get("fx") or 0)
+        nav = float(s.get("total") or 0) + cash_krw_as_of(tx, ds, fx)
+        flow = 0.0
+        for t in tx:
+            if (t.get("date") or "") != ds:
+                continue
+            if t.get("type") not in ("deposit", "withdraw"):
+                continue
+            amt = _f(t.get("amount"))
+            k = amt if (t.get("currency") or "KRW").upper() == "KRW" else amt * fx
+            flow += k if t["type"] == "deposit" else -k
+        daily.append({"date": ds, "nav": nav, "flow": flow, "r": 0.0})
+    for i in range(1, len(daily)):
+        prev = daily[i - 1]["nav"]
+        if prev > 0:
+            daily[i]["r"] = (daily[i]["nav"] - daily[i]["flow"]) / prev - 1
+
+    def link(since):
+        acc, n = 1.0, 0
+        for x in daily[1:]:
+            if since and x["date"] < since:
+                continue
+            acc *= 1 + x["r"]
+            n += 1
+        return (round((acc - 1) * 100, 2), n) if n else (None, 0)
+
+    out = {}
+    for key, months in (("all", None), ("y1", 12), ("m3", 3), ("m1", 1)):
+        since = _months_ago(today, months) if months else None
+        val, n = link(since)
+        out[key] = {"twr_pct": val, "days": n, "since": since}
+    out["nav"] = round(daily[-1]["nav"])
+    out["first_date"] = daily[0]["date"]
+    out["flow_total"] = round(sum(x["flow"] for x in daily))
+    return out
