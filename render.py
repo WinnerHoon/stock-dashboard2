@@ -557,9 +557,11 @@ def _chip(label, val, cls):
             f'<span class="{cls}">{escape(val)}</span></span>')
 
 
-MARK_LABEL = {"deposit": "입금", "withdraw": "출금", "dividend": "배당", "fee": "수수료"}
-MARK_SIGN = {"deposit": "+", "withdraw": "-", "dividend": "+", "fee": "-"}
-MARK_CLS = {"deposit": "up", "withdraw": "down", "dividend": "up", "fee": "down"}
+MARK_LABEL = {"deposit": "입금", "withdraw": "출금", "dividend": "배당",
+              "fee": "수수료", "tax": "세금"}
+MARK_SIGN = {"deposit": "+", "withdraw": "-", "dividend": "+", "fee": "-", "tax": "-"}
+MARK_CLS = {"deposit": "up", "withdraw": "down", "dividend": "up",
+            "fee": "down", "tax": "down"}
 
 
 def day_marks(txs, d0, d1):
@@ -574,7 +576,7 @@ def day_marks(txs, d0, d1):
         if ty in MARK_LABEL:
             cur = (t.get("currency") or "KRW").upper()
             money[(ty, cur)] = money.get((ty, cur), 0.0) + _num(t.get("amount"))
-    for ty in ("deposit", "withdraw", "dividend", "fee"):
+    for ty in ("deposit", "withdraw", "dividend", "fee", "tax"):
         for cur in ("KRW", "USD"):
             amt = money.get((ty, cur), 0.0)
             if not amt:
@@ -729,7 +731,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 (function(){
  var T='buy', pw='';
  var el=function(i){return document.getElementById(i);};
- var LABEL={buy:'매수',sell:'매도',deposit:'입금',withdraw:'출금',fx:'환전',dividend:'배당',fee:'수수료'};
+ var LABEL={buy:'매수',sell:'매도',deposit:'입금',withdraw:'출금',fx:'환전',dividend:'배당',fee:'수수료',tax:'세금'};
 
  function show(){
   var stock=(T==='buy'||T==='sell'), fx=(T==='fx'), amt=!stock&&!fx;
@@ -812,7 +814,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <button data-t="buy" class="on">매수</button><button data-t="sell">매도</button>
 <button data-t="deposit">입금</button><button data-t="withdraw">출금</button>
 <button data-t="fx">환전</button><button data-t="dividend">배당</button>
-<button data-t="fee">수수료</button>
+<button data-t="fee">수수료</button><button data-t="tax">세금</button>
 </div>
 
 <div class="row">
@@ -958,7 +960,7 @@ text-decoration:none;color:inherit}
 
 
 # ── 3-2. 실현수익 ───────────────────────────────────────────
-RZ_LABEL = {"sell": "매도 차익", "dividend": "배당", "fee": "수수료"}
+RZ_LABEL = {"sell": "매도 차익", "dividend": "배당", "fee": "수수료", "tax": "세금"}
 RZ_WINDOWS = [("all", "전체"), ("y1", "최근 1년"),
               ("m3", "최근 3개월"), ("m1", "최근 1개월")]
 
@@ -1025,7 +1027,7 @@ def page_realized(d):
     period = f'<div class="card"><h2>기간별</h2>{rztable("기간", prow)}</div>'
 
     krow = ""
-    for ty in ("sell", "dividend", "fee"):
+    for ty in ("sell", "dividend", "fee", "tax"):
         k, u = allb.get(ty + "_KRW", 0), allb.get(ty + "_USD", 0)
         if not k and not u:
             continue
