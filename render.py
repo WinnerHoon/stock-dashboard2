@@ -274,6 +274,8 @@ LIVE_JS = """
  run();
  var btn=document.getElementById('refresh');
  if(btn) btn.onclick=run;
+ // 페이지를 열어두면 1분마다 스스로 갱신 (숨겨진 탭에서는 건너뜀)
+ setInterval(function(){ if(!document.hidden) run(); }, 60000);
  // 탭으로 돌아오면 다시 조회
  document.addEventListener('visibilitychange',function(){
    if(!document.hidden) run();
