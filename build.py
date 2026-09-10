@@ -438,6 +438,11 @@ def main():
         import render
         log("이력 갱신")
         hist, day_diffs = history.update(DIST, data)
+        import ledger as _lg
+        data["twr"] = safe(lambda: _lg.summarize_twr(
+            hist.get("snapshots", []),
+            _lg.load(os.path.join(BASE, "transactions.json")),
+            data["date"]), None, "운용 성과(TWR)")
 
         json.dump(data, open(os.path.join(DIST, "data.json"), "w", encoding="utf-8"),
                   ensure_ascii=False, indent=1)
