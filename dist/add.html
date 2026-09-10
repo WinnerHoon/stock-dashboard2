@@ -165,7 +165,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <div class="row3">
 <div class="fg"><label>방향</label><select id="fxFrom"><option value="KRW">원화 → 달러</option><option value="USD">달러 → 원화</option></select></div>
 <div class="fg"><label>파는 금액</label><input id="fxAmt" type="number" step="any" inputmode="decimal"></div>
-<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1349.26"></div>
+<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1349.21"></div>
 </div>
 <div class="hint">원화 → 달러면 "파는 금액"에 원화를, 달러 → 원화면 달러를 넣으세요.</div>
 </div>
@@ -262,7 +262,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 </div>
 <script>
 (function(){
- var BAKED="2026-09-11T07:29:27+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-09-11T07:49:58+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
