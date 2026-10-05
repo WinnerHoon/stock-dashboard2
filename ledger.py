@@ -26,6 +26,11 @@ from datetime import date
 
 TYPES = ("open", "buy", "sell", "deposit", "withdraw", "fx", "dividend", "fee", "tax")
 
+# 증권사 정식 이름(거래 입력 드롭다운 순서)과 별칭.
+# 별칭으로 기록된 거래도 정식 이름 계좌로 합쳐서 계산합니다.
+BROKERS = ["미래에셋 ISA", "토스", "Super365"]
+BROKER_ALIAS = {"미래에셋": "미래에셋 ISA"}
+
 
 def load(path):
     if not os.path.exists(path):
@@ -53,7 +58,8 @@ def replay(tx):
 
     for i, t in enumerate(tx):
         ty = t.get("type")
-        br = t.get("broker") or "미지정"
+        br = (t.get("broker") or "미지정").strip()
+        br = BROKER_ALIAS.get(br, br)
         if ty not in TYPES:
             warn.append(f"{i+1}번째: 알 수 없는 거래유형 {ty!r}")
             continue
