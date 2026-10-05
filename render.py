@@ -733,6 +733,27 @@ def page_add(d):
         b = BROKER_ALIAS.get(b, b)
         if b and b not in brokers:
             brokers.append(b)
+    # 매도 시 증권사 자동 선택용: 종목별·증권사별 보유 수량 + 이 빌드에 포함된 마지막 거래
+    held = {}
+    for p in d.get("positions") or []:
+        tk = str(p.get("ticker") or "").strip().upper()
+        b = (p.get("broker") or "").strip()
+        b = BROKER_ALIAS.get(b, b) or "미지정"
+        try:
+            sh = float(p.get("shares") or 0)
+        except (TypeError, ValueError):
+            sh = 0.0
+        if tk and sh > 1e-9:
+            held.setdefault(tk, {})
+            held[tk][b] = round(held[tk].get(b, 0) + sh, 6)
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "transactions.json"),
+                  encoding="utf-8") as fp:
+            txl = json.load(fp).get("transactions") or []
+    except Exception:
+        txl = []
+    hd = escape(json.dumps({"held": held, "alias": BROKER_ALIAS, "n": len(txl),
+                            "last": (txl[-1].get("id") or "") if txl else ""}, ensure_ascii=False))
     opts = "".join(f'<option value="{escape(m["ticker"])}" data-name="{escape(m["name"])}" '
                    f'data-market="{m["market"]}">{escape(m["name"])}</option>' for m in C)
     bopts = "".join(f'<option>{escape(b)}</option>' for b in brokers)
@@ -761,6 +782,11 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 .rt2 td{padding:8px 6px;border-bottom:1px solid var(--line)}
 .rt2 .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .hint{color:var(--dim);font-size:11.5px;margin-top:5px}
+#bHint{margin:-6px 0 14px;line-height:2}
+#bHint:empty{display:none}
+#bHint .bchip{margin-left:5px;padding:2px 10px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--txt);font-family:inherit;font-size:12px;cursor:pointer}
+#bHint .bchip.on{border-color:var(--c1);color:var(--c1);font-weight:700}
+#bHint.warn,#bHint .bwarn{color:var(--up)}
 </style>"""
 
     js = """<script>
@@ -779,7 +805,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
   for(var i=0;i<bs.length;i++) bs[i].className=(bs[i].dataset.t===T)?'on':'';
  }
  document.querySelectorAll('.types button').forEach(function(b){
-   b.onclick=function(){T=b.dataset.t;show();};
+   b.onclick=function(){T=b.dataset.t;show();syncBroker(true);};
  });
  // 보유 종목을 고르면 종목명·시장을 자동으로 채우고, 새 종목이면 그대로 둡니다
  el('ticker').oninput=function(){
@@ -789,7 +815,71 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
    if(o){ el('name').value=o.dataset.name; el('market').value=o.dataset.market; }
    else if(v){ el('market').value=/^\\d{6}$/.test(v)?'KR':'US'; }
  };
- function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
+ // ── 증권사 자동 선택: 매도할 때 그 종목을 가진 증권사를 골라 줍니다 ──
+// 보유 수량 = 빌드 시점 보유분 + 아직 빌드에 반영되지 않은 거래(서버 최근 목록 + 이 화면에서 저장한 것)
+var HD={}, PEND=[], MINE=[], force='';
+try{ HD=JSON.parse(el('heldData').getAttribute('data-j'))||{}; }catch(e){ HD={}; }
+function nb(b){ b=String(b||'').trim(); return (HD.alias||{})[b]||b||'미지정'; }
+function ntk(t){ return String(t||'').trim().toUpperCase(); }
+function fs(x){ return Number(x).toLocaleString('ko-KR',{maximumFractionDigits:6})+'주'; }
+function esc(s){ return String(s).split('&').join('&amp;').split('<').join('&lt;').split('"').join('&quot;'); }
+function holdings(tk){
+  var h={}, base=(HD.held||{})[tk]||{}, seen={}, out=[];
+  for(var k in base) h[k]=base[k];
+  PEND.concat(MINE).forEach(function(t){
+    if(!t||(t.id&&seen[t.id])) return;
+    if(t.id) seen[t.id]=1;
+    if(ntk(t.ticker)!==tk) return;
+    var s=Number(t.shares)||0, b=nb(t.broker);
+    if(t.type==='buy'||t.type==='open') h[b]=(h[b]||0)+s;
+    else if(t.type==='sell') h[b]=(h[b]||0)-s;
+  });
+  for(var k2 in h) if(h[k2]>1e-9) out.push([k2,Math.round(h[k2]*1e6)/1e6]);
+  out.sort(function(a,b){ return b[1]-a[1]; });
+  return out;
+}
+function heldAt(hs,b){ var n=0; hs.forEach(function(x){ if(x[0]===b) n=x[1]; }); return n; }
+function setPend(j){
+  var r=j.recent||[], out=[], hit=false;
+  for(var i=0;i<r.length;i++){ if(HD.last&&r[i].id===HD.last){ hit=true; break; } out.push(r[i]); }
+  if(!hit){ var k=(j.count||0)-(HD.n||0); out=k>0?r.slice(0,k):[]; }
+  PEND=out;
+}
+function pickBroker(b){
+  var s=el('broker'), ok=false;
+  for(var i=0;i<s.options.length;i++) if(s.options[i].value===b) ok=true;
+  if(!ok){ var o=document.createElement('option'); o.textContent=b; s.appendChild(o); }
+  s.value=b;
+}
+function syncBroker(auto){
+  var hb=el('bHint'), tk=ntk(el('ticker').value);
+  hb.className='hint';
+  if(!(T==='buy'||T==='sell')||!tk){ hb.innerHTML=''; return; }
+  var hs=holdings(tk), cur=el('broker').value;
+  if(auto&&T==='sell'&&hs.length&&!heldAt(hs,cur)){ cur=hs[0][0]; pickBroker(cur); }
+  if(!hs.length){
+    if(T==='sell'){ hb.className='hint warn'; hb.innerHTML='이 종목은 보유분이 없습니다'; } else hb.innerHTML='';
+    return;
+  }
+  var h='보유';
+  hs.forEach(function(x){ h+='<button type="button" class="bchip'+(x[0]===cur?' on':'')+'" data-b="'+esc(x[0])+'">'+esc(x[0])+' '+fs(x[1])+'</button>'; });
+  if(T==='sell'&&!heldAt(hs,cur)) h+='<div class="bwarn">'+esc(cur)+'에는 보유분이 없습니다</div>';
+  hb.innerHTML=h;
+}
+function sellCheck(){
+  if(T!=='sell') return '';
+  var tk=ntk(el('ticker').value), b=el('broker').value, n=Number(el('shares').value)||0;
+  if(!tk) return '';
+  var has=heldAt(holdings(tk),b), nm=el('name').value||tk;
+  if(!has) return b+'에는 '+nm+' 보유분이 없습니다.';
+  if(n>has+1e-9) return b+' 보유 '+fs(has)+'보다 많은 '+fs(n)+'를 매도하려고 합니다.';
+  return '';
+}
+var _ti=el('ticker').oninput;
+el('ticker').oninput=function(){ _ti(); syncBroker(true); };
+el('broker').onchange=function(){ syncBroker(false); };
+el('bHint').onclick=function(e){ var b=e.target&&e.target.getAttribute&&e.target.getAttribute('data-b'); if(b){ pickBroker(b); syncBroker(false); } };
+function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
 
  function collect(){
   var tx={type:T,date:el('date').value,broker:el('broker').value,memo:el('memo').value};
@@ -808,6 +898,9 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
  el('btnSave').onclick=function(){
   pw=el('pw').value;
   if(!pw){msg('비밀번호를 입력해 주세요','err');return;}
+ var chk=sellCheck(), key=JSON.stringify(collect());
+ if(chk&&force!==key){ force=key; msg(chk+' 그래도 저장하려면 한 번 더 누르세요.','err'); return; }
+ force='';
   var b=el('btnSave'); b.disabled=true; msg('저장 중...','ok');
   fetch('/api/tx',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({password:pw,tx:collect()})})
@@ -816,6 +909,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
      b.disabled=false;
      if(!j.ok){msg('실패: '+j.error,'err');return;}
      msg('저장했습니다. 2~3분 뒤 빌드가 끝나면 포트폴리오에 반영됩니다.','ok');
+   if(j.entry){ MINE.push(j.entry); } syncBroker(false);
      el('shares').value='';el('price').value='';el('fee').value='';
      el('amount').value='';el('fxAmt').value='';el('memo').value='';
      load();
@@ -834,7 +928,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
       +'</td><td class="r">'+num+'</td><td class="r">'+(t.broker||'')+'</td></tr>';
    }).join('');
    el('recent').innerHTML='<table class="rt2"><tbody>'+rows+'</tbody></table>';
-   el('cnt').textContent='전체 '+j.count+'건';
+   el('cnt').textContent='전체 '+j.count+'건'; setPend(j); syncBroker(false);
   }).catch(function(){el('recent').innerHTML='<p class="em">불러오지 못했습니다</p>';});
  }
  el('date').value=new Date().toISOString().slice(0,10);
@@ -857,6 +951,8 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <div class="fg"><label>날짜</label><input type="date" id="date"></div>
 <div class="fg"><label>증권사</label><select id="broker">{bopts}</select></div>
 </div>
+<div class="hint" id="bHint"></div>
+<div id="heldData" hidden data-j="{hd}"></div>
 
 <div id="gStock">
 <div class="fg"><label>종목코드</label>
