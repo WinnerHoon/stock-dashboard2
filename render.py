@@ -725,7 +725,14 @@ details.day[open] .dx::after{content:" ▴"}
 # ── 4. 거래 입력 ─────────────────────────────────────────────
 def page_add(d):
     C = d.get("consolidated", [])
-    brokers = sorted({b.split()[0] for m in C for b in (m.get("brokers") or [])})
+    # 증권사 목록: 정식 이름(ledger.BROKERS) 순서 + 원장에 실제로 쓰인 이름. 별칭은 정식 이름으로.
+    from ledger import BROKERS, BROKER_ALIAS
+    brokers = []
+    for b in BROKERS + [p.get("broker") for p in (d.get("positions") or [])]:
+        b = (b or "").strip()
+        b = BROKER_ALIAS.get(b, b)
+        if b and b not in brokers:
+            brokers.append(b)
     opts = "".join(f'<option value="{escape(m["ticker"])}" data-name="{escape(m["name"])}" '
                    f'data-market="{m["market"]}">{escape(m["name"])}</option>' for m in C)
     bopts = "".join(f'<option>{escape(b)}</option>' for b in brokers)
@@ -848,8 +855,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 
 <div class="row">
 <div class="fg"><label>날짜</label><input type="date" id="date"></div>
-<div class="fg"><label>증권사</label><select id="broker">{bopts}
-<option>미래에셋 ISA</option><option>토스</option><option>Super365</option></select></div>
+<div class="fg"><label>증권사</label><select id="broker">{bopts}</select></div>
 </div>
 
 <div id="gStock">
