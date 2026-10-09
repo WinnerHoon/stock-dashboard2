@@ -149,7 +149,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <div class="fg"><label>종목코드</label>
 <input id="ticker" list="tklist" autocapitalize="characters" autocomplete="off"
  placeholder="해외는 티커 (AAPL), 국내는 6자리 (005930)">
-<datalist id="tklist"><option value="META" data-name="Meta Platforms" data-market="US">Meta Platforms</option><option value="000660" data-name="SK하이닉스" data-market="KR">SK하이닉스</option><option value="SPYM" data-name="SPDR Portfolio S&amp;P 500 ETF" data-market="US">SPDR Portfolio S&amp;P 500 ETF</option><option value="NVDA" data-name="NVIDIA" data-market="US">NVIDIA</option><option value="QQQM" data-name="Invesco NASDAQ 100 ETF" data-market="US">Invesco NASDAQ 100 ETF</option><option value="BRK-B" data-name="Berkshire Hathaway B" data-market="US">Berkshire Hathaway B</option><option value="138040" data-name="메리츠금융지주" data-market="KR">메리츠금융지주</option><option value="381170" data-name="TIGER 미국테크TOP10 INDXX" data-market="KR">TIGER 미국테크TOP10 INDXX</option><option value="360750" data-name="TIGER 미국S&amp;P500" data-market="KR">TIGER 미국S&amp;P500</option><option value="011790" data-name="SKC" data-market="KR">SKC</option><option value="BMNR" data-name="비트마인" data-market="US">비트마인</option><option value="CPNG" data-name="Coupang" data-market="US">Coupang</option><option value="RBLX" data-name="로블록스" data-market="US">로블록스</option><option value="458760" data-name="TIGER 미국배당다우존스타겟커버드콜2호" data-market="KR">TIGER 미국배당다우존스타겟커버드콜2호</option></datalist>
+<datalist id="tklist"><option value="META" data-name="Meta Platforms" data-market="US">Meta Platforms</option><option value="000660" data-name="SK하이닉스" data-market="KR">SK하이닉스</option><option value="SPYM" data-name="SPDR Portfolio S&amp;P 500 ETF" data-market="US">SPDR Portfolio S&amp;P 500 ETF</option><option value="NVDA" data-name="NVIDIA" data-market="US">NVIDIA</option><option value="QQQM" data-name="Invesco NASDAQ 100 ETF" data-market="US">Invesco NASDAQ 100 ETF</option><option value="BRK-B" data-name="Berkshire Hathaway B" data-market="US">Berkshire Hathaway B</option><option value="138040" data-name="메리츠금융지주" data-market="KR">메리츠금융지주</option><option value="381170" data-name="TIGER 미국테크TOP10 INDXX" data-market="KR">TIGER 미국테크TOP10 INDXX</option><option value="360750" data-name="TIGER 미국S&amp;P500" data-market="KR">TIGER 미국S&amp;P500</option><option value="011790" data-name="SKC" data-market="KR">SKC</option><option value="CPNG" data-name="Coupang" data-market="US">Coupang</option><option value="BMNR" data-name="비트마인" data-market="US">비트마인</option><option value="RBLX" data-name="로블록스" data-market="US">로블록스</option><option value="458760" data-name="TIGER 미국배당다우존스타겟커버드콜2호" data-market="KR">TIGER 미국배당다우존스타겟커버드콜2호</option></datalist>
 <div class="hint">보유 종목은 칸을 누르면 목록에서 고를 수 있고, <b>새 종목은 그냥 타이핑하면 됩니다.</b></div></div>
 <div class="row"><div class="fg"><label>종목명</label><input id="name" placeholder="예: Apple / 삼성전자"></div>
 <div class="fg"><label>시장</label><select id="market"><option value="KR">국내 (KR)</option><option value="US">해외 (US)</option></select></div></div>
@@ -171,7 +171,7 @@ font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px
 <div class="row3">
 <div class="fg"><label>방향</label><select id="fxFrom"><option value="KRW">원화 → 달러</option><option value="USD">달러 → 원화</option></select></div>
 <div class="fg"><label>파는 금액</label><input id="fxAmt" type="number" step="any" inputmode="decimal"></div>
-<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1343.83"></div>
+<div class="fg"><label>적용 환율</label><input id="fxRate" type="number" step="any" inputmode="decimal" placeholder="1342.26"></div>
 </div>
 <div class="hint">원화 → 달러면 "파는 금액"에 원화를, 달러 → 원화면 달러를 넣으세요.</div>
 </div>
@@ -336,7 +336,7 @@ function msg(t,cls){var m=el('msg');m.textContent=t;m.className=cls;}
 </div>
 <script>
 (function(){
- var BAKED="2026-10-09T09:43:30+09:00", KEY='reloaded-'+BAKED;
+ var BAKED="2026-10-09T11:55:40+09:00", KEY='reloaded-'+BAKED;
  var el=document.getElementById('fresh');
  function ago(iso){
   var d=(Date.now()-new Date(iso).getTime())/60000;
