@@ -1,39 +1,39 @@
 {
- "generated_at": "2026-11-22T05:41:47+09:00",
- "date": "2026-11-22",
+ "generated_at": "2026-11-23T05:52:19+09:00",
+ "date": "2026-11-23",
  "owner": "승훈",
  "style": "long_term",
  "mock": false,
  "totals": {
-  "market_value_krw": 17065815,
-  "cost_krw": 19249285,
-  "pl_krw": -2183470,
-  "roi_pct": -11.34,
-  "usdkrw": 1334.79,
+  "market_value_krw": 17167687,
+  "cost_krw": 19359268,
+  "pl_krw": -2191581,
+  "roi_pct": -11.32,
+  "usdkrw": 1346.04,
   "positions_count": 14,
   "failed_count": 0,
-  "div_annual_krw": 87604,
-  "cash_krw": 110878,
-  "net_worth_krw": 17176693,
+  "div_annual_krw": 88129,
+  "cash_krw": 111319,
+  "net_worth_krw": 17279006,
   "realized": {
    "381180": 215780.0,
    "491010": 192087.0,
    "SYM": -15.36
   },
   "prev_total_krw": 17065815,
-  "prev_base_date": "2026-11-21",
-  "delta_krw": 0,
-  "delta_pct": 0.0
+  "prev_base_date": "2026-11-22",
+  "delta_krw": 101872,
+  "delta_pct": 0.6
  },
  "allocation": {
-  "국내": 29.2,
-  "해외": 70.8,
-  "ETF": 38.7,
-  "개별주": 61.3,
+  "국내": 29.0,
+  "해외": 71.0,
+  "ETF": 38.8,
+  "개별주": 61.2,
   "by_broker": {
    "미래에셋 ISA": 3652380,
-   "토스": 5823365,
-   "Super365": 7590070
+   "토스": 5861266,
+   "Super365": 7654041
   }
  },
  "cash": {
@@ -41,12 +41,12 @@
    "Super365": {
     "KRW": 11,
     "USD": 10.16,
-    "krw_total": 13572
+    "krw_total": 13687
    },
    "토스": {
     "KRW": 320,
     "USD": 29.04,
-    "krw_total": 39082
+    "krw_total": 39409
    },
    "미래에셋 ISA": {
     "KRW": 58223,
@@ -56,7 +56,7 @@
   },
   "KRW": 58554,
   "USD": 39.2,
-  "total_krw": 110878
+  "total_krw": 111319
  },
  "indices": [
   {
@@ -632,22 +632,21 @@
    "name": "원/달러 환율",
    "unit": "원",
    "group": "환율",
-   "price": 1334.79,
-   "prev_close": 1330.4,
-   "chg": 0.33,
-   "w1": 0.08,
-   "m1": 0.69,
-   "m3": -3.38,
-   "m6": -10.73,
-   "y1": -9.21,
+   "price": 1346.04,
+   "prev_close": 1334.79,
+   "chg": 0.84,
+   "w1": 0.96,
+   "m1": 1.51,
+   "m3": -2.71,
+   "m6": -10.67,
+   "y1": -8.27,
    "high_52w": 1554.48,
    "low_52w": 1321.76,
-   "from_high": -14.13,
-   "band_pos": 5.6,
-   "ma60": 1346.1,
-   "ma200": 1438.98,
+   "from_high": -13.41,
+   "band_pos": 10.4,
+   "ma60": 1345.58,
+   "ma200": 1438.51,
    "spark": [
-    1554.48,
     1528.88,
     1525.8101,
     1525.05,
@@ -766,7 +765,8 @@
     1335.67,
     1333.01,
     1330.4,
-    1334.79
+    1334.79,
+    1346.04
    ]
   },
   {
@@ -1484,19 +1484,19 @@
    "name": "WTI 유가",
    "unit": "$",
    "group": "원자재",
-   "price": 83.98,
+   "price": 83.41,
    "prev_close": 83.21,
-   "chg": 0.93,
-   "w1": -5.17,
-   "m1": -15.57,
-   "m3": 1.97,
-   "m6": -10.55,
-   "y1": 42.0,
+   "chg": 0.24,
+   "w1": -5.82,
+   "m1": -16.15,
+   "m3": 1.27,
+   "m6": -11.16,
+   "y1": 41.04,
    "high_52w": 112.95,
    "low_52w": 55.27,
-   "from_high": -25.65,
-   "band_pos": 49.8,
-   "ma60": 93.87,
+   "from_high": -26.15,
+   "band_pos": 48.8,
+   "ma60": 93.86,
    "ma200": 88.29,
    "spark": [
     96.02,
@@ -1618,7 +1618,7 @@
     86.01,
     83.26,
     83.21,
-    83.98
+    83.41
    ]
   },
   {
@@ -1626,22 +1626,21 @@
    "name": "비트코인",
    "unit": "$",
    "group": "원자재",
-   "price": 60313.6797,
-   "prev_close": 58798.9805,
-   "chg": 2.58,
-   "w1": -7.0,
-   "m1": -22.11,
-   "m3": -25.67,
-   "m6": -6.77,
-   "y1": -17.14,
+   "price": 60788.4297,
+   "prev_close": 60094.0898,
+   "chg": 1.16,
+   "w1": -6.33,
+   "m1": -22.31,
+   "m3": -29.81,
+   "m6": -6.81,
+   "y1": -18.8,
    "high_52w": 86602.9141,
    "low_52w": 58558.8594,
-   "from_high": -30.36,
-   "band_pos": 6.3,
-   "ma60": 78311.8,
-   "ma200": 72428.51,
+   "from_high": -29.81,
+   "band_pos": 8.0,
+   "ma60": 77914.9,
+   "ma200": 72324.21,
    "spark": [
-    64311.8125,
     65340.3008,
     63724.8984,
     63871.3633,
@@ -1760,7 +1759,8 @@
     62987.2656,
     61901.8203,
     58798.9805,
-    60313.6797
+    60094.0898,
+    60788.4297
    ]
   },
   {
@@ -1768,22 +1768,21 @@
    "name": "이더리움",
    "unit": "$",
    "group": "원자재",
-   "price": 1683.0601,
-   "prev_close": 1619.4321,
-   "chg": 3.93,
-   "w1": -7.49,
-   "m1": -25.29,
-   "m3": -36.32,
-   "m6": -10.07,
-   "y1": -22.71,
+   "price": 1716.64,
+   "prev_close": 1682.2046,
+   "chg": 2.05,
+   "w1": -5.83,
+   "m1": -24.48,
+   "m3": -38.17,
+   "m6": -9.83,
+   "y1": -26.99,
    "high_52w": 2776.4683,
    "low_52w": 1564.8167,
-   "from_high": -39.38,
-   "band_pos": 9.8,
-   "ma60": 2335.61,
-   "ma200": 2125.42,
+   "from_high": -38.17,
+   "band_pos": 12.5,
+   "ma60": 2319.46,
+   "ma200": 2122.25,
    "spark": [
-    1873.2224,
     1953.4113,
     1890.6135,
     1919.9485,
@@ -1902,7 +1901,8 @@
     1774.7491,
     1755.1898,
     1619.4321,
-    1683.0601
+    1682.2046,
+    1716.64
    ]
   }
  ],
@@ -2044,19 +2044,19 @@
    ],
    "shares": 4.0,
    "cost": 2515.64,
-   "market_value_krw": 2994414,
-   "cost_krw": 3357851,
+   "market_value_krw": 3019652,
+   "cost_krw": 3386152,
    "brokers": [
     "Super365 2주",
     "토스 2주"
    ],
    "dps": 2.1,
    "div_annual": 8.4,
-   "div_annual_krw": 11212,
+   "div_annual_krw": 11306,
    "avg_price": 628.91,
-   "pl_krw": -363437,
+   "pl_krw": -366500,
    "roi_pct": -10.82,
-   "weight_pct": 17.55,
+   "weight_pct": 17.59,
    "div_yield_pct": 0.37,
    "split": true
   },
@@ -2197,19 +2197,19 @@
    ],
    "shares": 26.0,
    "cost": 2112.38,
-   "market_value_krw": 2820438,
-   "cost_krw": 2819583,
+   "market_value_krw": 2844209,
+   "cost_krw": 2843348,
    "brokers": [
     "Super365 11주",
     "토스 15주"
    ],
    "dps": 0.91,
    "div_annual": 23.66,
-   "div_annual_krw": 31581,
+   "div_annual_krw": 31847,
    "avg_price": 81.25,
-   "pl_krw": 855,
+   "pl_krw": 861,
    "roi_pct": 0.02,
-   "weight_pct": 16.53,
+   "weight_pct": 16.57,
    "div_yield_pct": 1.12,
    "split": true
   },
@@ -2350,18 +2350,18 @@
    ],
    "shares": 7.0,
    "cost": 1766.24,
-   "market_value_krw": 2347375,
-   "cost_krw": 2357559,
+   "market_value_krw": 2367159,
+   "cost_krw": 2377430,
    "brokers": [
     "Super365 7주"
    ],
    "dps": 1.316,
    "div_annual": 9.21,
-   "div_annual_krw": 12296,
+   "div_annual_krw": 12400,
    "avg_price": 252.32,
-   "pl_krw": -10184,
+   "pl_krw": -10271,
    "roi_pct": -0.43,
-   "weight_pct": 13.75,
+   "weight_pct": 13.79,
    "div_yield_pct": 0.52,
    "split": false
   },
@@ -2513,7 +2513,7 @@
    "avg_price": 1656000.0,
    "pl_krw": -1112000,
    "roi_pct": -33.57,
-   "weight_pct": 12.89,
+   "weight_pct": 12.81,
    "div_yield_pct": 0.27,
    "split": false
   },
@@ -2654,19 +2654,19 @@
    ],
    "shares": 10.0,
    "cost": 1769.4199999999998,
-   "market_value_krw": 1675562,
-   "cost_krw": 2361805,
+   "market_value_krw": 1689684,
+   "cost_krw": 2381710,
    "brokers": [
     "Super365 4주",
     "토스 6주"
    ],
    "dps": 0.52,
    "div_annual": 5.2,
-   "div_annual_krw": 6941,
+   "div_annual_krw": 7000,
    "avg_price": 176.94,
-   "pl_krw": -686243,
+   "pl_krw": -692026,
    "roi_pct": -29.06,
-   "weight_pct": 9.82,
+   "weight_pct": 9.84,
    "div_yield_pct": 0.41,
    "split": true
   },
@@ -2807,8 +2807,8 @@
    ],
    "shares": 2.0,
    "cost": 972.3,
-   "market_value_krw": 1521661,
-   "cost_krw": 1297816,
+   "market_value_krw": 1534486,
+   "cost_krw": 1308755,
    "brokers": [
     "Super365 2주"
    ],
@@ -2816,9 +2816,9 @@
    "div_annual": 0.0,
    "div_annual_krw": 0,
    "avg_price": 486.15,
-   "pl_krw": 223845,
+   "pl_krw": 225731,
    "roi_pct": 17.25,
-   "weight_pct": 8.92,
+   "weight_pct": 8.94,
    "div_yield_pct": null,
    "split": false
   },
@@ -2971,7 +2971,7 @@
    "avg_price": 114800.0,
    "pl_krw": 88800,
    "roi_pct": 9.67,
-   "weight_pct": 5.9,
+   "weight_pct": 5.87,
    "div_yield_pct": null,
    "split": true
   },
@@ -3123,7 +3123,7 @@
    "avg_price": 29044.0,
    "pl_krw": -66052,
    "roi_pct": -8.12,
-   "weight_pct": 4.38,
+   "weight_pct": 4.35,
    "div_yield_pct": 0.29,
    "split": false
   },
@@ -3275,7 +3275,7 @@
    "avg_price": 21091.0,
    "pl_krw": 64350,
    "roi_pct": 12.2,
-   "weight_pct": 3.47,
+   "weight_pct": 3.45,
    "div_yield_pct": 1.07,
    "split": false
   },
@@ -3427,7 +3427,7 @@
    "avg_price": 104000.0,
    "pl_krw": -192500,
    "roi_pct": -37.02,
-   "weight_pct": 1.92,
+   "weight_pct": 1.91,
    "div_yield_pct": null,
    "split": false
   },
@@ -3568,8 +3568,8 @@
    ],
    "shares": 16.0,
    "cost": 268.0,
-   "market_value_krw": 304759,
-   "cost_krw": 357724,
+   "market_value_krw": 307328,
+   "cost_krw": 360739,
    "brokers": [
     "토스 16주"
    ],
@@ -3577,7 +3577,7 @@
    "div_annual": 0.0,
    "div_annual_krw": 0,
    "avg_price": 16.75,
-   "pl_krw": -52965,
+   "pl_krw": -53411,
    "roi_pct": -14.81,
    "weight_pct": 1.79,
    "div_yield_pct": null,
@@ -3720,8 +3720,8 @@
    ],
    "shares": 4.0,
    "cost": 187.36,
-   "market_value_krw": 249445,
-   "cost_krw": 250087,
+   "market_value_krw": 251548,
+   "cost_krw": 252194,
    "brokers": [
     "Super365 3주",
     "토스 1주"
@@ -3730,9 +3730,9 @@
    "div_annual": 0.0,
    "div_annual_krw": 0,
    "avg_price": 46.84,
-   "pl_krw": -642,
+   "pl_krw": -646,
    "roi_pct": -0.26,
-   "weight_pct": 1.46,
+   "weight_pct": 1.47,
    "div_yield_pct": null,
    "split": true
   },
@@ -3873,16 +3873,16 @@
    ],
    "shares": 10.0,
    "cost": 184.9,
-   "market_value_krw": 173256,
-   "cost_krw": 246803,
+   "market_value_krw": 174716,
+   "cost_krw": 248883,
    "brokers": [
     "Super365 10주"
    ],
    "dps": 0.01,
    "div_annual": 0.1,
-   "div_annual_krw": 133,
+   "div_annual_krw": 135,
    "avg_price": 18.49,
-   "pl_krw": -73547,
+   "pl_krw": -74167,
    "roi_pct": -29.8,
    "weight_pct": 1.02,
    "div_yield_pct": 0.08,
@@ -4036,7 +4036,7 @@
    "avg_price": 10915.0,
    "pl_krw": -3750,
    "roi_pct": -3.44,
-   "weight_pct": 0.62,
+   "weight_pct": 0.61,
    "div_yield_pct": 10.4,
    "split": false
   }
@@ -5138,9 +5138,9 @@
    "market_value": 129.8,
    "cost": 184.9,
    "roi_pct": -29.8,
-   "market_value_krw": 173256,
-   "cost_krw": 246803,
-   "pl_krw": -73547,
+   "market_value_krw": 174716,
+   "cost_krw": 248883,
+   "pl_krw": -74167,
    "price": 12.98,
    "prev_close": 15.07,
    "chg": -13.87,
@@ -5280,7 +5280,7 @@
    "roi_delta": 0.0,
    "dps": 0.01,
    "div_annual": 0.1,
-   "div_annual_krw": 133
+   "div_annual_krw": 135
   },
   {
    "market": "US",
@@ -5293,9 +5293,9 @@
    "market_value": 1140.0,
    "cost": 972.3,
    "roi_pct": 17.25,
-   "market_value_krw": 1521661,
-   "cost_krw": 1297816,
-   "pl_krw": 223844,
+   "market_value_krw": 1534486,
+   "cost_krw": 1308755,
+   "pl_krw": 225731,
    "price": 570.0,
    "prev_close": 572.04,
    "chg": -0.36,
@@ -5448,9 +5448,9 @@
    "market_value": 228.32,
    "cost": 268.0,
    "roi_pct": -14.81,
-   "market_value_krw": 304759,
-   "cost_krw": 357724,
-   "pl_krw": -52964,
+   "market_value_krw": 307328,
+   "cost_krw": 360739,
+   "pl_krw": -53411,
    "price": 14.27,
    "prev_close": 14.06,
    "chg": 1.49,
@@ -5603,9 +5603,9 @@
    "market_value": 1121.68,
    "cost": 1301.86,
    "roi_pct": -13.84,
-   "market_value_krw": 1497207,
-   "cost_krw": 1737710,
-   "pl_krw": -240502,
+   "market_value_krw": 1509826,
+   "cost_krw": 1752356,
+   "pl_krw": -242529,
    "price": 560.84,
    "prev_close": 596.22,
    "chg": -5.93,
@@ -5745,7 +5745,7 @@
    "roi_delta": 0.0,
    "dps": 2.1,
    "div_annual": 4.2,
-   "div_annual_krw": 5606
+   "div_annual_krw": 5653
   },
   {
    "market": "US",
@@ -5758,9 +5758,9 @@
    "market_value": 1121.68,
    "cost": 1213.78,
    "roi_pct": -7.59,
-   "market_value_krw": 1497207,
-   "cost_krw": 1620141,
-   "pl_krw": -122934,
+   "market_value_krw": 1509826,
+   "cost_krw": 1633796,
+   "pl_krw": -123970,
    "price": 560.84,
    "prev_close": 596.22,
    "chg": -5.93,
@@ -5900,7 +5900,7 @@
    "roi_delta": 0.0,
    "dps": 2.1,
    "div_annual": 4.2,
-   "div_annual_krw": 5606
+   "div_annual_krw": 5653
   },
   {
    "market": "US",
@@ -5913,9 +5913,9 @@
    "market_value": 502.12,
    "cost": 714.56,
    "roi_pct": -29.73,
-   "market_value_krw": 670225,
-   "cost_krw": 953788,
-   "pl_krw": -283563,
+   "market_value_krw": 675874,
+   "cost_krw": 961826,
+   "pl_krw": -285953,
    "price": 125.53,
    "prev_close": 145.98,
    "chg": -14.01,
@@ -6055,7 +6055,7 @@
    "roi_delta": 0.0,
    "dps": 0.52,
    "div_annual": 2.08,
-   "div_annual_krw": 2776
+   "div_annual_krw": 2800
   },
   {
    "market": "US",
@@ -6068,9 +6068,9 @@
    "market_value": 753.18,
    "cost": 1054.86,
    "roi_pct": -28.6,
-   "market_value_krw": 1005337,
-   "cost_krw": 1408017,
-   "pl_krw": -402679,
+   "market_value_krw": 1013810,
+   "cost_krw": 1419884,
+   "pl_krw": -406073,
    "price": 125.53,
    "prev_close": 145.98,
    "chg": -14.01,
@@ -6210,7 +6210,7 @@
    "roi_delta": 0.0,
    "dps": 0.52,
    "div_annual": 3.12,
-   "div_annual_krw": 4165
+   "div_annual_krw": 4200
   },
   {
    "market": "US",
@@ -6223,9 +6223,9 @@
    "market_value": 1758.61,
    "cost": 1766.24,
    "roi_pct": -0.43,
-   "market_value_krw": 2347375,
-   "cost_krw": 2357559,
-   "pl_krw": -10184,
+   "market_value_krw": 2367159,
+   "cost_krw": 2377430,
+   "pl_krw": -10270,
    "price": 251.23,
    "prev_close": 265.64,
    "chg": -5.42,
@@ -6365,7 +6365,7 @@
    "roi_delta": 0.0,
    "dps": 1.316,
    "div_annual": 9.21,
-   "div_annual_krw": 12296
+   "div_annual_krw": 12400
   },
   {
    "market": "US",
@@ -6378,9 +6378,9 @@
    "market_value": 140.16,
    "cost": 140.49,
    "roi_pct": -0.23,
-   "market_value_krw": 187084,
-   "cost_krw": 187525,
-   "pl_krw": -440,
+   "market_value_krw": 188661,
+   "cost_krw": 189105,
+   "pl_krw": -444,
    "price": 46.72,
    "prev_close": 46.35,
    "chg": 0.8,
@@ -6533,9 +6533,9 @@
    "market_value": 46.72,
    "cost": 46.87,
    "roi_pct": -0.32,
-   "market_value_krw": 62361,
-   "cost_krw": 62562,
-   "pl_krw": -200,
+   "market_value_krw": 62887,
+   "cost_krw": 63089,
+   "pl_krw": -202,
    "price": 46.72,
    "prev_close": 46.35,
    "chg": 0.8,
@@ -6688,9 +6688,9 @@
    "market_value": 893.97,
    "cost": 870.98,
    "roi_pct": 2.64,
-   "market_value_krw": 1193262,
-   "cost_krw": 1162575,
-   "pl_krw": 30687,
+   "market_value_krw": 1203319,
+   "cost_krw": 1172374,
+   "pl_krw": 30945,
    "price": 81.27,
    "prev_close": 84.26,
    "chg": -3.55,
@@ -6830,7 +6830,7 @@
    "roi_delta": 0.0,
    "dps": 0.91,
    "div_annual": 10.01,
-   "div_annual_krw": 13361
+   "div_annual_krw": 13474
   },
   {
    "market": "US",
@@ -6843,9 +6843,9 @@
    "market_value": 1219.05,
    "cost": 1241.4,
    "roi_pct": -1.8,
-   "market_value_krw": 1627176,
-   "cost_krw": 1657008,
-   "pl_krw": -29833,
+   "market_value_krw": 1640890,
+   "cost_krw": 1670974,
+   "pl_krw": -30084,
    "price": 81.27,
    "prev_close": 84.26,
    "chg": -3.55,
@@ -6985,7 +6985,7 @@
    "roi_delta": 0.0,
    "dps": 0.91,
    "div_annual": 13.65,
-   "div_annual_krw": 18220
+   "div_annual_krw": 18373
   }
  ],
  "news": {
@@ -6993,44 +6993,44 @@
    "name": "Meta Platforms",
    "items": [
     {
-     "title": "$1,000 in Anthropic Stock or XRP: Which Could Be Worth More in 5 Years?",
-     "url": "https://247wallst.com/investing/cryptocurrency/2026/11/21/1000-in-anthropic-stock-or-xrp-which-could-be-worth-more-in-5-years/",
-     "publisher": "24/7 Wall St.",
-     "summary": "One bet comes from the biggest IPO ever, and the other from a coin that keeps bleeding. Both could multiply a $1,000 stake, but only one carries a catch that makes the math far more brutal than it looks.",
-     "published": "2026-11-21T20:11:31Z",
-     "title_ko": "앤트로픽 주식 또는 XRP 1,000달러: 5년 후 가치가 더 높을 수 있는 것은?"
-    },
-    {
-     "title": "A $3.2 Billion Fund Just Bought These 3 Stocks",
-     "url": "https://www.tikr.com/blog/a-3-2-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261121-5m8xrrcc",
-     "publisher": "TIKR",
-     "summary": "Key TakeawaysA $3. 2 billion fund opened new positions in Snowflake, TTM Technologies and Meta Platforms in the third quarter, its 13F shows.",
-     "published": "2026-11-21T19:52:12Z",
-     "title_ko": "32억 달러 규모의 펀드가 방금 이 3가지 주식을 매수했습니다"
-    },
-    {
-     "title": "Microsoft Was The Only Big AI Buyer Paying Down Debt. How Much More Can It Spend?",
-     "url": "https://www.trefis.com/stock/msft/articles/627454/microsoft-was-the-only-big-ai-buyer-paying-down-debt-how-much-more-can-it-spend/2026-11-21",
-     "publisher": "Trefis",
-     "summary": "Today's big story: Will 2027 Be A 2022 Repeat For Stocks.",
-     "published": "2026-11-21T18:32:03Z",
-     "title_ko": "마이크로소프트는 부채를 상환하는 유일한 대형 AI 구매자였습니다. 앞으로 얼마나 더 지출할 수 있을까요?"
-    },
-    {
-     "title": "Meta Stopped Its Buybacks To Build AI. How Much More Can It Spend?",
-     "url": "https://www.trefis.com/stock/meta/articles/627455/meta-stopped-its-buybacks-to-build-ai-how-much-more-can-it-spend/2026-11-21",
-     "publisher": "Trefis",
-     "summary": "Today's big story: Will 2027 Be A 2022 Repeat For Stocks.",
-     "published": "2026-11-21T18:32:03Z",
-     "title_ko": "Meta, AI 개발을 위해 자사주 매입 중단. 얼마나 더 지출할 수 있을까요?"
-    },
-    {
-     "title": "Billionaire Investor Philippe Laffont Just Highlighted 2 Companies He Expects to Be Big Winners of the Agentic AI Era",
-     "url": "https://www.fool.com/investing/2026/11/21/billionaire-investor-philippe-laffont-just-highlighted-2-companies-he-expects-to-be-big-winners-of-the-agentic-ai-era/",
+     "title": "Alphabet vs. Meta Platforms: Which Media Stock Is a Better Buy for 2027?",
+     "url": "https://www.fool.com/coverage/better-buy/2026/11/22/alphabet-vs-meta-platforms-which-media-stock-is-a-better-buy-for-2027/",
      "publisher": "Motley Fool",
-     "summary": "The rise of agentic AI could boost plenty of businesses, but Laffont is putting his money into Intel and Meta Platforms.",
-     "published": "2026-11-21T17:04:02Z",
-     "title_ko": "억만장자 투자자 필립 라퐁이 에이전틱 AI 시대의 큰 승자가 될 것으로 예상하는 2개 기업을 소개했습니다."
+     "summary": "Alphabet's 13.9x forward P/E sits well below Meta's 20.5x, but Meta's 27.5% revenue jump makes the growth-versus-value trade-off harder to call.",
+     "published": "2026-11-22T17:16:18Z",
+     "title_ko": "Alphabet vs. Meta Platforms: 2027년에 더 나은 매수 대상은 어느 미디어 주식인가요?"
+    },
+    {
+     "title": "A $14 Billion Fund Just Bought These 3 Stocks",
+     "url": "https://www.tikr.com/blog/a-14-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-xrm65rcp",
+     "publisher": "TIKR",
+     "summary": "Key TakeawaysSRS Investment Management, a $14 billion firm, added to Roblox and Meta Platforms and opened a new stake in SK hynix in the third quarter, its latest 13F shows. Roblox is up 10% since Sept.",
+     "published": "2026-11-22T12:35:37Z",
+     "title_ko": "140억 달러 규모의 펀드가 방금 이 3가지 주식을 매수했습니다"
+    },
+    {
+     "title": "A $6.6 Billion Fund Just Bought These 3 Stocks",
+     "url": "https://www.tikr.com/blog/a-6-6-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-6qpxc48r",
+     "publisher": "TIKR",
+     "summary": "Key TakeawaysA $6. 6 billion fund’s three biggest buys of the third quarter were Meta Platforms, US Foods and Burlington Stores, its latest 13F shows.",
+     "published": "2026-11-22T11:21:43Z",
+     "title_ko": "66억 달러 규모의 펀드가 방금 이 3가지 주식을 매수했습니다"
+    },
+    {
+     "title": "Billionaire Tech Investor Philippe Laffont Just Loaded Up on These 4 AI Stocks",
+     "url": "https://www.fool.com/investing/2026/11/22/billionaire-tech-investor-philippe-laffont-just-loaded-up-on-these-4-ai-stocks/",
+     "publisher": "Motley Fool",
+     "summary": "Laffont was busy buying shares of agentic AI stocks in Q3.",
+     "published": "2026-11-22T11:15:02Z",
+     "title_ko": "억만장자 기술 투자자 필립 라퐁이 방금 이 4가지 AI 주식을 매수했습니다."
+    },
+    {
+     "title": "Sheryl Sandberg steps in to rescue Britain’s $35bn AI hope",
+     "url": "https://uk.finance.yahoo.com/news/sheryl-sandberg-steps-rescue-britain-080000360.html",
+     "publisher": "The Telegraph",
+     "summary": "On a Saturday last year, Sheryl Sandberg’s phone rang. On the other end was Paul Daversa, a star Silicon Valley recruiter.",
+     "published": "2026-11-22T08:00:00Z",
+     "title_ko": "셰릴 샌드버그, 영국의 350억 달러 규모 AI 기대주 구원에 나서다"
     }
    ]
   },
@@ -7046,35 +7046,35 @@
      "title_ko": null
     },
     {
+     "title": "“호황 끝” 공포에 주가 반토막…삼전닉스 3대 불안의 진실",
+     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBRZ3VnSnBrM3ZrN3RRS2xVR3hUTzcySmJYZDdEVHdlTklkaF9WejRGZ0VFMDYyLUk3ZS1ZR20ySnRKbXdoVXdyYW9fLUpFeF9xVFh1ZlRB?oc=5",
+     "publisher": "중앙일보",
+     "summary": "“호황 끝” 공포에 주가 반토막…삼전닉스 3대 불안의 진실  중앙일보",
+     "published": "Sat, 21 Nov 2026 21:00:00 GMT",
+     "title_ko": null
+    },
+    {
+     "title": "삼전·닉스 더 빠질까…증권가선 “추가 하락 대비” 분석도",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQSVlJRGtSWnhHZEdudVVFQWJrM2VoVlpObUVvMkJXSW1lU0wzUEI1Rk1PQklLLUQxdzJsWGdCdFhvX3kwQzZzbllrd2ZDZXd1RlJMV0FQcjl0OFFoV1JCQzg1a1pTNXY2N1Zyd3lZOHRxLTQ4YXlKZ2NVdGNBb0RsWA?oc=5",
+     "publisher": "이데일리",
+     "summary": "삼전·닉스 더 빠질까…증권가선 “추가 하락 대비” 분석도  이데일리",
+     "published": "Sun, 22 Nov 2026 13:36:12 GMT",
+     "title_ko": null
+    },
+    {
+     "title": "\"삼전 30만원·하닉 200만원 이상에 물린 사람…3년은 마음 비워야\"",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0yaHA2aTBobnNuLWRGRk1EdlZuR2djcmRMclQ2TlU5Y09QY1RhVE8yc2NZWnR1RGNRSmJHZDFGTnNIUkF1VVE1X2RmM0Q2Zno1YTE5ckcyZGRELVJ2TFFWY9IBeEFVX3lxTFB0OHlPTDZLeWVRRjhCcFZOVGtLdmlpMlRXWEFzOGVRMnQtVVI5djIxN0RETnpVdE02UnR0MFMxdi1Oa3k5NVNDUXFIZ2pnQ1gxZEhUNWxQcHowenpwSXpYdkpMZEZueEMyTi1fZTdQZVZpMUFucEJJUA?oc=5",
+     "publisher": "뉴시스",
+     "summary": "\"삼전 30만원·하닉 200만원 이상에 물린 사람…3년은 마음 비워야\"  뉴시스",
+     "published": "Sun, 22 Nov 2026 15:00:00 GMT",
+     "title_ko": null
+    },
+    {
      "title": "‘7만전자·20만닉스’ 말한 전문가... “본격 폭락, 아직 시작도 안했다”",
      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQaC1JZmdSZW5kb2NEQU9UWDNJVlpZMVhNVzFjWlA2OFRENDdRaWVPcjljcDI5R0JUQ2N1a1cwTE44dzU5SHFCU1NxSUVHU0lNRGdJNkhtM1ZOenJXNnY3ek05bEJQUlY2UzBCNWV3UVlWUEdTZUhwa09yV25JamIxNEY4ZThLT3Vh?oc=5",
      "publisher": "조선일보",
      "summary": "‘7만전자·20만닉스’ 말한 전문가... “본격 폭락, 아직 시작도 안했다”  조선일보",
      "published": "Sat, 21 Nov 2026 05:00:22 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "'7만전자·20만닉스' 전망한 전문가...\"AI 거품, 폭락 시작도 안 했다\" - 머니투데이",
-     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE43MEdCTHJGMFd6XzlMai1GUC0tUE4zTVAzY3IzVGhRb1l4MV9VRlZ5SkZYdzNCYkx3VmZmYkR1RmRIR01MNC0tbmhfOGJUZnRZRkZyb0l0ZVlIdmxReUJSQ1BxLVdFbUZablBN0gFwQVVfeXFMTXA1ajZub0VoMXZfZDI0WmlCM1ZKbmZKRmtJTkhKc2NNS083bzZ3ZGV3TDJWTTB6bVJEUmVUb2xSeGF1eWNobUpLOEtOd1pkTjFrM3RNZjdmekZRZ19VUEFVVjJBckVwUTFEYjZTRmxYeA?oc=5",
-     "publisher": "머니투데이",
-     "summary": "'7만전자·20만닉스' 전망한 전문가...\"AI 거품, 폭락 시작도 안 했다\" - 머니투데이  머니투데이",
-     "published": "Sat, 21 Nov 2026 02:14:59 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "\"1억 넣었는데 1800만 원 된다고?\"… '7만전자·20만닉스' 섬뜩한 폭락 경고의 실체",
-     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9QNjY4Sk9ISWxaQnBERDh0YVZWSnZXME45aG1jWGdxVzNUcjVEaEQyNXFxcHRVMC1mR0xoeV90N2pGTjBCanFDaERTcWlhSmJSX000NWlLRmQ5Zw?oc=5",
-     "publisher": "파이낸셜뉴스",
-     "summary": "\"1억 넣었는데 1800만 원 된다고?\"… '7만전자·20만닉스' 섬뜩한 폭락 경고의 실체  파이낸셜뉴스",
-     "published": "Sat, 21 Nov 2026 05:00:00 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "어떻게 ‘수출 1조 달러’인데 ‘주가 폭락’이 오나",
-     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE80SWNSa0Y3X3dJXzVlc05Bd1dLR1pzbGhsb3Vfb2x5RXZfQlVjS3RrZ2pLLUN3WnFFV3hYTFcybXNXZ1ZCSGg0WDM2RkppcHotTG9kdGU3ZTRYUkU?oc=5",
-     "publisher": "KBS 뉴스",
-     "summary": "어떻게 ‘수출 1조 달러’인데 ‘주가 폭락’이 오나  KBS 뉴스",
-     "published": "Fri, 20 Nov 2026 23:02:00 GMT",
      "title_ko": null
     }
    ]
@@ -7083,44 +7083,44 @@
    "name": "NVIDIA",
    "items": [
     {
-     "title": "What just happened to tech stocks?",
-     "url": "https://finance.yahoo.com/markets/article/what-just-happened-to-tech-stocks-162354774.html",
+     "title": "GPU prices are rising for Nvidia's older chips even as the stock keeps going down: Chart of the Day",
+     "url": "https://finance.yahoo.com/markets/article/gpu-prices-are-rising-for-nvidias-older-chips-even-as-the-stock-keeps-going-down-chart-of-the-day-123721121.html",
      "publisher": "Yahoo Finance",
-     "summary": "It has gotten brutal out there in tech stock land.",
-     "published": "2026-11-21T16:23:54Z",
-     "title_ko": "기술주에 무슨 일이 있었나요?"
+     "summary": "Investors can't get out of Nvidia fast enough. The companies running AI can't get enough of its chips.",
+     "published": "2026-11-22T12:37:21Z",
+     "title_ko": "엔비디아의 주가가 계속 하락하고 있음에도 불구하고 엔비디아의 구형 칩 가격은 상승하고 있습니다. 오늘의 차트"
     },
     {
-     "title": "Jensen Huang's next move: Wall Street floats Intel and SpaceX, but bettors are banking on a surprise second act",
-     "url": "https://finance.yahoo.com/markets/article/jensen-huangs-next-move-wall-street-floats-intel-and-spacex-but-bettors-are-banking-on-a-surprise-second-act-123015670.html",
+     "title": "From Anthropic to Nvidia, Wall Street just had a bizarre, wild week",
+     "url": "https://finance.yahoo.com/markets/article/from-anthropic-to-nvidia-wall-street-just-had-a-bizarre-wild-week-110000443.html",
      "publisher": "Yahoo Finance",
-     "summary": "Prediction markets think Huang is likelier to start something new than to join Intel or SpaceX.",
-     "published": "2026-11-21T12:30:15Z",
-     "title_ko": "젠슨 황의 다음 행보: 월스트리트는 인텔과 스페이스X를 주목하지만, 투자자들은 뜻밖의 두 번째 행보에 베팅하고 있습니다."
+     "summary": "This has been a week for the ages in the investing world, no doubt.",
+     "published": "2026-11-22T11:00:00Z",
+     "title_ko": "앤트로픽부터 엔비디아까지, 월스트리트는 기이하고 격렬한 한 주를 보냈습니다."
     },
     {
-     "title": "1 Compelling Reason to Buy Vistra Stock Before November Ends",
-     "url": "https://www.fool.com/investing/2026/11/21/1-compelling-reason-to-buy-vistra-stock-before-november-ends/",
+     "title": "Anthropic Stock Could Soar by 72%, According to This Wall Street Analyst",
+     "url": "https://www.fool.com/investing/2026/11/22/anthropic-stock-could-soar-by-72-according-to-this-wall-street-analyst/",
      "publisher": "Motley Fool",
-     "summary": "Vistra's recent pullback alongside AI stocks gives investors an opportunity to buy the stock at a discount.",
-     "published": "2026-11-21T20:05:02Z",
-     "title_ko": "11월이 끝나기 전에 Vistra 주식을 매수해야 하는 설득력 있는 이유 1가지"
+     "summary": "Needham sees Anthropic soaring to $150, but is that realistic?",
+     "published": "2026-11-22T20:36:01Z",
+     "title_ko": "이 월스트리트 애널리스트에 따르면, Anthropic의 주가는 72% 급등할 수 있습니다."
     },
     {
-     "title": "The S&P 500 Is Having the Longest Losing Streak Since February 2020",
-     "url": "https://247wallst.com/investing/2026/11/21/the-sp-500-is-having-the-longest-losing-streak-since-february-2020/",
-     "publisher": "24/7 Wall St.",
-     "summary": "Nearly a year of gains vanished in about six weeks, and the selling keeps getting heavier. One equal-weight fund is holding up far better than the big index fund, and the gap points to a specific risk.",
-     "published": "2026-11-21T20:02:04Z",
-     "title_ko": "S&P 500 지수는 2020년 2월 이후 가장 긴 하락세를 보이고 있습니다."
-    },
-    {
-     "title": "Meet the Warren Buffett Rule That Makes This Consumer Stock a Buy With $1,000 Right Now",
-     "url": "https://www.fool.com/investing/2026/11/21/meet-the-warren-buffett-rule-that-makes-this-consumer-stock-a-buy-with-1000-right-now/",
+     "title": "When Can Anthropic Insiders Sell? What the Post-IPO Lockup Period Means for Shareholders.",
+     "url": "https://www.fool.com/investing/2026/11/22/when-can-anthropic-insiders-sell-what-the-lockup-means-for-shareholders/",
      "publisher": "Motley Fool",
-     "summary": "This business combines chicken feed, dog food, and a Buffett lesson that's finally lining up with a fair price.",
-     "published": "2026-11-21T19:47:02Z",
-     "title_ko": "지금 1,000달러로 이 소비재 주식을 매수하게 만드는 워런 버핏의 규칙을 알아보세요."
+     "summary": "There are more important long-term drivers for the stock price than the expirations of its lockup periods.",
+     "published": "2026-11-22T20:29:02Z",
+     "title_ko": "Anthropic 내부자는 언제 매도할 수 있나요? 상장 후 보호예수 기간이 주주에게 미치는 영향."
+    },
+    {
+     "title": "United Airlines Has Warned Air Traffic Control Isn’t Ready for Air Taxis. That’s a Bigger Problem for Archer Than Its Cash Burn.",
+     "url": "https://www.fool.com/investing/2026/11/22/united-airlines-has-warned-air-traffic-control-isn-t-ready-for-air-taxis-that-s-a-bigger-problem-for-archer-than-its-cash-burn/",
+     "publisher": "Motley Fool",
+     "summary": "The recent air delays don't have anything to do with Archer Aviation, but they could mean a more delayed regulatory process for the eVTOL maker.",
+     "published": "2026-11-22T20:25:02Z",
+     "title_ko": "유나이티드 항공이 항공교통관제 당국에 에어택시 도입에 대한 준비가 되어 있지 않다고 경고했습니다. 이는 아처에게 현금 소진보다 더 큰 문제입니다."
     }
    ]
   },
@@ -7128,58 +7128,50 @@
    "name": "Berkshire Hathaway B",
    "items": [
     {
-     "title": "Meet the Warren Buffett Rule That Makes This Consumer Stock a Buy With $1,000 Right Now",
-     "url": "https://www.fool.com/investing/2026/11/21/meet-the-warren-buffett-rule-that-makes-this-consumer-stock-a-buy-with-1000-right-now/",
-     "publisher": "Motley Fool",
-     "summary": "This business combines chicken feed, dog food, and a Buffett lesson that's finally lining up with a fair price.",
-     "published": "2026-11-21T19:47:02Z",
-     "title_ko": "지금 1,000달러로 이 소비재 주식을 매수하게 만드는 워런 버핏의 규칙을 알아보세요."
-    },
-    {
-     "title": "Warren Buffett Said Stocks Are Better Than Bonds for Long-Term Investors. History Shows He Was Right.",
-     "url": "https://www.fool.com/investing/2026/11/21/warren-buffett-said-stocks-are-better-than-bonds-for-long-term-investors-history-shows-he-was-right/",
-     "publisher": "Motley Fool",
-     "summary": "A bad experience with Treasury bonds made Warren Buffett even more of a believer in stocks for the long run. See why.",
-     "published": "2026-11-21T18:05:02Z",
-     "title_ko": "워런 버핏은 장기 투자자에게 주식이 채권보다 낫다고 말했습니다. 역사는 그가 옳았음을 보여줍니다."
-    },
-    {
-     "title": "Here's How Many Shares of Coca-Cola You'd Need for $1,000 in Monthly Income",
-     "url": "https://www.fool.com/investing/2026/11/21/heres-how-many-shares-of-coca-cola-youd-need-for-1000-in-monthly-income/",
-     "publisher": "Motley Fool",
-     "summary": "Just like Berkshire Hathaway, you can build a steady income stream with Coca-Cola stock.",
-     "published": "2026-11-21T17:50:02Z",
-     "title_ko": "월 1,000달러의 소득을 올리려면 코카콜라 주식이 몇 주 필요할까요?"
-    },
-    {
-     "title": "Warren Buffet’s Stock Portfolio: Top 5 Picks",
-     "url": "https://finance.yahoo.com/markets/stocks/articles/warren-buffet-stock-portfolio-top-160007034.html",
-     "publisher": "Insider Monkey",
-     "summary": "Warren Buffett no longer runs the conglomerate he built over six decades, but his fingerprints are still on nearly everything it owns. He handed the chief executive role to Greg Abel at the end of 2025, and Abel took over at the start of 2026. On September 18, Buffett, 96, stepped down as chairman, ",
-     "published": "2026-11-21T16:00:07Z",
-     "title_ko": "워런 버핏의 주식 포트폴리오: 상위 5개 종목"
-    },
-    {
-     "title": "Charlie Munger Had 1 Warning Every Investor Over 60 Should Hear",
-     "url": "https://247wallst.com/personal-finance/2026/11/21/charlie-munger-had-1-warning-every-investor-over-60-should-hear/",
+     "title": "What Warren Buffett Has Said About Bitcoin and Whether He Was Right",
+     "url": "https://247wallst.com/investing/cryptocurrency/2026/11/22/what-warren-buffett-has-said-about-bitcoin-and-whether-he-was-right/",
      "publisher": "24/7 Wall St.",
-     "summary": "A 30% market drop sounds survivable until borrowed money enters the picture. Two retirees with the same $500,000 start very differently, and only one of them may lose control over when her shares get sold.",
-     "published": "2026-11-21T15:02:12Z",
-     "title_ko": "찰리 멍거는 60세 이상의 모든 투자자가 들어야 할 경고를 하나 남겼습니다."
+     "summary": "Warren Buffett has mocked Bitcoin as rat poison and said he wouldn't pay $25 for all of it. Two of his famous jabs come with starting prices, and the scoreboard looks very different depending on which date you pick.",
+     "published": "2026-11-22T18:08:07Z",
+     "title_ko": "워런 버핏이 비트코인에 대해 한 말과 그가 옳았는지 여부"
+    },
+    {
+     "title": "AI debt fears mount: why cash and defensive stocks are back in favor",
+     "url": "https://www.thestreet.com/investing/ai-debt-fears-mount-why-cash-and-defensive-stocks-are-back-in-favor",
+     "publisher": "TheStreet",
+     "summary": "Ron Insana, CEO of Insana Information Partners and author of The Message of the Markets on Substack, says investors should separate long-term investing from money needed soon.",
+     "published": "2026-11-22T18:00:00Z",
+     "title_ko": "AI 부채에 대한 우려가 커지고 있습니다. 현금 및 방어주가 다시 선호되는 이유"
+    },
+    {
+     "title": "I'm Raising My Fair Value Estimate for Berkshire Hathaway Stock. Here's What I Think It's Worth.",
+     "url": "https://www.fool.com/investing/2026/11/22/i-m-raising-my-fair-value-estimate-for-berkshire-hathaway-stock-here-s-what-i-think-it-s-worth/",
+     "publisher": "Motley Fool",
+     "summary": "My new number is around 22% over today's stock price. And one part of the business carries most of it.",
+     "published": "2026-11-22T15:43:02Z",
+     "title_ko": "저는 버크셔 해서웨이 주식의 공정 가치 추정치를 상향 조정하고 있습니다. 제가 생각하는 가치는 다음과 같습니다."
+    },
+    {
+     "title": "Warren Buffett’s Favorite Type of Stock Is Perfect for Patient Investors",
+     "url": "https://247wallst.com/investing/2026/11/22/warren-buffetts-favorite-type-of-stock-is-perfect-for-patient-investors/",
+     "publisher": "24/7 Wall St.",
+     "summary": "Buffett once held hundreds of positions, yet only a tiny few have survived a decade. Coca-Cola, American Express and Moody's earned their spots, but one of them just missed earnings and another is sinking this year. Why does Berkshire still hold on?",
+     "published": "2026-11-22T13:33:06Z",
+     "title_ko": "워런 버핏이 가장 선호하는 주식 유형은 인내심 있는 투자자에게 안성맞춤입니다."
+    },
+    {
+     "title": "Berkshire Hathaway is betting big on 1 beleaguered US market. Is it too late to get in?",
+     "url": "https://finance.yahoo.com/news/berkshire-hathaway-betting-big-1-114500106.html",
+     "publisher": "Moneywise",
+     "summary": "Is the company taking a page out of ex-CEO Warren Buffett’s investing playbook?",
+     "published": "2026-11-22T11:45:00Z",
+     "title_ko": "버크셔 해서웨이가 어려움을 겪고 있는 미국 시장 한 곳에 큰돈을 걸고 있습니다. 지금이라도 투자하기에 너무 늦었을까요?"
     }
    ]
   },
   "138040": {
    "name": "메리츠금융지주",
    "items": [
-    {
-     "title": "메리츠금융지주 주가 상승 중",
-     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1WcFpHS01LQUxHYk10VzB4Z253VFM1Ml9fN1FaX3F6ODh2UWJmYTZxSkZ4SUdURXV6akFjamdOSms0WVAyRDZrQ01RVXRpMmJHLVp4WnFuTUw3YUVDX0QyZ0hiUmZEcHRDdEQ3eHFBZHRDMzRZ?oc=5",
-     "publisher": "아시아뉴스통신",
-     "summary": "메리츠금융지주 주가 상승 중  아시아뉴스통신",
-     "published": "Fri, 20 Nov 2026 00:35:08 GMT",
-     "title_ko": null
-    },
     {
      "title": "불장에 소외된 메리츠금융…실적 제자리에 주주환원도 '이젠 평범'",
      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNMFlSdlREdHhOU2NLaVdLSVQteU9IcFVDcmoxWUhEaGxjXzFPd3NOQmZmcXR0V29VMjFSeGlqRlF0WTJVQ2lGRFNSU0VtRDNGOXJIRTlpR3VGRXI2dDdHdzFtUjA3X3Yxa2VCSzZheUR1Z3diV3ZpaVJ4ZkdHSFVfTnY0cw?oc=5",
@@ -7189,11 +7181,11 @@
      "title_ko": null
     },
     {
-     "title": "[모닝 리포트] 메리츠금융지주, 주식시장 변동성에 실적 흔들",
-     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1qRGx5WElGbUdHWVgwaFlmQTVNX2NxOVFubW55R001N25VQnVTRDh1SVN6ZFU0LUdiZkVQZlhfazZBeVB3SDM3ODhRMjVhSUpaNEl6b1hZNkZnNkZx?oc=5",
-     "publisher": "뉴스핌",
-     "summary": "[모닝 리포트] 메리츠금융지주, 주식시장 변동성에 실적 흔들  뉴스핌",
-     "published": "Thu, 12 Nov 2026 00:44:00 GMT",
+     "title": "메리츠금융지주 주가 상승 중",
+     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1WcFpHS01LQUxHYk10VzB4Z253VFM1Ml9fN1FaX3F6ODh2UWJmYTZxSkZ4SUdURXV6akFjamdOSms0WVAyRDZrQ01RVXRpMmJHLVp4WnFuTUw3YUVDX0QyZ0hiUmZEcHRDdEQ3eHFBZHRDMzRZ?oc=5",
+     "publisher": "아시아뉴스통신",
+     "summary": "메리츠금융지주 주가 상승 중  아시아뉴스통신",
+     "published": "Fri, 20 Nov 2026 00:35:08 GMT",
      "title_ko": null
     },
     {
@@ -7210,6 +7202,14 @@
      "publisher": "매일경제",
      "summary": "“순익 28% 급감했지만”…키움증권, 메리츠금융 목표가 17만원 유지한 이유  매일경제",
      "published": "Thu, 12 Nov 2026 08:00:00 GMT",
+     "title_ko": null
+    },
+    {
+     "title": "삼성증권, 한국금융지주·메리츠금융지주 목표주가 상향",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBMdEhWWlFNRzdENzJNRDdaTk5aLTdGaHliUWx3Zzl1Z0w5RV96OHBselc3WFlYMVdvYXZCWWZINzE5UVR0eXE4ZDdlMzJOaHI1a3UwdFdYdjV2QjDSAWBBVV95cUxOaVNBWjgwN01lRHN0emUzNlZ0c0R5N3M0UGdFb1FWV0tma1ZBUzlOaXFULWx3XzBoOFZIeW5jdUdXVXhYa21MelUwcFE0d1haLXQ4N2ltNkRxYUROYUF1V3Y?oc=5",
+     "publisher": "연합뉴스",
+     "summary": "삼성증권, 한국금융지주·메리츠금융지주 목표주가 상향  연합뉴스",
+     "published": "Thu, 12 Feb 2026 08:00:00 GMT",
      "title_ko": null
     }
    ]
@@ -7242,19 +7242,19 @@
      "title_ko": null
     },
     {
+     "title": "눈에 띄는 SKC 회수 효과…한투PE 순이익 성장 '18배'",
+     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5hZlV3STc1UHBiRUNkenFUa0U1cURQVzdiaTR5M200OW5wc0w3U0RmSzNRaUF1LTFTLXROSlJZeWRYaHI3bFNyZHpKUjBRMW5VRlc3cWd3ZEp2SjFlMHFFeDVjRlE1dWZFUGduUHQtNWFtdw?oc=5",
+     "publisher": "KB Think",
+     "summary": "눈에 띄는 SKC 회수 효과…한투PE 순이익 성장 '18배'  KB Think",
+     "published": "Fri, 06 Nov 2026 00:29:36 GMT",
+     "title_ko": null
+    },
+    {
      "title": "\"채권을 주식으로\"…AI 랠리 속 SK하이닉스·SKC EB 부담 해소",
      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vQTFGaUpRdmZ4NklpWWNlaFoyNTM3dVo5VEFxQUx1WkVUWWFHVWRoZnNxaUVoejJtaG1ndXhfWjZoMXB4U2ExRGd4dXVWZ3JqbV82czJ6Z3RndE9aOGJKcHdLNm8xRC1pR1lVUnA5VHQ?oc=5",
      "publisher": "연합인포맥스",
      "summary": "\"채권을 주식으로\"…AI 랠리 속 SK하이닉스·SKC EB 부담 해소  연합인포맥스",
      "published": "Tue, 12 May 2026 07:00:00 GMT",
-     "title_ko": null
-    },
-    {
-     "title": "SK증권 \"SKC 목표주가 하향, 3분기 동박 출하량 감소로 실적 어닝 쇼크\"",
-     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5jUFY5WUNvOXRIZEQ5XzVzc2tRcXZILWRRNUJXQ3Z4UFA3Y0FlTG9QczM4THVnU21MVmhVUVdxYmYtZ0VuUl8xaG9XdHZjV1lzRmhCUmx2VlFsMU5zSUxKcVBiUVNUQjloUERSM25MRXNramc?oc=5",
-     "publisher": "비즈니스포스트",
-     "summary": "SK증권 \"SKC 목표주가 하향, 3분기 동박 출하량 감소로 실적 어닝 쇼크\"  비즈니스포스트",
-     "published": "Thu, 29 Oct 2026 07:00:00 GMT",
      "title_ko": null
     }
    ]
@@ -7262,6 +7262,14 @@
   "CPNG": {
    "name": "Coupang",
    "items": [
+    {
+     "title": "Coupang vs. DICK'S Sporting Goods: Which Retail Stock Is a Better Buy for 2027?",
+     "url": "https://www.fool.com/coverage/better-buy/2026/11/22/coupang-vs-dick-s-sporting-goods-which-retail-stock-is-a-better-buy-for-2027/",
+     "publisher": "Motley Fool",
+     "summary": "Coupang's valuation is higher than DICK'S, but the answer depends on how much growth you're willing to pay for.",
+     "published": "2026-11-22T16:13:26Z",
+     "title_ko": "Coupang vs. DICK'S Sporting Goods: 2027년에는 어느 소매주가 더 나은 매수 대상일까요?"
+    },
     {
      "title": "Investors Heavily Search Coupang, Inc. (CPNG): Here is What You Need to Know",
      "url": "https://finance.yahoo.com/markets/stocks/articles/investors-heavily-search-coupang-inc-130002495.html",
@@ -7276,7 +7284,7 @@
      "publisher": "Kiplinger",
      "summary": "The biggest IPOS in U.S. history include a major chipmaker, a ride-hailing firm and a handful of global telecoms.",
      "published": "2026-11-19T21:38:58Z",
-     "title_ko": "역대 최대 규모의 미국 IPO 25선"
+     "title_ko": "사상 최대 규모의 미국 IPO 25건"
     },
     {
      "title": "Did Coupang’s Fall Catch You Out? What Investors Missed",
@@ -7293,14 +7301,6 @@
      "summary": "Today's big story: Could Nvidia Stock Fall 50%? Follow The Cash.",
      "published": "2026-11-18T23:42:56Z",
      "title_ko": "쿠팡 주가가 5% 이상 하락한 이유는 무엇인가요?"
-    },
-    {
-     "title": "Coupang vs. DoorDash: Which Delivery Giant's Stock Is a Better Buy for 2027?",
-     "url": "https://www.fool.com/coverage/better-buy/2026/11/18/coupang-vs-doordash-which-delivery-giant-s-stock-is-a-better-buy-for-2027/",
-     "publisher": "Motley Fool",
-     "summary": "Coupang's logistics muscle in Korea goes head-to-head with DoorDash's profitable growth in the West, and the valuation gap may settle the debate.",
-     "published": "2026-11-18T16:29:02Z",
-     "title_ko": "쿠팡 vs. DoorDash: 2027년에는 어느 배달 대기업의 주식을 매수하는 것이 더 나을까요?"
     }
    ]
   },
@@ -7308,12 +7308,28 @@
    "name": "로블록스",
    "items": [
     {
+     "title": "A $14 Billion Fund Just Bought These 3 Stocks",
+     "url": "https://www.tikr.com/blog/a-14-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261122-xrm65rcp",
+     "publisher": "TIKR",
+     "summary": "Key TakeawaysSRS Investment Management, a $14 billion firm, added to Roblox and Meta Platforms and opened a new stake in SK hynix in the third quarter, its latest 13F shows. Roblox is up 10% since Sept.",
+     "published": "2026-11-22T12:35:37Z",
+     "title_ko": "140억 달러 규모의 펀드가 방금 이 3가지 주식을 매수했습니다"
+    },
+    {
+     "title": "Is ‘Grand Theft Auto VI’ Gaming’s Last Blockbuster?",
+     "url": "https://finance.yahoo.com/video/grand-theft-auto-vi-gaming-110000013.html",
+     "publisher": "WSJ",
+     "summary": "While it is expected to be one of the most lucrative entertainment events in history, the release of “Grand Theft Auto VI” also represents an inflection point for the videogame industry, which is grappling with steep layoffs, a pivot to new business models and questions about the role AI could play ",
+     "published": "2026-11-22T11:00:00Z",
+     "title_ko": "'GTA VI'가 게임계의 마지막 블록버스터일까요?"
+    },
+    {
      "title": "Gamers Poured $3.79B Into GTA VI Through Day One. Roblox Guides $1.89B to $2B All Quarter",
      "url": "https://www.tikr.com/blog/gamers-poured-3-79b-into-gta-vi-through-day-one-roblox-guides-1-89b-to-2b-all-quarter?ref=yahoofinance&tlnk=yf-261121-49wvpv39",
      "publisher": "TIKR",
      "summary": "Key TakeawaysRockstar estimates Grand Theft Auto VI’s worldwide retail sales reached $3. 79 billion through the end of its Nov.",
      "published": "2026-11-21T13:31:05Z",
-     "title_ko": "게이머들이 출시 첫날 GTA VI에 37억 9천만 달러를 쏟아부었습니다. Roblox, 분기별 매출 18억 9천만 달러에서 20억 달러로 전망"
+     "title_ko": "게이머들이 출시 첫날 GTA VI에 37억 9천만 달러를 쏟아부었습니다. Roblox, 분기 매출 18억 9천만 달러에서 20억 달러로 전망"
     },
     {
      "title": "Cathie Wood Just Sold $8 Million of Roblox",
@@ -7329,23 +7345,7 @@
      "publisher": "TheStreet",
      "summary": "Roblox’s finance chief made a candid admission about the holiday quarter. Bank of America thinks investors should take the hint.",
      "published": "2026-11-21T04:07:00Z",
-     "title_ko": "Roblox CFO, BofA가 인내심을 촉구하는 가운데 GTA 6에 대한 '제한된 데이터'를 인정"
-    },
-    {
-     "title": "A $6 Billion Fund Is Betting Big on Roblox",
-     "url": "https://www.tikr.com/blog/a-6-billion-fund-is-betting-big-on-roblox?ref=yahoofinance&tlnk=yf-261120-99q663v4",
-     "publisher": "TIKR",
-     "summary": "Key TakeawaysLinonia Partnership, a $6 billion fund, nearly doubled its Roblox stake in the third quarter, to 23. 85 million shares worth $1.",
-     "published": "2026-11-20T14:57:18Z",
-     "title_ko": "60억 달러 규모의 펀드가 Roblox에 대규모 투자를 하고 있습니다."
-    },
-    {
-     "title": "Grand Theft Auto VI Arrives: Why Take-Two Is a Waiting Game",
-     "url": "https://www.marketbeat.com/articles/grand-theft-auto-vi-arrives-why-take-two-is-a-waiting-game/?utm_source=yahoofinance&utm_medium=yahoofinance",
-     "publisher": "MarketBeat",
-     "summary": "Grand Theft Auto VI launched with strong pre-orders, but Take-Two shares trade near $218 as investors weigh near-term costs against the delayed 2027 online rollout and fiscal 2027 bookings guidance.",
-     "published": "2026-11-19T19:10:00Z",
-     "title_ko": "GTA VI 출시 임박: Take-Two가 기다리는 이유는 무엇일까요?"
+     "title_ko": "Roblox CFO, GTA 6에 대한 '제한된 데이터' 인정... BofA는 인내심을 촉구"
     }
    ]
   },
@@ -7366,7 +7366,7 @@
      "publisher": "Stocktwits",
      "summary": "Losses were steeper among Bitcoin miners that spent the past year expanding into AI computing and data center infrastructure.",
      "published": "2026-11-20T18:34:06Z",
-     "title_ko": "비트코인, 59,000달러 아래로 하락하며 암호화폐 베팅에서 15억 달러 손실: MSTR, BMNR, ASST 주식 손실 확대"
+     "title_ko": "비트코인, 59,000달러 아래로 하락하며 암호화폐 투자액 15억 달러 손실: MSTR, BMNR, ASST 주식 하락세 지속"
     },
     {
      "title": "Ripple CEO Blames Anthropic IPO for Crypto Selloff, Predicts Rally",
@@ -7374,7 +7374,7 @@
      "publisher": "CryptoProwl",
      "summary": "Ripple CEO Brad Garlinghouse said Thursday that the recent slide in Bitcoin (CRYPTO: $BTC) and XRP (CRYPTO: $XRP) w...",
      "published": "2026-11-19T19:48:00Z",
-     "title_ko": "리플 CEO, 암호화폐 매도 사태의 원인을 앤트로픽(Anthropic)의 IPO로 지목하며 반등을 예측"
+     "title_ko": "리플 CEO, 암호화폐 매도 사태의 원인으로 앤트로픽(Anthropic)의 IPO를 지목하며 상승세 예측"
     },
     {
      "title": "Bitmine Just Posted a Staggering $6.3 Billion Loss on Its Ethereum Position. Here's What ETH Investors Need to Know.",
@@ -7382,7 +7382,7 @@
      "publisher": "Motley Fool",
      "summary": "Tom Lee’s Bitmine kept catching a falling knife over the past year.",
      "published": "2026-11-19T18:45:02Z",
-     "title_ko": "Bitmine이 이더리움 포지션에서 무려 63억 달러의 손실을 기록했습니다. 이더리움(ETH) 투자자가 알아야 할 사항은 다음과 같습니다."
+     "title_ko": "Bitmine이 이더리움 포지션에서 무려 63억 달러의 손실을 기록했습니다. 이더리움 투자자가 알아야 할 사항은 다음과 같습니다."
     },
     {
      "title": "Anthropic Prices IPO at $83 a Share, Raising $81.3 Billion in Largest Listing on Record",
@@ -7390,7 +7390,7 @@
      "publisher": "CryptoProwl",
      "summary": "AI company Anthropic, the developer of the Claude models, priced its initial public offering at $83 a share on Wedn...",
      "published": "2026-11-19T01:40:00Z",
-     "title_ko": "앤트로픽, 주당 83달러에 IPO 가격 책정, 사상 최대 규모의 상장으로 813억 달러 조달"
+     "title_ko": "Anthropic, 주당 83달러에 IPO 가격 책정, 사상 최대 규모의 상장으로 813억 달러 조달"
     }
    ]
   }
@@ -7414,18 +7414,18 @@
      "published": "Fri, 20 Nov 2026 09:39:00 GMT"
     },
     {
+     "title": "코스피, 앤트로픽 상장 앞두고 등락 끝에 1.4% 상승 마감(종합)",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5KTmljZWNMN3cwdmw5eS1aYVIxdHdDamdGRmdpVS1LX1JuUjVCZEZUSGdkaFdxLW5YY3g1bExFMTV3ZjNUdXdiWGlOOHJDS3VUZXRHWEtPU2Z1WEXSAWBBVV95cUxPTTRqRloyTUN2Q0hBOWxWQnVZaEM5YWNlaHNBRmRXZHQ1R0MzbW44MG1GQUNJZlpqdnlwVC1LNHZUM00xWHZORHBpR0NrVWlvN3ZTaElYYW16ZWtva2d3MFM?oc=5",
+     "publisher": "연합뉴스",
+     "summary": "코스피, 앤트로픽 상장 앞두고 등락 끝에 1.4% 상승 마감(종합)  연합뉴스",
+     "published": "Thu, 19 Nov 2026 08:10:01 GMT"
+    },
+    {
      "title": "또 ‘검은 금요일’…코스피·코스닥 5%대 급락 마감",
      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBaVlZKWFBWZnVrbkgtLUdhd1pzM1ZHTGV1c2dwaXJMV0JJbWJvYV9ZSy04VVVBeDVxdzJJSkRnZ0hodUlmaXgxWVFZcUprTkJ1VThJeDVn?oc=5",
      "publisher": "중앙일보",
      "summary": "또 ‘검은 금요일’…코스피·코스닥 5%대 급락 마감  중앙일보",
      "published": "Fri, 20 Nov 2026 06:35:44 GMT"
-    },
-    {
-     "title": "코스피·코스닥, 5%대 급락 마감",
-     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5uMzZMbzZQNHY5S1RWWFd0ckYwcl84X3pmWVlPMEFLQmhKNjNPOXRmVF9mX0IyUXY2TDVyYzRnR1pJcGJ6djhpclNENnNOYVBzQktZSnlNRk5iYlQxWHVXQUNkR2hObEdmYU9NbmR3emp4VEdM0gF0QVVfeXFMT1QzLTRYWjVTNWgxb090YVpudGdpRTZ5T2hYV3l2c1NTM01pMmt1ajNHMjlpV2xkbjNXVDA2Rk90cmxmbXdJQUxoNlVSaEF5cVVuOXUyYjRpTmFnZEpzSHRBeHNwbnZwOTYxTUJuMkxFMlYycWY?oc=5",
-     "publisher": "MBC 뉴스",
-     "summary": "코스피·코스닥, 5%대 급락 마감  MBC 뉴스",
-     "published": "Fri, 20 Nov 2026 06:52:09 GMT"
     }
    ]
   },
@@ -7433,25 +7433,18 @@
    "topic": "금리·연준·물가",
    "items": [
     {
-     "title": "[다음주 경제] 숨 고르기 한 기준금리, 인상할까…한은 성장률 전망은",
-     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52cUt2Wi0yWDlZN2VObUxMZUdhN3FlWUN4MjA1bmN0WGV4MlZtMElPaXRuUW1fZnN4U1lRcVFwbF9RdWh1bmRpbGdYM0h3YlVuRXZlWTVLam9UVGvSAWBBVV95cUxObENidGxwYjlpZnNjWXZfWkdTUk93anp6c3d4X0NSRFRlUms2cktEbnExN01BMG9VT1BtT25BUVVxVVRfby1MdXRQWXJHWXJxLXY4VHpZOG0yTmhZeXh1WEI?oc=5",
-     "publisher": "연합뉴스",
-     "summary": "[다음주 경제] 숨 고르기 한 기준금리, 인상할까…한은 성장률 전망은  연합뉴스한은, 금리 인상으로 기울었나...'5천선 붕괴' 증시 향배 등 내주 경제 핫이슈  파이낸셜뉴스수출 1조달러에 성장률 전망 '쑥'…한은 기준금리 추가 인상 확실시  뉴스웍스\"지금 예금 만기인데..\" 11월 26일 금리결정, 60대 갱신 전에 봐야 할 조건 1위  Daum[머니브리핑] 올해 마지막 금통위⋯기준금리 3.25% 인상에 무게  이투데이[이번주 금통위] 한국은행, 高물가·高성장에 재차 긴축...3.25% 인상 가능성↑  글로벌이코노믹기준금리 결정부",
-     "published": "Fri, 20 Nov 2026 23:36:08 GMT"
+     "title": "\"연준, 기준금리 내년말 6.75%까지 인상해야 물가 목표 달성\"",
+     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVdlJrX2JjU2huNTcxRWcxZUk3eVNsSVpFQzdsOTk3MDR2cWgyM1V3a0dGV21PLU1LQjdESkpQR2tuc2czSkZWRGswbkIzQ2RndC1JSzlIYUxwMjBkRVl2VzJZYXFFZmZKajRfOEpINnM?oc=5",
+     "publisher": "연합인포맥스",
+     "summary": "\"연준, 기준금리 내년말 6.75%까지 인상해야 물가 목표 달성\"  연합인포맥스",
+     "published": "Tue, 03 Nov 2026 08:00:00 GMT"
     },
     {
-     "title": "②빚 1200조 시대, 주담대 금리↑...차주도 은행도 ‘한숨’ [머니+]",
-     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4xYW0xeVZLRnViZHJBNXNMUG9WNjVaTTZJMFd4NjNQTkhCaUFiS3B5RkJfUUpsZGtBRDNNTUFneHRGZ1R4dk42X0J0T1RJTVZWa19xSlR4REVjMmM?oc=5",
-     "publisher": "에너지경제신문",
-     "summary": "②빚 1200조 시대, 주담대 금리↑...차주도 은행도 ‘한숨’ [머니+]  에너지경제신문",
-     "published": "Thu, 19 Nov 2026 07:29:49 GMT"
-    },
-    {
-     "title": "인도네시아 기준금리 6.00%로 인상…한국 3.00%와 비교하면",
-     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9VRy12R1dfZTdoS29nWDFOQVdULVIwUklEb2lUVHRkcXItdnIwZ0xldndGX3hnZ2pjUnFBNlBOMUI2blBtZXhPSXd0MmZMbHlxX1Jydm1CMUdGR2NoWktEcGo2UDM5bVY2MnJUZzNn?oc=5",
-     "publisher": "팸타임스 FAM Times",
-     "summary": "인도네시아 기준금리 6.00%로 인상…한국 3.00%와 비교하면  팸타임스 FAM Times",
-     "published": "Sat, 21 Nov 2026 08:00:14 GMT"
+     "title": "연준 의사록 보니… “금리 더 올려야” 거의 한목소리, 12월 ‘빅스텝’도 거론",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPM3ZveEtXbE1jSTdUcFM4UDZaSzNrVDNDcHUxdnhQVW5lTWZfcTQxYW5sa1JaVGgzLVdQTEl2Qi0wd3lScWo5MjdJRGJJNXU0NjBfUUJ0blBlX1h4TkZhdV96anBlVmZsVXc2Y1lYcmlxTHhsemdzRHdDRXhoOXpqTTBDVzd0VUto?oc=5",
+     "publisher": "조선일보",
+     "summary": "연준 의사록 보니… “금리 더 올려야” 거의 한목소리, 12월 ‘빅스텝’도 거론  조선일보",
+     "published": "Wed, 18 Nov 2026 21:55:29 GMT"
     },
     {
      "title": "한은, 이달 기준금리 0.25%p 인상 가능성 커져",
@@ -7459,6 +7452,13 @@
      "publisher": "한겨레",
      "summary": "한은, 이달 기준금리 0.25%p 인상 가능성 커져  한겨레",
      "published": "Mon, 16 Nov 2026 23:05:00 GMT"
+    },
+    {
+     "title": "美 연준, 기준금리 3.75~4.00% 동결…추가 인상 속도 조절",
+     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBHZEtyVWU0anhfTG1kWmZsbG5FUC1abVlsek1zMlRGMHRRbDJWTjVsc2t4SEt1a1YwazNleHh1MS1xU1RmdXExSzZaU2xvSDU2dm8tUk1R?oc=5",
+     "publisher": "중앙일보",
+     "summary": "美 연준, 기준금리 3.75~4.00% 동결…추가 인상 속도 조절  중앙일보",
+     "published": "Wed, 28 Oct 2026 07:00:00 GMT"
     }
    ]
   },
@@ -7466,32 +7466,32 @@
    "topic": "환율",
    "items": [
     {
+     "title": "원·달러 환율, 연말 1380원 전망…외국인 주식 매도·美 긴축 변수",
+     "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBLRVZSMld5Q2NLV1FKZFhhYVRrb3hIZjVzTzgyZzJNVXZVZlZGWUFIZjZFZ3Q3OVUtS3BsQ29ETXh3TTRWb0VrTHJBOXJkejZJ?oc=5",
+     "publisher": "블루밍비트",
+     "summary": "원·달러 환율, 연말 1380원 전망…외국인 주식 매도·美 긴축 변수  블루밍비트",
+     "published": "Sun, 22 Nov 2026 08:35:24 GMT"
+    },
+    {
+     "title": "환율, 강달러·주가 급락에 6.2원 오른 1,336.2원",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9namJzWFFzemtnY2F0RG1mc2pjSDdHdkJJTmxZWnZIVHVUa0wxNUZwSmlHT0F1cUVzbDRUOHlyV0ZlSjJRSFZRV3N1M0xXMzFvVzR5ZGxMc2ljUmPSAWBBVV95cUxPNVZIQUNnZFhQUmp6UVFQVG5oZ1pKZWFvWmF6cEp3bkdFWnlWVEhiOWk4ZUJWdVlOajh4dW14SWg3MVlJWE1aV3BqcUFuUmtaXzZDQzBoeENPMi02Q2tsMkc?oc=5",
+     "publisher": "연합뉴스",
+     "summary": "환율, 강달러·주가 급락에 6.2원 오른 1,336.2원  연합뉴스",
+     "published": "Fri, 20 Nov 2026 06:53:40 GMT"
+    },
+    {
+     "title": "[이번주 환율] 강달러에도 1330원대 지킨 환율…1320원대 안착할까",
+     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1NY1d6amtKTV9DUURHRS0zam5CUFg3N01iNUNERlk3cHBCdG1PX09NLVhMMzdFdUpUVmZtXzRDaDVPVlp0d3VFUlNSZ2VJLVI5aGpjbjJfYzJaUGJ3VUQ0VVdwYUpqRTctYmx6X0dkeUNVZw?oc=5",
+     "publisher": "오피니언뉴스",
+     "summary": "[이번주 환율] 강달러에도 1330원대 지킨 환율…1320원대 안착할까  오피니언뉴스",
+     "published": "Sun, 22 Nov 2026 20:40:00 GMT"
+    },
+    {
      "title": "원·달러 환율, 6.2원 오른 1336.2원",
      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQNzkzRm0ySldVX3JCbEZiY0s0Yndzcl8zY1ZudFlJUnJLQWlJcHhwTmF6Tnk0ZURpV0VNenpyRlk3NHZXV2dsdEFEcV9tb3p0dTJSNG9JX29QYnFDRnBZOXVhLUZvUUc4MkxlY2xuMWR0T2UzN3NJaDZuVmVQaktOdWN2Tl9zQdIBmgFBVV95cUxNblU3V3R5QzhqcW1JRjA0QTJRLVdHbWJiR2hWVzhRNHlmbVd4Q0dvRGI3X2tGQzhDTlJ3Vk5ocXEzaVFmNEQ2UmVqOW9WdmV4V0x2UzJraWxraVB2VmRSdzNmTFNOcm1fQmo4UmZtUEtSU1JTeGhuMThGRERBeTVpWVdfQWxMOXhvY3JTTVRsMHl0NG5vOGp1b0lR?oc=5",
      "publisher": "Chosunbiz",
      "summary": "원·달러 환율, 6.2원 오른 1336.2원  Chosunbiz",
      "published": "Fri, 20 Nov 2026 06:50:00 GMT"
-    },
-    {
-     "title": "달러 또 최고치 경신인데…환율 4일 연속 하락해 1,330원선",
-     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9mOVdCUEVvYkt4dXdiVU9hZzQxbFNiZkRkNEo3dDRtMHJPM1RMQ1AwZTVZVlNuS0NRb0VSaFRTV3Q1RWQ2OEhmQUdOaGk5OWRJTm9LNm9OQUdrY2PSAWBBVV95cUxNaWRQSHJ6TDhBRTBpemtTUWJBYVMyM0ZqQnN4cHgzTDEydElzLWZ5OTdKZS1fU1I0RTUtQmdTcDdka2hIWTROX2RBSzZNS3JXWnVJMExhazlPZ21xN1ZyNU4?oc=5",
-     "publisher": "연합뉴스",
-     "summary": "달러 또 최고치 경신인데…환율 4일 연속 하락해 1,330원선  연합뉴스",
-     "published": "Thu, 19 Nov 2026 06:57:38 GMT"
-    },
-    {
-     "title": "[환율 전망] 쟁여두기엔 너무 많은 달러",
-     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0tMlpLT1BTYkpZRU1hc004WTZsZUJZSVZkUmlCTHBlRXk1b3l1dGNqNDRtX3JOelFTQ0lnUkNMYkJfSEZLajhpOTFoMmZybm1LVXNiVGg0U3lFWEkzLUtFOQ?oc=5",
-     "publisher": "KB Think",
-     "summary": "[환율 전망] 쟁여두기엔 너무 많은 달러  KB Think",
-     "published": "Thu, 19 Nov 2026 23:06:44 GMT"
-    },
-    {
-     "title": "\"내년 달러-원 1,500원대 본다…대외 불확실성·외화 선호에 상저하고\"",
-     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBTUkhnaUx1MFRieTVZcVhqWWNZazBCM0VRU2pEU0NRZWJkaHNDcm8tQ1V1R09fRDktOHBSb2ROcl8tRks0Z1gzaWN0SDFYb2xMOVVKRWdfUGcyQm84XzlRck1rV1dyWXJfeWtYdnQ4RUI?oc=5",
-     "publisher": "연합인포맥스",
-     "summary": "\"내년 달러-원 1,500원대 본다…대외 불확실성·외화 선호에 상저하고\"  연합인포맥스",
-     "published": "Wed, 04 Nov 2026 08:00:00 GMT"
     }
    ]
   },
@@ -7499,32 +7499,32 @@
    "topic": "반도체·AI",
    "items": [
     {
-     "title": "[전규열의 경제포커스] 2027년 경제전망 ···반도체 호황, 성장 과실의 확산이 관건",
-     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5zYlVzb0U2dWhKS0RkSkJxQkI5ZlI4N2NKcDhFekpNWFliUHhIRTMtRUhNSkZfOGRHNmktdDdYdXBYTWRwTWVjNml2MC1QTkFxUC1QNkFXd2VfaHV3QTZMN2todW1BTTRrTVdqc0h3?oc=5",
-     "publisher": "폴리뉴스 Polinews",
-     "summary": "[전규열의 경제포커스] 2027년 경제전망 ···반도체 호황, 성장 과실의 확산이 관건  폴리뉴스 Polinews",
-     "published": "Sat, 21 Nov 2026 14:37:10 GMT"
+     "title": "“12월 반도체 업황, 11월보다 개선되겠지만 개선세는 둔화 예상”",
+     "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5LRXZ1aGQxeVpMbkcyRFluQ3FLaXBCYzN1bmxoRnpzTHJPT2hyLVJBYVhvU3l6ckpoeDNEMS03NVZaZmtWaTVYMzFLandVQ2owZlNLMGtuQy1xbHdiSHpRX19KQU94dElzZjFuVHNxdnVNOUM3RVHSAWZBVV95cUxQbmxFekRCNmhTc3Q5cDZtVVEwa2o2M0pJSzR5UHJEdERpb2xVM09rUkhWWWJ6d0dMTVJfTkMxdEZqajdLWWtucU9maWMtRk4yS2RXcUFUakx1RF9WVXVIaEVjMkZoX3c?oc=5",
+     "publisher": "동아일보",
+     "summary": "“12월 반도체 업황, 11월보다 개선되겠지만 개선세는 둔화 예상”  동아일보",
+     "published": "Sun, 22 Nov 2026 07:05:00 GMT"
     },
     {
-     "title": "반도체 호황에도 내수 확산 제한…산업 간 온도차 뚜렷",
-     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5UWDVnZGxhdDVpRjNqX29KTDhqQ1BzNVh6NW92MjNyY05IcHlCWUxuQkg2ZERfcFdzY0VuUGp1SXBUVkFwMVRSd1E2Y1pualZORk92SGc5blNtUkhlQkdvVlJjT0R6SHRG?oc=5",
-     "publisher": "www.ebn.co.kr",
-     "summary": "반도체 호황에도 내수 확산 제한…산업 간 온도차 뚜렷  www.ebn.co.kr",
-     "published": "Sat, 21 Nov 2026 03:05:00 GMT"
+     "title": "내년 상반기 금리 3.75%까지 열어둬야…“반도체 업황에 긴축 속도 달려”",
+     "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5yWUVwUC1IRHRKcnpGcFdYNmRKY084Vm9kTEZhRDJIM3prdlBwOS1OVk9jd0ZSZUtBdDB6NVFaYS1qVzhEMDQyZmpPWVJsZEozbXfSAVNBVV95cUxOaWJKSEd1LU9CbXJ3NFBZNl9RUGI2b19tcG40TnpUYmRRZ3VuLURleHhUZW50ZkFOQWh0bFNoMXZnMHVJSjNtSWRqcDFnNWFBNThFOA?oc=5",
+     "publisher": "서울경제",
+     "summary": "내년 상반기 금리 3.75%까지 열어둬야…“반도체 업황에 긴축 속도 달려”  서울경제",
+     "published": "Sun, 22 Nov 2026 08:48:54 GMT"
     },
     {
-     "title": "수출 1조 달러 이끈 반도체...생산기지 투자 속도",
-     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5xVHh0U3RhNU03VFVKc01oTnkxVktqTzcwTThuZXlQcnhMci1idnJETWRMUXZjQ2VBNHA4d0dmZlVuZHlKZU55eGJHYWV6RzlvSDlwVXg3SGo0dkFmaXc?oc=5",
-     "publisher": "YTN",
-     "summary": "수출 1조 달러 이끈 반도체...생산기지 투자 속도  YTN",
-     "published": "Fri, 20 Nov 2026 02:04:00 GMT"
+     "title": "원익그룹, 반도체 호황 타고 투자 확장…금융 계열사까지 키운다",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9HV0lrX2xQMEpUUTBNcnRyaGMzTEgxWlZOY09uMmNBVXNSd1VDcjBhR0NhcHBYNktQZzhTWFluU3JDdk1kRU5YWU4xV3pLRHcydjNGUENUaHVHWTVpa003WNIBeEFVX3lxTE85amNraDJjamF2c1M4RzMyQTZqY3hfdFRDeWQ2V1ZkT3hucF9HalVfRmJWbjFZUm5tcnBaQWZ5Yzd5SUtsQnYyQ3NQY2Z1cWFVdmpVOFB6bTNIT3d2UEhqNVFvT25wQ3d4QVRwN3Fuc2NaU1VrNGFUSg?oc=5",
+     "publisher": "뉴시스",
+     "summary": "원익그룹, 반도체 호황 타고 투자 확장…금융 계열사까지 키운다  뉴시스",
+     "published": "Sun, 22 Nov 2026 20:00:00 GMT"
     },
     {
-     "title": "미국 AI 데이터센터 규제에도 반도체 호황 당분간 지속 전망, 삼성전자 SK하이닉스 주가는 시험대",
-     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9yWG04YVh3U2M0NUI1ZHFOdmlPVzlGU2FOaFJWenNoVjVIcGY4YWJaMU1YaW16V3MxR0lHd1lzRlU0ZjFXS29XNlltSU1tOFUzdHRueHFNMml5QmRIelZDZUxvRVc3NGtTVjdFVkNjZVZiem8?oc=5",
-     "publisher": "비즈니스포스트",
-     "summary": "미국 AI 데이터센터 규제에도 반도체 호황 당분간 지속 전망, 삼성전자 SK하이닉스 주가는 시험대  비즈니스포스트",
-     "published": "Fri, 20 Nov 2026 01:25:06 GMT"
+     "title": "코스피 상승분 77%가 반도체 두 기업 몫…자본시장 쏠림에 기업금융 부담까지",
+     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA1X19NV2s0azB2VF9WUklFRFlaNWdVMXMtS25kWi12ZEhhNmxtdkdSdHdlWmJfUXN5SEJscjIyWGN2U1NqbUFvRWxKWGlvQm5qRzNYY3kwSkNOVXd1V212cXdGM1dTVFpO?oc=5",
+     "publisher": "시사프리즘",
+     "summary": "코스피 상승분 77%가 반도체 두 기업 몫…자본시장 쏠림에 기업금융 부담까지  시사프리즘",
+     "published": "Sun, 22 Nov 2026 06:48:58 GMT"
     }
    ]
   }
@@ -7538,8 +7538,8 @@
   "y1": 5
  },
  "realized": {
-  "fx": 1334.79,
-  "today": "2026-11-22",
+  "fx": 1346.04,
+  "today": "2026-11-23",
   "windows": {
    "all": {
     "KRW": 352530,
@@ -7553,7 +7553,7 @@
     "tax_KRW": -55337,
     "tax_USD": 0.0,
     "count": 4,
-    "krw_total": 332028,
+    "krw_total": 331855,
     "since": null
    },
    "m1": {
@@ -7569,7 +7569,7 @@
     "tax_USD": 0.0,
     "count": 0,
     "krw_total": 0,
-    "since": "2026-10-22"
+    "since": "2026-10-23"
    },
    "m3": {
     "KRW": 352530,
@@ -7583,8 +7583,8 @@
     "tax_KRW": -55337,
     "tax_USD": 0.0,
     "count": 4,
-    "krw_total": 332028,
-    "since": "2026-08-22"
+    "krw_total": 331855,
+    "since": "2026-08-23"
    },
    "y1": {
     "KRW": 352530,
@@ -7598,8 +7598,8 @@
     "tax_KRW": -55337,
     "tax_USD": 0.0,
     "count": 4,
-    "krw_total": 332028,
-    "since": "2025-11-22"
+    "krw_total": 331855,
+    "since": "2025-11-23"
    }
   },
   "by_year": [
@@ -7615,7 +7615,7 @@
     "tax_KRW": -55337,
     "tax_USD": 0.0,
     "count": 4,
-    "krw_total": 332028,
+    "krw_total": 331855,
     "year": "2026"
    }
   ],
@@ -7675,29 +7675,29 @@
    }
   ]
  },
- "prev_date": "2026-11-21",
+ "prev_date": "2026-11-22",
  "twr": {
   "all": {
-   "twr_pct": -19.99,
-   "days": 101,
+   "twr_pct": -19.52,
+   "days": 102,
    "since": null
   },
   "y1": {
-   "twr_pct": -19.99,
-   "days": 101,
-   "since": "2025-11-22"
+   "twr_pct": -19.52,
+   "days": 102,
+   "since": "2025-11-23"
   },
   "m3": {
-   "twr_pct": -18.57,
+   "twr_pct": -18.08,
    "days": 93,
-   "since": "2026-08-22"
+   "since": "2026-08-23"
   },
   "m1": {
-   "twr_pct": -16.28,
+   "twr_pct": -15.68,
    "days": 32,
-   "since": "2026-10-22"
+   "since": "2026-10-23"
   },
-  "nav": 17176693,
+  "nav": 17279006,
   "first_date": "2026-08-12",
   "flow_total": -295957
  }
